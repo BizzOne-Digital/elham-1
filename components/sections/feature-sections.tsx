@@ -389,9 +389,9 @@ export function ImageMosaicSection({ section }: SectionComponentProps) {
   );
 }
 
-export function ContactPanelSection(_section: SectionComponentProps) {
+export function ContactPanelSection({ section }: SectionComponentProps) {
   return (
-    <section className="section-pad bg-carbon">
+    <section id={section.id} className="section-pad bg-carbon">
       <div className="container-site max-w-2xl">
         <ContactForm />
       </div>

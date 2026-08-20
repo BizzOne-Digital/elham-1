@@ -5,7 +5,6 @@ import {
   jsonError,
 } from "@/lib/admin/api-helpers";
 import {
-  ALLOWED_UPLOAD_MIME_TYPES,
   deleteStoredUploadByUrl,
   isStoredUploadFolder,
   saveStoredUpload,
