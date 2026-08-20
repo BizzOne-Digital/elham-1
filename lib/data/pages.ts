@@ -4,14 +4,19 @@ import type { Section } from "@/models/shared";
 import { getFallbackPage } from "@/lib/data/fallbacks";
 import { serializeDoc, serializeDocs } from "@/lib/data/serialize";
 import { resolveStockImage, STOCK_IMAGES } from "@/lib/stock-images";
-import { resolvePublicImageUrl } from "@/lib/uploads/stored-uploads";
+import { resolvePublicImageUrl } from "@/lib/uploads/constants";
 
 function normalizeSectionData(data: Record<string, unknown>): Record<string, unknown> {
   const next = { ...data };
 
   for (const key of ["image", "backgroundImage", "deviceImage"]) {
     if (typeof next[key] === "string") {
-      next[key] = resolvePublicImageUrl(resolveStockImage(next[key] as string, STOCK_IMAGES.hero));
+      const raw = next[key] as string;
+      if (raw.startsWith("/images/")) {
+        next[key] = raw;
+      } else {
+        next[key] = resolvePublicImageUrl(resolveStockImage(raw, STOCK_IMAGES.hero));
+      }
     }
   }
 

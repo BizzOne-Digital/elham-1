@@ -2,7 +2,7 @@ import { connectDB } from "@/lib/db/connect";
 import { Service } from "@/models/Service";
 import { SEED_IMAGES } from "@/lib/constants";
 import { serializeDoc, serializeDocs } from "@/lib/data/serialize";
-import { resolveServiceImage } from "@/lib/stock-images";
+import { resolveServiceImage, SERVICE_STOCK_IMAGES } from "@/lib/stock-images";
 
 function normalizeServiceCard(service: ServiceCard): ServiceCard {
   const fallback = resolveServiceImage(service.slug, undefined, SEED_IMAGES.webDesign);
@@ -88,7 +88,10 @@ const fallbackServices: ServiceCard[] = [
     slug: "web-mobile-app-development",
     title: "Web and Mobile App Development",
     shortDescription: "Portals, tools, booking systems, dashboards, and custom digital products.",
-    featuredImage: { url: SEED_IMAGES.mobileApp, alt: "Mobile app development" },
+    featuredImage: {
+      url: SERVICE_STOCK_IMAGES["web-mobile-app-development"],
+      alt: "Mobile app development",
+    },
     sortOrder: 2,
   },
   {
@@ -104,7 +107,10 @@ const fallbackServices: ServiceCard[] = [
     slug: "social-media-management",
     title: "Social Media Management",
     shortDescription: "Content planning, creative direction, scheduling, and performance review.",
-    featuredImage: { url: SEED_IMAGES.social, alt: "Social media content grid" },
+    featuredImage: {
+      url: SERVICE_STOCK_IMAGES["social-media-management"],
+      alt: "Social media content grid",
+    },
     sortOrder: 4,
   },
   {
@@ -120,7 +126,10 @@ const fallbackServices: ServiceCard[] = [
     slug: "google-meta-advertising",
     title: "Google and Meta Advertising",
     shortDescription: "Campaign strategy, creative, targeting, tracking, and optimisation.",
-    featuredImage: { url: SEED_IMAGES.ads, alt: "Paid advertising dashboard" },
+    featuredImage: {
+      url: SERVICE_STOCK_IMAGES["google-meta-advertising"],
+      alt: "Paid advertising dashboard",
+    },
     sortOrder: 6,
   },
   {
@@ -136,7 +145,10 @@ const fallbackServices: ServiceCard[] = [
     slug: "growth-marketing-strategy",
     title: "Growth Marketing Strategy",
     shortDescription: "Positioning, channel planning, campaigns, and an actionable growth roadmap.",
-    featuredImage: { url: SEED_IMAGES.brand, alt: "Growth strategy planning" },
+    featuredImage: {
+      url: SERVICE_STOCK_IMAGES["growth-marketing-strategy"],
+      alt: "Growth strategy planning",
+    },
     sortOrder: 8,
   },
 ];

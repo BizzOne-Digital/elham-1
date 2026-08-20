@@ -1,5 +1,5 @@
 import Image, { type ImageProps } from "next/image";
-import { resolvePublicImageUrl } from "@/lib/uploads/stored-uploads";
+import { resolvePublicImageUrl } from "@/lib/uploads/constants";
 
 type SiteImageProps = Omit<ImageProps, "src"> & {
   src?: string | null;

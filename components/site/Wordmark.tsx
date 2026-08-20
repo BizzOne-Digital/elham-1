@@ -9,11 +9,11 @@ interface WordmarkProps {
   size?: "sm" | "md" | "lg";
 }
 
-/** Updated logo is taller (icon + stacked NET / BRAND / IT). */
+/** Logo: target icon + stacked NET / BRAND / IT */
 const sizeConfig = {
-  sm: { height: 44, width: 108, maxWidth: "max-w-[108px] sm:max-w-[120px]" },
-  md: { height: 52, width: 128, maxWidth: "max-w-[128px] sm:max-w-[148px]" },
-  lg: { height: 60, width: 148, maxWidth: "max-w-[148px] sm:max-w-[172px]" },
+  sm: { height: 40, width: 132, maxWidth: "max-w-[132px] sm:max-w-[148px]" },
+  md: { height: 48, width: 158, maxWidth: "max-w-[158px] sm:max-w-[176px]" },
+  lg: { height: 56, width: 184, maxWidth: "max-w-[184px] sm:max-w-[208px]" },
 } as const;
 
 export function Wordmark({ className, asLink = true, size = "md" }: WordmarkProps) {

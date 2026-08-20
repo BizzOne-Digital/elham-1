@@ -6,7 +6,7 @@ import { TestimonialCarousel } from "@/components/site/TestimonialCarousel";
 import { TransitionLink } from "@/components/animations/PageTransition";
 import { SiteImage } from "@/components/site/SiteImage";
 import { ContactForm, GrowthPlanForm, LeadForm } from "@/components/forms";
-import { PRIMARY_CTA, SEED_IMAGES } from "@/lib/constants";
+import { PRIMARY_CTA, SEED_IMAGES, BRAND_ASSETS } from "@/lib/constants";
 import type { SectionComponentProps } from "@/components/sections/types";
 
 export function ServiceShowcaseSection({ section, context }: SectionComponentProps) {
@@ -33,6 +33,7 @@ export function ServiceShowcaseSection({ section, context }: SectionComponentPro
                     src={service.featuredImage?.url ?? SEED_IMAGES.webDesign}
                     alt={service.featuredImage?.alt ?? service.title}
                     fill
+                    unoptimized={(service.featuredImage?.url ?? "").startsWith("/images/")}
                     className="object-cover transition duration-500 group-hover:scale-105"
                     sizes="(max-width:768px) 100vw, 25vw"
                   />
@@ -110,7 +111,9 @@ export function NumberedProcessSection({ section }: SectionComponentProps) {
 
 export function BenefitGridSection({ section }: SectionComponentProps) {
   const items = (section.data.items as Array<{ title: string; description: string }>) ?? [];
-  const image = (section.data.image as string) ?? SEED_IMAGES.brand;
+  const rawImage = section.data.image as string | undefined;
+  const image =
+    rawImage?.startsWith("/images/") ? rawImage : BRAND_ASSETS.storySectionImage;
 
   return (
     <section className="section-pad">
@@ -128,7 +131,14 @@ export function BenefitGridSection({ section }: SectionComponentProps) {
         </ScrollReveal>
         <ScrollReveal delay={0.1}>
           <div className="relative aspect-[4/3] max-h-[280px] w-full overflow-hidden rounded-2xl sm:max-h-[320px] lg:max-h-[360px]">
-            <SiteImage src={image} alt="" fill className="object-cover" sizes="(max-width:1024px) 100vw, 50vw" />
+            <SiteImage
+              src={image}
+              alt="Strategy and analytics workspace"
+              fill
+              unoptimized
+              className="object-cover"
+              sizes="(max-width:1024px) 100vw, 50vw"
+            />
           </div>
         </ScrollReveal>
       </div>

@@ -5,9 +5,9 @@ import mongoose, {
   type HydratedDocument,
   type InferSchemaType,
 } from "mongoose";
+import { STORED_UPLOAD_FOLDERS } from "@/lib/uploads/constants";
 
-export const STORED_UPLOAD_FOLDERS = ["products", "gallery", "pages", "misc"] as const;
-export type StoredUploadFolder = (typeof STORED_UPLOAD_FOLDERS)[number];
+export { STORED_UPLOAD_FOLDERS, type StoredUploadFolder } from "@/lib/uploads/constants";
 
 const storedUploadSchema = new Schema(
   {
@@ -33,6 +33,6 @@ export type IStoredUpload = InferSchemaType<typeof storedUploadSchema> & {
 export type StoredUploadDocument = HydratedDocument<IStoredUpload>;
 
 export const StoredUpload =
-  models.StoredUpload ?? model<IStoredUpload>("StoredUpload", storedUploadSchema);
+  models?.StoredUpload ?? model<IStoredUpload>("StoredUpload", storedUploadSchema);
 
 export { storedUploadSchema };

@@ -1,10 +1,17 @@
-import Image from "next/image";
-import { SectionRenderer } from "@/components/sections/SectionRenderer";
 import { ScrollReveal } from "@/components/animations/ScrollAnimations";
 import { TransitionLink } from "@/components/animations/PageTransition";
+import { SectionRenderer } from "@/components/sections/SectionRenderer";
+import { SiteImage } from "@/components/site/SiteImage";
 import { buildPageMetadata } from "@/lib/seo/metadata";
 import { getPageBySlug, sortSections } from "@/lib/data/pages";
-import { PRIMARY_CTA, SEED_IMAGES } from "@/lib/constants";
+import { BRAND_ASSETS, PRIMARY_CTA, SEED_IMAGES } from "@/lib/constants";
+
+const ABOUT_GRID_IMAGES = [
+  { src: BRAND_ASSETS.storySectionImage, alt: "Strategy and analytics workspace" },
+  { src: SEED_IMAGES.automation, alt: "Business automation dashboard" },
+  { src: "/images/services/growth-marketing-strategy.png", alt: "Growth marketing strategy planning" },
+  { src: SEED_IMAGES.strategy, alt: "Team collaboration and research" },
+] as const;
 
 export const metadata = buildPageMetadata({
   title: "About",
@@ -32,9 +39,16 @@ export default async function AboutPage() {
             </TransitionLink>
           </div>
           <div className="grid grid-cols-2 gap-4">
-            {[SEED_IMAGES.storefront, SEED_IMAGES.automation, SEED_IMAGES.social, SEED_IMAGES.strategy].map((src) => (
-              <div key={src} className="relative aspect-square overflow-hidden rounded-xl">
-                <Image src={src} alt="" fill className="object-cover" sizes="25vw" />
+            {ABOUT_GRID_IMAGES.map((item) => (
+              <div key={item.src} className="relative aspect-square overflow-hidden rounded-xl">
+                <SiteImage
+                  src={item.src}
+                  alt={item.alt}
+                  fill
+                  unoptimized={item.src.startsWith("/images/")}
+                  className="object-cover"
+                  sizes="25vw"
+                />
               </div>
             ))}
           </div>

@@ -1,4 +1,4 @@
-import type { StoredUploadFolder } from "@/lib/uploads/stored-uploads";
+import type { StoredUploadFolder } from "@/lib/uploads/constants";
 
 export type SectionFieldType =
   | "text"

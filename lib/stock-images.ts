@@ -73,16 +73,16 @@ export const SEED_FILE_IMAGES: Record<string, string> = {
 
 export const SERVICE_STOCK_IMAGES: Record<string, string> = {
   "custom-web-design": STOCK_IMAGES.webDesign,
-  "web-and-mobile-app-development": STOCK_IMAGES.mobileApp,
-  "web-mobile-app-development": STOCK_IMAGES.mobileApp,
+  "web-and-mobile-app-development": "/images/services/web-mobile-app-development.png",
+  "web-mobile-app-development": "/images/services/web-mobile-app-development.png",
   "ai-automation": STOCK_IMAGES.automation,
-  "social-media-management": STOCK_IMAGES.social,
+  "social-media-management": "/images/services/social-media-management.png",
   "competitor-analysis-and-market-research": STOCK_IMAGES.strategy,
   "competitor-analysis": STOCK_IMAGES.strategy,
-  "google-and-meta-advertising": STOCK_IMAGES.ads,
-  "google-meta-advertising": STOCK_IMAGES.ads,
+  "google-and-meta-advertising": "/images/services/google-meta-advertising.png",
+  "google-meta-advertising": "/images/services/google-meta-advertising.png",
   "search-engine-optimisation": STOCK_IMAGES.seo,
-  "growth-marketing-strategy": STOCK_IMAGES.brand,
+  "growth-marketing-strategy": "/images/services/growth-marketing-strategy.png",
 };
 
 export const GALLERY_CATEGORY_IMAGES: Record<string, string> = {
@@ -118,6 +118,12 @@ export function resolveServiceImage(
   fallback: string = STOCK_IMAGES.webDesign,
 ): string {
   const mapped = slug ? SERVICE_STOCK_IMAGES[slug] : undefined;
+  if (mapped?.startsWith("/images/")) {
+    return mapped;
+  }
+  if (url?.startsWith("/images/")) {
+    return url;
+  }
   if (!url) return mapped ?? fallback;
   return resolveStockImage(url, mapped ?? fallback);
 }

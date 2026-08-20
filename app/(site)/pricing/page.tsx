@@ -31,7 +31,7 @@ export default async function PricingPage() {
       </section>
 
       <section className="section-pad">
-        <div className="container-site min-w-0 grid gap-6 md:grid-cols-2 xl:grid-cols-4">
+        <div className="container-site min-w-0 grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
           {packages.map((pkg, index) => {
             const header = getPricingCardHeader(pkg, index);
 

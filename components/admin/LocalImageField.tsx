@@ -4,9 +4,7 @@ import { useRef, useState } from "react";
 import Image from "next/image";
 import { toast } from "sonner";
 import { ImagePlus, Trash2, Upload } from "lucide-react";
-import {
-  type StoredUploadFolder,
-} from "@/lib/uploads/stored-uploads";
+import type { StoredUploadFolder } from "@/lib/uploads/constants";
 
 interface LocalImageFieldProps {
   label: string;

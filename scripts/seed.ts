@@ -288,6 +288,7 @@ function buildPageSections(slug: string): Section[] {
         }),
         section("home-story", SECTION_TYPES.features, 1, {
           heading: "Small business. Big potential.",
+          image: BRAND_ASSETS.storySectionImage,
           items: [
             {
               title: "Strategy first",

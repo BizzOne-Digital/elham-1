@@ -1,6 +1,7 @@
 import { Tag } from "lucide-react";
 import { ScrollReveal } from "@/components/animations/ScrollAnimations";
 import { TransitionLink } from "@/components/animations/PageTransition";
+import { HeroBackdrop } from "@/components/site/HeroBackdrop";
 import { SiteImage } from "@/components/site/SiteImage";
 import { BRAND_ASSETS, HERO_CTA, SEED_IMAGES } from "@/lib/constants";
 import type { SectionComponentProps } from "@/components/sections/types";
@@ -8,11 +9,9 @@ import type { SectionComponentProps } from "@/components/sections/types";
 export function HeroSection({ section }: SectionComponentProps) {
   const data = section.data as Record<string, unknown>;
   const layoutVariant = data.layoutVariant as string | undefined;
-  const backgroundImage =
-    (data.backgroundImage as string | undefined) ?? BRAND_ASSETS.heroBackground;
 
   if (layoutVariant === "redline") {
-    return <RedlineHeroSection data={data} backgroundImage={backgroundImage} />;
+    return <RedlineHeroSection data={data} />;
   }
 
   const eyebrow = data.eyebrow as string | undefined;
@@ -52,13 +51,7 @@ export function HeroSection({ section }: SectionComponentProps) {
   );
 }
 
-function RedlineHeroSection({
-  data,
-  backgroundImage,
-}: {
-  data: Record<string, unknown>;
-  backgroundImage: string;
-}) {
+function RedlineHeroSection({ data }: { data: Record<string, unknown> }) {
   const eyebrow = (data.eyebrow as string | undefined) ?? "DIGITAL GROWTH, REENGINEERED";
   const heading = (data.heading as string | undefined) ?? "BUILD. AUTOMATE. SCALE.";
   const subheading =
@@ -75,26 +68,15 @@ function RedlineHeroSection({
 
   return (
     <section className="relative min-h-[calc(100vh-80px)] w-full overflow-x-clip bg-void-black">
-      <div className="absolute inset-0" aria-hidden>
-        <SiteImage
-          src={backgroundImage}
-          alt=""
-          fill
-          priority
-          className="object-cover object-[70%_center] brightness-[1.18] contrast-[1.06] saturate-[1.08] sm:object-[75%_center] lg:object-right"
-          sizes="100vw"
-        />
-        <div className="absolute inset-0 bg-gradient-to-b from-void-black/70 via-void-black/45 to-void-black/75" />
-        <div className="absolute inset-0 bg-gradient-to-t from-void-black/55 via-transparent to-void-black/35" />
-      </div>
+      <HeroBackdrop src={BRAND_ASSETS.heroArtwork} />
 
-      <div className="container-site relative flex min-h-[calc(100vh-80px)] min-w-0 items-center justify-center py-16 text-center lg:py-24">
-        <ScrollReveal className="mx-auto max-w-3xl min-w-0">
-          <p className="mb-5 text-[11px] font-bold uppercase tracking-[0.28em] text-signal-red sm:text-xs">
+      <div className="container-site relative z-10 flex min-h-[calc(100vh-80px)] min-w-0 items-center py-12 lg:max-w-[52rem] lg:py-16">
+        <ScrollReveal className="min-w-0 max-w-xl text-left lg:max-w-2xl">
+          <p className="mb-4 text-[11px] font-bold uppercase tracking-[0.28em] text-signal-red sm:mb-5 sm:text-xs">
             {eyebrow}
           </p>
 
-          <h1 className="font-display break-words text-[clamp(2rem,7vw,5.5rem)] font-bold uppercase leading-[0.92] tracking-[-0.03em] text-warm-white">
+          <h1 className="font-display break-words text-[clamp(2.25rem,6vw,4.75rem)] font-bold uppercase leading-[0.92] tracking-[-0.03em] text-warm-white xl:text-[5rem]">
             {headlineLines.length > 1 ?
               headlineLines.map((line) => (
                 <span key={line} className="block">
@@ -110,30 +92,30 @@ function RedlineHeroSection({
             }
           </h1>
 
-          <p className="mx-auto mt-6 max-w-2xl break-words text-base leading-relaxed text-warm-white/75 sm:text-lg">
+          <p className="mt-5 max-w-xl break-words text-base leading-relaxed text-warm-white/75 sm:mt-6 sm:text-lg">
             {subheading}
           </p>
 
-          <div className="mt-8 flex flex-wrap justify-center gap-4">
+          <div className="mt-7 flex flex-wrap gap-3 sm:mt-8 sm:gap-4">
             <TransitionLink
               href={primaryCta.href}
-              className="inline-flex min-h-12 items-center rounded-full bg-signal-red px-7 py-3 text-xs font-bold uppercase tracking-[0.14em] text-warm-white transition hover:bg-hot-red sm:text-sm"
+              className="inline-flex min-h-12 items-center rounded-full bg-signal-red px-6 py-3 text-[11px] font-bold uppercase tracking-[0.14em] text-warm-white transition hover:bg-hot-red sm:px-7 sm:text-xs"
             >
               {primaryCta.label}
             </TransitionLink>
             <TransitionLink
               href={secondaryCta.href}
-              className="inline-flex min-h-12 items-center rounded-full border-2 border-signal-red bg-transparent px-7 py-3 text-xs font-bold uppercase tracking-[0.14em] text-warm-white transition hover:bg-signal-red/10 sm:text-sm"
+              className="inline-flex min-h-12 items-center rounded-full border-2 border-signal-red bg-transparent px-6 py-3 text-[11px] font-bold uppercase tracking-[0.14em] text-warm-white transition hover:bg-signal-red/10 sm:px-7 sm:text-xs"
             >
               {secondaryCta.label}
             </TransitionLink>
           </div>
 
-          <div className="mx-auto mt-8 inline-flex max-w-full flex-wrap items-center justify-center gap-3 rounded-2xl border border-signal-red/40 bg-carbon/80 px-5 py-4 backdrop-blur-sm">
+          <div className="mt-7 inline-flex max-w-full flex-wrap items-center gap-3 rounded-2xl border border-signal-red/40 bg-carbon/80 px-4 py-3 backdrop-blur-sm sm:mt-8 sm:px-5 sm:py-4">
             <span className="flex h-10 w-10 shrink-0 items-center justify-center rounded-xl bg-signal-red/15 text-signal-red">
               <Tag className="h-5 w-5" aria-hidden />
             </span>
-            <p className="wrap-anywhere text-sm font-semibold uppercase tracking-[0.12em] text-warm-white sm:text-base">
+            <p className="wrap-anywhere text-xs font-semibold uppercase tracking-[0.12em] text-warm-white sm:text-sm">
               {priceBanner.split(/(\$99)/i).map((part, index) =>
                 part.toLowerCase() === "$99" ?
                   <span key={index} className="text-signal-red">
