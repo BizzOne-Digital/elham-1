@@ -7,32 +7,30 @@ import { Wordmark } from "@/components/site/Wordmark";
 const SESSION_KEY = "netbrandit_intro_seen";
 const WORDS = ["BUILD", "AUTOMATE", "REACH", "GROW"];
 
-type IntroPhase = "pending" | "skip" | "play";
+type IntroPhase = "skip" | "play";
 
-function resolveIntroPhase(): IntroPhase {
-  if (typeof window === "undefined") {
-    return "skip";
-  }
-
+function shouldPlayIntro(): boolean {
   const reducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
   const seen = sessionStorage.getItem(SESSION_KEY);
 
   if (seen || reducedMotion) {
     sessionStorage.setItem(SESSION_KEY, "1");
-    return "skip";
+    return false;
   }
 
-  return "play";
+  return true;
 }
 
 export function CinematicIntro() {
-  const [phase, setPhase] = useState<IntroPhase>("pending");
+  const [phase, setPhase] = useState<IntroPhase>("skip");
   const [skipped, setSkipped] = useState(false);
   const rootRef = useRef<HTMLDivElement>(null);
 
-  if (phase === "pending") {
-    setPhase(resolveIntroPhase());
-  }
+  useEffect(() => {
+    if (shouldPlayIntro()) {
+      queueMicrotask(() => setPhase("play"));
+    }
+  }, []);
 
   useEffect(() => {
     if (phase !== "play" || skipped) {

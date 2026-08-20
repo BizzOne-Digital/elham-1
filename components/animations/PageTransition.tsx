@@ -44,17 +44,15 @@ export function PageTransitionProvider({ children }: { children: ReactNode }) {
   const pathname = usePathname();
   const [active, setActive] = useState(false);
   const [label, setLabel] = useState("");
-  const [prevPathname, setPrevPathname] = useState(pathname);
   const reducedMotion = useRef(false);
 
   useEffect(() => {
     reducedMotion.current = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
   }, []);
 
-  if (pathname !== prevPathname) {
-    setPrevPathname(pathname);
-    setActive(false);
-  }
+  useEffect(() => {
+    queueMicrotask(() => setActive(false));
+  }, [pathname]);
 
   const navigate = useCallback(
     (href: string) => {

@@ -25,6 +25,7 @@ export function Wordmark({ className, asLink = true, size = "md" }: WordmarkProp
       alt={BRAND_ASSETS.logoAlt}
       width={width}
       height={height}
+      unoptimized
       className={cn("h-auto w-auto max-w-full object-contain object-left", className)}
       style={{ maxHeight: height }}
       priority
