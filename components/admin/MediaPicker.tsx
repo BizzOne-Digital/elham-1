@@ -1,6 +1,6 @@
 "use client";
 
-import { useState, useEffect, useCallback } from "react";
+import { useState } from "react";
 import Image from "next/image";
 import { ImageIcon, X, Upload } from "lucide-react";
 import { toast } from "sonner";
@@ -24,7 +24,8 @@ export function MediaPicker({ value, onChange, label = "Image" }: MediaPickerPro
   const [loading, setLoading] = useState(false);
   const [uploading, setUploading] = useState(false);
 
-  const fetchAssets = useCallback(async () => {
+  async function openPicker() {
+    setOpen(true);
     setLoading(true);
     try {
       const res = await fetch("/api/admin/uploads?limit=50");
@@ -37,13 +38,7 @@ export function MediaPicker({ value, onChange, label = "Image" }: MediaPickerPro
     } finally {
       setLoading(false);
     }
-  }, []);
-
-  useEffect(() => {
-    if (open) {
-      void fetchAssets();
-    }
-  }, [open, fetchAssets]);
+  }
 
   async function handleUpload(e: React.ChangeEvent<HTMLInputElement>) {
     const file = e.target.files?.[0];
@@ -86,7 +81,7 @@ export function MediaPicker({ value, onChange, label = "Image" }: MediaPickerPro
       ) : (
         <button
           type="button"
-          onClick={() => setOpen(true)}
+          onClick={() => void openPicker()}
           className="flex h-32 w-48 flex-col items-center justify-center gap-2 rounded-lg border-2 border-dashed border-slate-200 text-slate-500 hover:border-blue-400 hover:text-blue-600"
         >
           <ImageIcon className="h-8 w-8" />

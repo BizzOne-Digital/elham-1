@@ -44,17 +44,17 @@ export function PageTransitionProvider({ children }: { children: ReactNode }) {
   const pathname = usePathname();
   const [active, setActive] = useState(false);
   const [label, setLabel] = useState("");
+  const [prevPathname, setPrevPathname] = useState(pathname);
   const reducedMotion = useRef(false);
-  const pendingHref = useRef<string | null>(null);
 
   useEffect(() => {
     reducedMotion.current = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
   }, []);
 
-  useEffect(() => {
+  if (pathname !== prevPathname) {
+    setPrevPathname(pathname);
     setActive(false);
-    pendingHref.current = null;
-  }, [pathname]);
+  }
 
   const navigate = useCallback(
     (href: string) => {
@@ -63,7 +63,6 @@ export function PageTransitionProvider({ children }: { children: ReactNode }) {
         return;
       }
 
-      pendingHref.current = href;
       const routeLabel = href === "/" ? "HOME" : href.replace(/^\//, "").split("/")[0].toUpperCase();
       setLabel(routeLabel);
       setActive(true);

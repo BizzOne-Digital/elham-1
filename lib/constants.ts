@@ -67,10 +67,10 @@ export const HEADER_NAV_ITEMS = [
 ] as const;
 
 export const BRAND_ASSETS = {
-  logo: "/brand/logo.png",
+  logo: "/brand/wordmark.svg",
   logoAlt: "Netbrandit — NET BRAND IT",
   heroBackground: STOCK_IMAGES.heroBackground,
-  favicon: "/brand/favicon.png",
+  favicon: "/brand/favicon-mark.svg",
 } as const;
 
 export const PRIMARY_CTA = {

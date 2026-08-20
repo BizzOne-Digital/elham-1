@@ -2,7 +2,7 @@ import { Tag } from "lucide-react";
 import { ScrollReveal } from "@/components/animations/ScrollAnimations";
 import { TransitionLink } from "@/components/animations/PageTransition";
 import { SiteImage } from "@/components/site/SiteImage";
-import { BRAND_ASSETS, HERO_CTA, ROUTES, SEED_IMAGES } from "@/lib/constants";
+import { BRAND_ASSETS, HERO_CTA, SEED_IMAGES } from "@/lib/constants";
 import type { SectionComponentProps } from "@/components/sections/types";
 
 export function HeroSection({ section }: SectionComponentProps) {

@@ -5,7 +5,6 @@ import { useRouter } from "next/navigation";
 import { toast } from "sonner";
 import { FormField, Input, Select, Textarea } from "@/components/admin/FormField";
 import { ConfirmDialog } from "@/components/admin/ConfirmDialog";
-import { slugify } from "@/lib/admin/utils";
 
 interface FAQItem {
   _id: string;
