@@ -1,0 +1,25 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 800" role="img" aria-label="Hero placeholder for Netbrandit">
+  <defs>
+    <linearGradient id="bg-hero-home" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#050505"/>
+      <stop offset="100%" stop-color="#0D0D0F"/>
+    </linearGradient>
+    <pattern id="grain-hero-home" width="4" height="4" patternUnits="userSpaceOnUse">
+      <rect width="4" height="4" fill="#111114"/>
+      <circle cx="1" cy="1" r="0.6" fill="#1a1a1f" opacity="0.5"/>
+    </pattern>
+  </defs>
+  <rect width="1200" height="800" fill="url(#bg-hero-home)"/>
+  <rect width="1200" height="800" fill="url(#grain-hero-home)" opacity="0.35"/>
+  <path d="M0 120 H420 L520 40 H1200 V800 H0 Z" fill="#F21D2F" opacity="0.18"/>
+  <path d="M80 600 C260 520, 420 680, 620 590 S980 720, 1120 610" fill="none" stroke="#F21D2F" stroke-width="6" stroke-linecap="round"/>
+  <rect x="720" y="120" width="320" height="420" rx="24" fill="#18181B" stroke="#F21D2F" stroke-width="3"/>
+  <rect x="760" y="160" width="240" height="28" rx="8" fill="#F7F4EF" opacity="0.85"/>
+  <rect x="760" y="210" width="180" height="16" rx="6" fill="#9A9A9F" opacity="0.8"/>
+  <rect x="760" y="240" width="200" height="16" rx="6" fill="#9A9A9F" opacity="0.55"/>
+  <rect x="760" y="290" width="240" height="140" rx="16" fill="#050505" stroke="#5D5D63" stroke-width="2"/>
+  <text x="80" y="120" fill="#F7F4EF" font-family="Arial, Helvetica, sans-serif" font-size="54" font-weight="700">NETBRAND<tspan fill="#F21D2F">IT</tspan></text>
+  <text x="80" y="170" fill="#D8D4CE" font-family="Arial, Helvetica, sans-serif" font-size="28" letter-spacing="4">HERO</text>
+  <text x="80" y="720" fill="#F7F4EF" font-family="Arial, Helvetica, sans-serif" font-size="34" font-weight="600">Build smarter. Reach further.</text>
+  <text x="80" y="760" fill="#9A9A9F" font-family="Arial, Helvetica, sans-serif" font-size="18">Netbrandit seed placeholder · replace from admin</text>
+</svg>

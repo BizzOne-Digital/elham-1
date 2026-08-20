@@ -1,0 +1,25 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 800" role="img" aria-label="Collage placeholder for Netbrandit">
+  <defs>
+    <linearGradient id="bg-collage-grid" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#050505"/>
+      <stop offset="100%" stop-color="#0D0D0F"/>
+    </linearGradient>
+    <pattern id="grain-collage-grid" width="4" height="4" patternUnits="userSpaceOnUse">
+      <rect width="4" height="4" fill="#111114"/>
+      <circle cx="1" cy="1" r="0.6" fill="#1a1a1f" opacity="0.5"/>
+    </pattern>
+  </defs>
+  <rect width="1200" height="800" fill="url(#bg-collage-grid)"/>
+  <rect width="1200" height="800" fill="url(#grain-collage-grid)" opacity="0.35"/>
+  <path d="M0 280 H420 L520 140 H1200 V800 H0 Z" fill="#8D0715" opacity="0.18"/>
+  <path d="M80 400 C260 600, 420 560, 620 650 S980 560, 1120 530" fill="none" stroke="#8D0715" stroke-width="6" stroke-linecap="round"/>
+  <rect x="520" y="240" width="320" height="420" rx="24" fill="#18181B" stroke="#8D0715" stroke-width="3"/>
+  <rect x="600" y="240" width="240" height="28" rx="8" fill="#F7F4EF" opacity="0.85"/>
+  <rect x="600" y="290" width="180" height="16" rx="6" fill="#9A9A9F" opacity="0.8"/>
+  <rect x="600" y="320" width="200" height="16" rx="6" fill="#9A9A9F" opacity="0.55"/>
+  <rect x="600" y="370" width="240" height="140" rx="16" fill="#050505" stroke="#5D5D63" stroke-width="2"/>
+  <text x="80" y="120" fill="#F7F4EF" font-family="Arial, Helvetica, sans-serif" font-size="54" font-weight="700">NETBRAND<tspan fill="#8D0715">IT</tspan></text>
+  <text x="80" y="170" fill="#D8D4CE" font-family="Arial, Helvetica, sans-serif" font-size="28" letter-spacing="4">COLLAGE</text>
+  <text x="80" y="720" fill="#F7F4EF" font-family="Arial, Helvetica, sans-serif" font-size="34" font-weight="600">Modular image grid</text>
+  <text x="80" y="760" fill="#9A9A9F" font-family="Arial, Helvetica, sans-serif" font-size="18">Netbrandit seed placeholder · replace from admin</text>
+</svg>

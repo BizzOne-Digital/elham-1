@@ -1,0 +1,6 @@
+﻿<svg xmlns='http://www.w3.org/2000/svg' width='1200' height='900' viewBox='0 0 1200 900'>
+  <rect width='1200' height='900' fill='#18181B'/>
+  <rect x='40' y='40' width='1120' height='820' fill='none' stroke='#F21D2F' stroke-width='4'/>
+  <text x='600' y='460' fill='#F7F4EF' font-family='Arial, sans-serif' font-size='42' text-anchor='middle'>STOREFRONT</text>
+  <text x='600' y='520' fill='#9A9A9F' font-family='Arial, sans-serif' font-size='20' text-anchor='middle'>Netbrandit seed placeholder</text>
+</svg>

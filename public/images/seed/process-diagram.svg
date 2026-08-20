@@ -1,0 +1,25 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 800" role="img" aria-label="Process placeholder for Netbrandit">
+  <defs>
+    <linearGradient id="bg-process-diagram" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#050505"/>
+      <stop offset="100%" stop-color="#0D0D0F"/>
+    </linearGradient>
+    <pattern id="grain-process-diagram" width="4" height="4" patternUnits="userSpaceOnUse">
+      <rect width="4" height="4" fill="#111114"/>
+      <circle cx="1" cy="1" r="0.6" fill="#1a1a1f" opacity="0.5"/>
+    </pattern>
+  </defs>
+  <rect width="1200" height="800" fill="url(#bg-process-diagram)"/>
+  <rect width="1200" height="800" fill="url(#grain-process-diagram)" opacity="0.35"/>
+  <path d="M0 288 H420 L520 145 H1200 V800 H0 Z" fill="#F21D2F" opacity="0.18"/>
+  <path d="M80 390 C260 604, 420 554, 620 653 S980 552, 1120 526" fill="none" stroke="#F21D2F" stroke-width="6" stroke-linecap="round"/>
+  <rect x="510" y="246" width="320" height="420" rx="24" fill="#18181B" stroke="#F21D2F" stroke-width="3"/>
+  <rect x="592" y="244" width="240" height="28" rx="8" fill="#F7F4EF" opacity="0.85"/>
+  <rect x="592" y="294" width="180" height="16" rx="6" fill="#9A9A9F" opacity="0.8"/>
+  <rect x="592" y="324" width="200" height="16" rx="6" fill="#9A9A9F" opacity="0.55"/>
+  <rect x="592" y="374" width="240" height="140" rx="16" fill="#050505" stroke="#5D5D63" stroke-width="2"/>
+  <text x="80" y="120" fill="#F7F4EF" font-family="Arial, Helvetica, sans-serif" font-size="54" font-weight="700">NETBRAND<tspan fill="#F21D2F">IT</tspan></text>
+  <text x="80" y="170" fill="#D8D4CE" font-family="Arial, Helvetica, sans-serif" font-size="28" letter-spacing="4">PROCESS</text>
+  <text x="80" y="720" fill="#F7F4EF" font-family="Arial, Helvetica, sans-serif" font-size="34" font-weight="600">Discover to optimise flow</text>
+  <text x="80" y="760" fill="#9A9A9F" font-family="Arial, Helvetica, sans-serif" font-size="18">Netbrandit seed placeholder · replace from admin</text>
+</svg>

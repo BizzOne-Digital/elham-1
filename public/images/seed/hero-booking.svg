@@ -1,0 +1,25 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 800" role="img" aria-label="Booking placeholder for Netbrandit">
+  <defs>
+    <linearGradient id="bg-hero-booking" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#050505"/>
+      <stop offset="100%" stop-color="#0D0D0F"/>
+    </linearGradient>
+    <pattern id="grain-hero-booking" width="4" height="4" patternUnits="userSpaceOnUse">
+      <rect width="4" height="4" fill="#111114"/>
+      <circle cx="1" cy="1" r="0.6" fill="#1a1a1f" opacity="0.5"/>
+    </pattern>
+  </defs>
+  <rect width="1200" height="800" fill="url(#bg-hero-booking)"/>
+  <rect width="1200" height="800" fill="url(#grain-hero-booking)" opacity="0.35"/>
+  <path d="M0 184 H420 L520 80 H1200 V800 H0 Z" fill="#8D0715" opacity="0.18"/>
+  <path d="M80 520 C260 552, 420 632, 620 614 S980 656, 1120 578" fill="none" stroke="#8D0715" stroke-width="6" stroke-linecap="round"/>
+  <rect x="640" y="168" width="320" height="420" rx="24" fill="#18181B" stroke="#8D0715" stroke-width="3"/>
+  <rect x="696" y="192" width="240" height="28" rx="8" fill="#F7F4EF" opacity="0.85"/>
+  <rect x="696" y="242" width="180" height="16" rx="6" fill="#9A9A9F" opacity="0.8"/>
+  <rect x="696" y="272" width="200" height="16" rx="6" fill="#9A9A9F" opacity="0.55"/>
+  <rect x="696" y="322" width="240" height="140" rx="16" fill="#050505" stroke="#5D5D63" stroke-width="2"/>
+  <text x="80" y="120" fill="#F7F4EF" font-family="Arial, Helvetica, sans-serif" font-size="54" font-weight="700">NETBRAND<tspan fill="#8D0715">IT</tspan></text>
+  <text x="80" y="170" fill="#D8D4CE" font-family="Arial, Helvetica, sans-serif" font-size="28" letter-spacing="4">BOOKING</text>
+  <text x="80" y="720" fill="#F7F4EF" font-family="Arial, Helvetica, sans-serif" font-size="34" font-weight="600">Book a discovery call</text>
+  <text x="80" y="760" fill="#9A9A9F" font-family="Arial, Helvetica, sans-serif" font-size="18">Netbrandit seed placeholder · replace from admin</text>
+</svg>
