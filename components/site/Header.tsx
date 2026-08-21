@@ -42,7 +42,7 @@ export function Header({
     >
       <div className="container-site grid h-[80px] min-w-0 grid-cols-[minmax(0,auto)_minmax(0,1fr)_auto] items-center gap-2 sm:gap-4">
         <div className="min-w-0 shrink-0">
-          <Wordmark size="md" />
+          <Wordmark size="lg" />
         </div>
 
         <nav className="hidden min-w-0 justify-center overflow-hidden lg:flex" aria-label="Main navigation">

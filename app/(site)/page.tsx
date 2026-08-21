@@ -32,7 +32,7 @@ export default async function HomePage() {
   return (
     <SectionRenderer
       sections={sections}
-      context={{ services, projects, testimonials, faqs, posts }}
+      context={{ services, projects, testimonials, faqs, posts, isHomePage: true }}
     />
   );
 }

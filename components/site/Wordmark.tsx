@@ -6,14 +6,16 @@ import { BRAND_ASSETS } from "@/lib/constants";
 interface WordmarkProps {
   className?: string;
   asLink?: boolean;
-  size?: "sm" | "md" | "lg";
+  size?: "sm" | "md" | "lg" | "xl" | "intro";
 }
 
 /** Logo: target icon + stacked NET / BRAND / IT */
 const sizeConfig = {
   sm: { height: 40, width: 132, maxWidth: "max-w-[132px] sm:max-w-[148px]" },
-  md: { height: 48, width: 158, maxWidth: "max-w-[158px] sm:max-w-[176px]" },
-  lg: { height: 56, width: 184, maxWidth: "max-w-[184px] sm:max-w-[208px]" },
+  md: { height: 52, width: 172, maxWidth: "max-w-[172px] sm:max-w-[192px]" },
+  lg: { height: 64, width: 212, maxWidth: "max-w-[212px] sm:max-w-[236px]" },
+  xl: { height: 76, width: 252, maxWidth: "max-w-[252px] sm:max-w-[280px]" },
+  intro: { height: 96, width: 320, maxWidth: "max-w-[320px] sm:max-w-[360px]" },
 } as const;
 
 export function Wordmark({ className, asLink = true, size = "md" }: WordmarkProps) {

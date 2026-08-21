@@ -86,8 +86,14 @@ export const SECONDARY_CTA = {
 } as const;
 
 export const HERO_CTA = {
-  primary: { label: "Start Your Project", href: `${ROUTES.contact}?intent=growth-plan` },
+  primary: { label: "Get a free growth plan", href: `${ROUTES.contact}?intent=growth-plan` },
   secondary: { label: "Explore Services", href: ROUTES.services },
+} as const;
+
+export const HERO_COPY = {
+  subheading:
+    "We help small businesses turn their online presence into new customers with custom websites, AI and marketing systems built to move your business forward.",
+  priceBanner: "Websites starting at $99 CAD • Based in Canada • No long-term contracts",
 } as const;
 
 export const LEAD_STATUS = {

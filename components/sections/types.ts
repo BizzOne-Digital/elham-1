@@ -37,6 +37,7 @@ export interface SectionRenderContext {
   testimonials?: TestimonialItem[];
   faqs?: FAQItem[];
   posts?: BlogPostSummary[];
+  isHomePage?: boolean;
 }
 
 export interface SectionComponentProps {

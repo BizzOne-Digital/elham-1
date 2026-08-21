@@ -65,12 +65,13 @@ export function CinematicIntro() {
       },
     });
 
-    tl.fromTo(scan, { scaleX: 0 }, { scaleX: 1, duration: 0.8 })
-      .fromTo(words, { opacity: 0, y: 16 }, { opacity: 1, y: 0, stagger: 0.12, duration: 0.35 }, "-=0.2")
-      .fromTo(mark, { opacity: 0, scale: 0.92 }, { opacity: 1, scale: 1, duration: 0.5 })
-      .fromTo(tagline, { opacity: 0 }, { opacity: 1, duration: 0.35 }, "-=0.1")
-      .fromTo(frame, { scale: 0.4 }, { scale: 3, duration: 0.9, ease: "power4.inOut" })
-      .to(root, { opacity: 0, duration: 0.45 });
+    tl.fromTo(scan, { scaleX: 0 }, { scaleX: 1, duration: 1.0 })
+      .fromTo(words, { opacity: 0, y: 20 }, { opacity: 1, y: 0, stagger: 0.16, duration: 0.45 }, "-=0.25")
+      .fromTo(mark, { opacity: 0, scale: 0.88 }, { opacity: 1, scale: 1, duration: 0.75 })
+      .fromTo(tagline, { opacity: 0 }, { opacity: 1, duration: 0.45 }, "-=0.15")
+      .to({}, { duration: 0.75 })
+      .fromTo(frame, { scale: 0.4 }, { scale: 3, duration: 1.1, ease: "power4.inOut" })
+      .to(root, { opacity: 0, duration: 0.55 });
 
     return () => {
       tl.kill();
@@ -104,21 +105,21 @@ export function CinematicIntro() {
         Skip Intro
       </button>
 
-      <div className="intro-scan mb-8 h-px w-48 origin-left bg-signal-red" />
+      <div className="intro-scan mb-10 h-px w-56 origin-left bg-signal-red sm:w-64" />
 
-      <div className="mb-10 flex flex-wrap justify-center gap-4">
+      <div className="mb-12 flex flex-wrap justify-center gap-4 sm:gap-5">
         {WORDS.map((word) => (
-          <span key={word} className="intro-word label-caps text-signal-red">
+          <span key={word} className="intro-word text-sm font-bold uppercase tracking-[0.28em] text-signal-red sm:text-base">
             {word}
           </span>
         ))}
       </div>
 
-      <div className="intro-mark mb-4">
-        <Wordmark asLink={false} size="lg" />
+      <div className="intro-mark mb-5">
+        <Wordmark asLink={false} size="intro" />
       </div>
 
-      <p className="intro-tagline text-sm text-steel">Your growth system is switching on.</p>
+      <p className="intro-tagline text-base text-steel sm:text-lg">Your growth system is switching on.</p>
 
       <div className="intro-frame pointer-events-none absolute inset-10 border border-signal-red/60" />
     </div>

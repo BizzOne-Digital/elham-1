@@ -7,65 +7,84 @@ import { TransitionLink } from "@/components/animations/PageTransition";
 import { SiteImage } from "@/components/site/SiteImage";
 import { ContactForm, GrowthPlanForm, LeadForm } from "@/components/forms";
 import { PRIMARY_CTA, SEED_IMAGES, BRAND_ASSETS } from "@/lib/constants";
+import { isSectionCentered, sectionHeaderClass } from "@/lib/sections/layout";
+import { cn } from "@/lib/utils";
 import type { SectionComponentProps } from "@/components/sections/types";
 
 export function ServiceShowcaseSection({ section, context }: SectionComponentProps) {
   const data = section.data as Record<string, unknown>;
   const services = context?.services ?? [];
+  const centered = isSectionCentered(section, context);
 
   return (
     <section className="section-pad">
       <div className="container-site">
-        <ScrollReveal>
+        <ScrollReveal className={sectionHeaderClass(centered)}>
           {data.eyebrow ? <p className="label-caps mb-3">{String(data.eyebrow)}</p> : null}
           <h2 className="text-3xl font-bold sm:text-4xl">{String(data.heading ?? "Services")}</h2>
         </ScrollReveal>
 
-        <div className="mt-12 grid gap-6 md:grid-cols-2 xl:grid-cols-4">
-          {services.map((service, index) => (
-            <ScrollReveal key={service._id} delay={index * 0.05}>
-              <TransitionLink
-                href={`/services/${service.slug}`}
-                className="group flex h-full flex-col overflow-hidden rounded-2xl border border-white/10 bg-carbon transition hover:border-signal-red/50"
-              >
-                <div className="relative aspect-[4/3] overflow-hidden">
-                  <SiteImage
-                    src={service.featuredImage?.url ?? SEED_IMAGES.webDesign}
-                    alt={service.featuredImage?.alt ?? service.title}
-                    fill
-                    unoptimized={(service.featuredImage?.url ?? "").startsWith("/images/")}
-                    className="object-cover transition duration-500 group-hover:scale-105"
-                    sizes="(max-width:768px) 100vw, 25vw"
-                  />
-                  <span className="absolute left-4 top-4 rounded bg-void-black/80 px-2 py-1 text-xs font-bold text-signal-red">
-                    {String(index + 1).padStart(2, "0")}
-                  </span>
+        <div className="mt-12 space-y-14 lg:space-y-20">
+          {services.map((service, index) => {
+            const imageFirst = index % 2 === 0;
+            const imageSrc = service.featuredImage?.url ?? SEED_IMAGES.webDesign;
+
+            return (
+              <ScrollReveal key={service._id} delay={index * 0.05}>
+                <div className="grid items-center gap-8 lg:grid-cols-2 lg:gap-12">
+                  <div
+                    className={cn(
+                      "relative aspect-[4/3] overflow-hidden rounded-2xl border border-white/10",
+                      !imageFirst && "lg:order-2",
+                    )}
+                  >
+                    <SiteImage
+                      src={imageSrc}
+                      alt={service.featuredImage?.alt ?? service.title}
+                      fill
+                      unoptimized={imageSrc.startsWith("/images/")}
+                      className="object-cover"
+                      sizes="(max-width:1024px) 100vw, 50vw"
+                    />
+                  </div>
+
+                  <div className={cn(!imageFirst && "lg:order-1", centered && "text-center")}>
+                    <p className="text-xs font-bold uppercase tracking-[0.2em] text-signal-red">
+                      {String(index + 1).padStart(2, "0")}
+                    </p>
+                    <h3 className="mt-2 text-2xl font-bold sm:text-3xl">{service.title}</h3>
+                    {service.shortDescription ?
+                      <p className="mt-4 text-base leading-relaxed text-steel">{service.shortDescription}</p>
+                    : null}
+                    <TransitionLink
+                      href={`/services/${service.slug}`}
+                      className="mt-6 inline-flex text-sm font-semibold text-signal-red transition hover:text-hot-red"
+                    >
+                      View service →
+                    </TransitionLink>
+                  </div>
                 </div>
-                <div className="flex flex-1 flex-col p-5">
-                  <h3 className="text-lg font-bold">{service.title}</h3>
-                  <p className="mt-2 flex-1 text-sm text-steel">{service.shortDescription}</p>
-                  <span className="mt-4 text-sm font-semibold text-signal-red">View service →</span>
-                </div>
-              </TransitionLink>
-            </ScrollReveal>
-          ))}
+              </ScrollReveal>
+            );
+          })}
         </div>
       </div>
     </section>
   );
 }
 
-export function ConnectedSystemSection({ section }: SectionComponentProps) {
+export function ConnectedSystemSection({ section, context }: SectionComponentProps) {
   const data = section.data as Record<string, unknown>;
   const image = (data.image as string) ?? SEED_IMAGES.automation;
+  const centered = isSectionCentered(section, context);
 
   return (
     <section className="section-pad bg-void-black">
       <div className="container-site min-w-0 grid items-center gap-10 lg:grid-cols-[1fr_1.1fr]">
-        <ScrollReveal>
+        <ScrollReveal className={sectionHeaderClass(centered)}>
           <h2 className="text-3xl font-bold sm:text-4xl">{String(data.heading)}</h2>
-          {data.body ? <p className="mt-5 text-lg text-concrete">{String(data.body)}</p> : null}
-          <ul className="mt-8 grid gap-3 sm:grid-cols-2">
+          {data.body ? <p className={cn("mt-5 text-lg text-concrete", centered && "mx-auto max-w-2xl")}>{String(data.body)}</p> : null}
+          <ul className={cn("mt-8 grid gap-3 sm:grid-cols-2", centered && "mx-auto max-w-xl")}>
             {["Brand", "Website", "Automation", "Content", "Traffic", "Conversion"].map((item) => (
               <li key={item} className="flex items-center gap-3 text-sm text-warm-white">
                 <span className="h-px w-8 bg-signal-red" aria-hidden />
@@ -84,13 +103,14 @@ export function ConnectedSystemSection({ section }: SectionComponentProps) {
   );
 }
 
-export function NumberedProcessSection({ section }: SectionComponentProps) {
+export function NumberedProcessSection({ section, context }: SectionComponentProps) {
   const steps = (section.data.steps as Array<{ number: string; title: string; description: string }>) ?? [];
+  const centered = isSectionCentered(section, context);
 
   return (
     <section className="section-pad bg-carbon">
       <div className="container-site">
-        <ScrollReveal>
+        <ScrollReveal className={sectionHeaderClass(centered)}>
           <h2 className="text-3xl font-bold">{String(section.data.heading ?? "Process")}</h2>
         </ScrollReveal>
         <ol className="mt-12 grid gap-6 md:grid-cols-2 lg:grid-cols-5">
@@ -109,18 +129,19 @@ export function NumberedProcessSection({ section }: SectionComponentProps) {
   );
 }
 
-export function BenefitGridSection({ section }: SectionComponentProps) {
+export function BenefitGridSection({ section, context }: SectionComponentProps) {
   const items = (section.data.items as Array<{ title: string; description: string }>) ?? [];
   const rawImage = section.data.image as string | undefined;
   const image =
     rawImage?.startsWith("/images/") ? rawImage : BRAND_ASSETS.storySectionImage;
+  const centered = isSectionCentered(section, context);
 
   return (
     <section className="section-pad">
       <div className="container-site min-w-0 grid items-center gap-10 lg:grid-cols-[1fr_1fr]">
-        <ScrollReveal>
+        <ScrollReveal className={sectionHeaderClass(centered)}>
           <h2 className="text-3xl font-bold">{String(section.data.heading)}</h2>
-          <ul className="mt-8 space-y-5">
+          <ul className={cn("mt-8 space-y-5", centered && "mx-auto max-w-xl lg:mx-0")}>
             {items.map((item) => (
               <li key={item.title} className="border-l-2 border-signal-red pl-4">
                 <h3 className="font-bold">{item.title}</h3>
@@ -146,22 +167,26 @@ export function BenefitGridSection({ section }: SectionComponentProps) {
   );
 }
 
-export function PricingSpotlightSection({ section }: SectionComponentProps) {
+export function PricingSpotlightSection({ section, context }: SectionComponentProps) {
   const data = section.data as Record<string, unknown>;
   const cta = data.cta as { label: string; href: string } | undefined;
   const image = (data.image as string) ?? SEED_IMAGES.webDesign;
+  const centered = isSectionCentered(section, context);
 
   return (
     <section className="section-pad bg-warm-white text-void-black">
       <div className="container-site min-w-0 grid items-center gap-10 lg:grid-cols-2">
-        <ScrollReveal>
+        <ScrollReveal className={sectionHeaderClass(centered)}>
           <p className="label-caps mb-3 text-signal-red">Starting offer</p>
           <h2 className="text-3xl font-bold sm:text-4xl">{String(data.heading)}</h2>
-          <p className="mt-4 text-lg text-smoke">{String(data.body)}</p>
+          <p className={cn("mt-4 text-lg text-smoke", centered && "mx-auto max-w-2xl lg:mx-0")}>{String(data.body)}</p>
           {cta && (
             <TransitionLink
               href={cta.href}
-              className="mt-8 inline-flex min-h-11 items-center rounded-full bg-signal-red px-6 py-3 text-sm font-semibold text-warm-white"
+              className={cn(
+                "mt-8 inline-flex min-h-11 items-center rounded-full bg-signal-red px-6 py-3 text-sm font-semibold text-warm-white",
+                centered && "mx-auto",
+              )}
             >
               {cta.label}
             </TransitionLink>
@@ -181,11 +206,12 @@ export function GalleryStripSection({ section, context }: SectionComponentProps)
   const data = section.data as Record<string, unknown>;
   const projects = context?.projects?.slice(0, 4) ?? [];
   const cta = data.cta as { label: string; href: string } | undefined;
+  const centered = isSectionCentered(section, context);
 
   return (
     <section className="section-pad">
       <div className="container-site">
-        <div className="mb-8 flex flex-wrap items-end justify-between gap-4">
+        <div className={cn("mb-8 flex flex-wrap items-end gap-4", centered ? "justify-center text-center" : "justify-between")}>
           <h2 className="text-3xl font-bold">{String(data.heading ?? "Work")}</h2>
           {cta && (
             <TransitionLink href={cta.href} className="text-sm font-semibold text-signal-red">
@@ -223,11 +249,12 @@ export function TestimonialSliderSection({ section, context }: SectionComponentP
   const data = section.data as Record<string, unknown>;
   const testimonials = context?.testimonials ?? [];
   const fallback = data.fallback as { heading?: string; body?: string } | undefined;
+  const centered = isSectionCentered(section, context);
 
   return (
     <section className="section-pad overflow-x-clip bg-graphite">
       <div className="container-site min-w-0">
-        <ScrollReveal>
+        <ScrollReveal className={sectionHeaderClass(centered)}>
           <h2 className="break-words text-3xl font-bold">{String(data.heading ?? "Testimonials")}</h2>
         </ScrollReveal>
 
@@ -250,10 +277,11 @@ export function FaqPreviewSection({ section, context }: SectionComponentProps) {
   const data = section.data as Record<string, unknown>;
   const faqs = context?.faqs?.slice(0, 4) ?? [];
   const cta = data.cta as { label: string; href: string } | undefined;
+  const centered = isSectionCentered(section, context);
 
   return (
     <section className="section-pad">
-      <div className="container-site max-w-3xl">
+      <div className={cn("container-site max-w-3xl", centered && "mx-auto text-center")}>
         <h2 className="text-3xl font-bold">{String(data.heading ?? "FAQs")}</h2>
         <div className="mt-8 space-y-4">
           {faqs.map((faq) => (
@@ -273,10 +301,11 @@ export function FaqPreviewSection({ section, context }: SectionComponentProps) {
   );
 }
 
-export function LeadFormSection({ section }: SectionComponentProps) {
+export function LeadFormSection({ section, context }: SectionComponentProps) {
   const data = section.data as Record<string, unknown>;
   const variant = data.variant === "short" ? "short" : "full";
-  const centered = data.layout === "centered" || data.layoutVariant === "centered";
+  const centered =
+    isSectionCentered(section, context) || data.layout === "centered" || data.layoutVariant === "centered";
 
   if (centered) {
     return (

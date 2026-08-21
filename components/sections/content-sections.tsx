@@ -1,9 +1,11 @@
 import { Tag } from "lucide-react";
+import { cn } from "@/lib/utils";
 import { ScrollReveal } from "@/components/animations/ScrollAnimations";
 import { TransitionLink } from "@/components/animations/PageTransition";
 import { HeroBackdrop } from "@/components/site/HeroBackdrop";
 import { SiteImage } from "@/components/site/SiteImage";
-import { BRAND_ASSETS, HERO_CTA, SEED_IMAGES } from "@/lib/constants";
+import { BRAND_ASSETS, HERO_COPY, HERO_CTA, SEED_IMAGES } from "@/lib/constants";
+import { isSectionCentered, sectionHeaderClass } from "@/lib/sections/layout";
 import type { SectionComponentProps } from "@/components/sections/types";
 
 export function HeroSection({ section }: SectionComponentProps) {
@@ -54,15 +56,9 @@ export function HeroSection({ section }: SectionComponentProps) {
 function RedlineHeroSection({ data }: { data: Record<string, unknown> }) {
   const eyebrow = (data.eyebrow as string | undefined) ?? "DIGITAL GROWTH, REENGINEERED";
   const heading = (data.heading as string | undefined) ?? "BUILD. AUTOMATE. SCALE.";
-  const subheading =
-    (data.subheading as string | undefined) ??
-    "Websites, AI and marketing systems built to move your business forward.";
-  const primaryCta =
-    (data.primaryCta as { label: string; href: string } | undefined) ?? HERO_CTA.primary;
-  const secondaryCta =
-    (data.secondaryCta as { label: string; href: string } | undefined) ?? HERO_CTA.secondary;
-  const priceBanner =
-    (data.priceBanner as string | undefined) ?? "Custom websites from $99";
+  const subheading = HERO_COPY.subheading;
+  const primaryCta = HERO_CTA.primary;
+  const priceBanner = HERO_COPY.priceBanner;
 
   const headlineLines = heading.split(/(?<=\.)\s+/).filter(Boolean);
 
@@ -70,8 +66,8 @@ function RedlineHeroSection({ data }: { data: Record<string, unknown> }) {
     <section className="relative min-h-[calc(100vh-80px)] w-full overflow-x-clip bg-void-black">
       <HeroBackdrop src={BRAND_ASSETS.heroArtwork} />
 
-      <div className="container-site relative z-10 flex min-h-[calc(100vh-80px)] min-w-0 items-center py-12 lg:max-w-[52rem] lg:py-16">
-        <ScrollReveal className="min-w-0 max-w-xl text-left lg:max-w-2xl">
+      <div className="container-site relative z-10 flex min-h-[calc(100vh-80px)] min-w-0 items-center justify-center py-12 lg:py-16">
+        <ScrollReveal className="mx-auto min-w-0 max-w-3xl text-center">
           <p className="mb-4 text-[11px] font-bold uppercase tracking-[0.28em] text-signal-red sm:mb-5 sm:text-xs">
             {eyebrow}
           </p>
@@ -92,32 +88,26 @@ function RedlineHeroSection({ data }: { data: Record<string, unknown> }) {
             }
           </h1>
 
-          <p className="mt-5 max-w-xl break-words text-base leading-relaxed text-warm-white/75 sm:mt-6 sm:text-lg">
+          <p className="mx-auto mt-5 max-w-2xl break-words text-base leading-relaxed text-warm-white/75 sm:mt-6 sm:text-lg">
             {subheading}
           </p>
 
-          <div className="mt-7 flex flex-wrap gap-3 sm:mt-8 sm:gap-4">
+          <div className="mt-7 flex justify-center sm:mt-8">
             <TransitionLink
               href={primaryCta.href}
-              className="inline-flex min-h-12 items-center rounded-full bg-signal-red px-6 py-3 text-[11px] font-bold uppercase tracking-[0.14em] text-warm-white transition hover:bg-hot-red sm:px-7 sm:text-xs"
+              className="inline-flex min-h-12 items-center rounded-full bg-signal-red px-7 py-3 text-[11px] font-bold uppercase tracking-[0.14em] text-warm-white transition hover:bg-hot-red sm:px-8 sm:text-xs"
             >
               {primaryCta.label}
             </TransitionLink>
-            <TransitionLink
-              href={secondaryCta.href}
-              className="inline-flex min-h-12 items-center rounded-full border-2 border-signal-red bg-transparent px-6 py-3 text-[11px] font-bold uppercase tracking-[0.14em] text-warm-white transition hover:bg-signal-red/10 sm:px-7 sm:text-xs"
-            >
-              {secondaryCta.label}
-            </TransitionLink>
           </div>
 
-          <div className="mt-7 inline-flex max-w-full flex-wrap items-center gap-3 rounded-2xl border border-signal-red/40 bg-carbon/80 px-4 py-3 backdrop-blur-sm sm:mt-8 sm:px-5 sm:py-4">
+          <div className="mx-auto mt-7 inline-flex max-w-full flex-wrap items-center justify-center gap-3 rounded-2xl border border-signal-red/40 bg-carbon/80 px-4 py-3 backdrop-blur-sm sm:mt-8 sm:px-5 sm:py-4">
             <span className="flex h-10 w-10 shrink-0 items-center justify-center rounded-xl bg-signal-red/15 text-signal-red">
               <Tag className="h-5 w-5" aria-hidden />
             </span>
             <p className="wrap-anywhere text-xs font-semibold uppercase tracking-[0.12em] text-warm-white sm:text-sm">
-              {priceBanner.split(/(\$99)/i).map((part, index) =>
-                part.toLowerCase() === "$99" ?
+              {priceBanner.split(/(\$99 CAD)/i).map((part, index) =>
+                /\$99 CAD/i.test(part) ?
                   <span key={index} className="text-signal-red">
                     {part}
                   </span>
@@ -149,20 +139,21 @@ export function KineticTickerSection({ section }: SectionComponentProps) {
   );
 }
 
-export function SplitStorySection({ section }: SectionComponentProps) {
+export function SplitStorySection({ section, context }: SectionComponentProps) {
   const data = section.data as Record<string, unknown>;
   const image = (data.image as string) ?? SEED_IMAGES.team;
+  const centered = isSectionCentered(section, context);
 
   return (
     <section className="section-pad bg-graphite">
       <div className="container-site min-w-0 grid items-center gap-10 lg:grid-cols-2">
-        <ScrollReveal>
+        <ScrollReveal className={sectionHeaderClass(centered)}>
           {data.eyebrow ? <p className="label-caps mb-3">{String(data.eyebrow)}</p> : null}
           <h2 className="text-3xl font-bold sm:text-4xl">{String(data.heading ?? "")}</h2>
-          {data.body ? <p className="mt-5 text-lg text-concrete">{String(data.body)}</p> : null}
+          {data.body ? <p className={cn("mt-5 text-lg text-concrete", centered && "mx-auto max-w-2xl")}>{String(data.body)}</p> : null}
         </ScrollReveal>
         <ScrollReveal delay={0.1}>
-          <div className="relative aspect-[4/3] overflow-hidden rounded-2xl">
+          <div className="relative mx-auto aspect-[4/3] w-full max-w-xl overflow-hidden rounded-2xl">
             <SiteImage src={image} alt="" fill className="object-cover" sizes="(max-width:1024px) 100vw, 50vw" />
           </div>
         </ScrollReveal>

@@ -2,7 +2,7 @@ import fs from "fs";
 import path from "path";
 import bcrypt from "bcryptjs";
 import { connectDB } from "@/lib/db/connect";
-import { BRAND, BRAND_ASSETS, DEFAULTS, HEADER_NAV_ITEMS, HERO_CTA, PRIMARY_CTA, ROUTES } from "@/lib/constants";
+import { BRAND, BRAND_ASSETS, DEFAULTS, HEADER_NAV_ITEMS, HERO_COPY, HERO_CTA, PRIMARY_CTA, ROUTES } from "@/lib/constants";
 import { SEED_FILE_IMAGES, SERVICE_STOCK_IMAGES, STOCK_IMAGES } from "@/lib/stock-images";
 import { SECTION_TYPES } from "@/lib/cms/sections";
 import {
@@ -279,11 +279,9 @@ function buildPageSections(slug: string): Section[] {
           layoutVariant: "redline",
           eyebrow: "DIGITAL GROWTH, REENGINEERED",
           heading: "BUILD. AUTOMATE. SCALE.",
-          subheading:
-            "Websites, AI and marketing systems built to move your business forward.",
+          subheading: HERO_COPY.subheading,
           primaryCta: HERO_CTA.primary,
-          secondaryCta: HERO_CTA.secondary,
-          priceBanner: "Custom websites from $99",
+          priceBanner: HERO_COPY.priceBanner,
           backgroundImage: BRAND_ASSETS.heroBackground,
         }),
         section("home-story", SECTION_TYPES.features, 1, {

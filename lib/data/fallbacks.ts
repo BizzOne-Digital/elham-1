@@ -1,5 +1,5 @@
 import type { Section } from "@/models/shared";
-import { PRIMARY_CTA, ROUTES, SECONDARY_CTA, SEED_IMAGES, HERO_CTA, BRAND_ASSETS } from "@/lib/constants";
+import { PRIMARY_CTA, ROUTES, SECONDARY_CTA, SEED_IMAGES, HERO_CTA, HERO_COPY, BRAND_ASSETS } from "@/lib/constants";
 
 export const DEFAULT_CONTACT = {
   email: "ak_2123@hotmail.com",
@@ -17,11 +17,9 @@ export const HOME_SECTIONS: Section[] = [
       layoutVariant: "redline",
       eyebrow: "DIGITAL GROWTH, REENGINEERED",
       heading: "BUILD. AUTOMATE. SCALE.",
-      subheading:
-        "Websites, AI and marketing systems built to move your business forward.",
+      subheading: HERO_COPY.subheading,
       primaryCta: HERO_CTA.primary,
-      secondaryCta: HERO_CTA.secondary,
-      priceBanner: "Custom websites from $99",
+      priceBanner: HERO_COPY.priceBanner,
       backgroundImage: BRAND_ASSETS.heroBackground,
     },
   },

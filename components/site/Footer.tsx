@@ -231,9 +231,12 @@ export function Footer({
       {/* Bottom bar */}
       <div className="relative border-t border-white/10 bg-carbon/60">
         <div className="container-site flex min-w-0 flex-col items-center justify-between gap-4 py-5 sm:flex-row">
-          <p className="max-w-full break-words text-center text-xs text-steel sm:text-left">
-            {copyrightText ?? `© ${year} Netbrandit. All rights reserved.`}
-          </p>
+          <div className="flex min-w-0 flex-col items-center gap-3 sm:flex-row sm:items-center">
+            <Wordmark asLink={false} size="sm" />
+            <p className="max-w-full break-words text-center text-xs text-steel sm:text-left">
+              {copyrightText ?? `© ${year} Netbrandit. All rights reserved.`}
+            </p>
+          </div>
 
           <div className="flex max-w-full flex-wrap items-center justify-center gap-4 sm:gap-6">
             {legalLinks.map((item) => (
