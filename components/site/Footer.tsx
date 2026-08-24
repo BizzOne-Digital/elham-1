@@ -103,7 +103,7 @@ export function Footer({
         <div className="grid min-w-0 gap-12 lg:grid-cols-12 lg:gap-8 xl:gap-12">
           {/* Brand + contact */}
           <div className="min-w-0 space-y-6 lg:col-span-5 xl:col-span-4">
-            <Wordmark asLink size="lg" />
+            <Wordmark asLink size="footer" />
             <p className="max-w-md break-words text-sm leading-relaxed text-steel">{tagline}</p>
 
             <div className="flex min-w-0 flex-col gap-3 sm:max-w-md">
@@ -232,7 +232,7 @@ export function Footer({
       <div className="relative border-t border-white/10 bg-carbon/60">
         <div className="container-site flex min-w-0 flex-col items-center justify-between gap-4 py-5 sm:flex-row">
           <div className="flex min-w-0 flex-col items-center gap-3 sm:flex-row sm:items-center">
-            <Wordmark asLink={false} size="sm" />
+            <Wordmark asLink={false} size="footerBar" />
             <p className="max-w-full break-words text-center text-xs text-steel sm:text-left">
               {copyrightText ?? `© ${year} Netbrandit. All rights reserved.`}
             </p>

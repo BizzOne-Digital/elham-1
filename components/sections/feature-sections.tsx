@@ -133,7 +133,9 @@ export function BenefitGridSection({ section, context }: SectionComponentProps) 
   const items = (section.data.items as Array<{ title: string; description: string }>) ?? [];
   const rawImage = section.data.image as string | undefined;
   const image =
-    rawImage?.startsWith("/images/") ? rawImage : BRAND_ASSETS.storySectionImage;
+    rawImage?.startsWith("/images/") ? rawImage
+    : section.id === "home-process" ? BRAND_ASSETS.processSectionImage
+    : BRAND_ASSETS.storySectionImage;
   const centered = isSectionCentered(section, context);
 
   return (
@@ -154,7 +156,11 @@ export function BenefitGridSection({ section, context }: SectionComponentProps) 
           <div className="relative aspect-[4/3] max-h-[280px] w-full overflow-hidden rounded-2xl sm:max-h-[320px] lg:max-h-[360px]">
             <SiteImage
               src={image}
-              alt="Strategy and analytics workspace"
+              alt={
+                image === BRAND_ASSETS.processSectionImage ?
+                  "AI-powered growth and automation"
+                : "Strategy and analytics workspace"
+              }
               fill
               unoptimized
               className="object-cover"

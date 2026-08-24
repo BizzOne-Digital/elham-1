@@ -6,7 +6,7 @@ import { BRAND_ASSETS } from "@/lib/constants";
 interface WordmarkProps {
   className?: string;
   asLink?: boolean;
-  size?: "sm" | "md" | "lg" | "xl" | "intro";
+  size?: "sm" | "md" | "lg" | "xl" | "header" | "footer" | "footerBar" | "intro";
 }
 
 /** Logo: target icon + stacked NET / BRAND / IT */
@@ -15,6 +15,9 @@ const sizeConfig = {
   md: { height: 52, width: 172, maxWidth: "max-w-[172px] sm:max-w-[192px]" },
   lg: { height: 64, width: 212, maxWidth: "max-w-[212px] sm:max-w-[236px]" },
   xl: { height: 76, width: 252, maxWidth: "max-w-[252px] sm:max-w-[280px]" },
+  header: { height: 72, width: 238, maxWidth: "max-w-[238px] sm:max-w-[266px]" },
+  footer: { height: 128, width: 424, maxWidth: "max-w-[424px] sm:max-w-[472px]" },
+  footerBar: { height: 80, width: 264, maxWidth: "max-w-[264px] sm:max-w-[296px]" },
   intro: { height: 96, width: 320, maxWidth: "max-w-[320px] sm:max-w-[360px]" },
 } as const;
 

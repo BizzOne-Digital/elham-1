@@ -314,6 +314,7 @@ function buildPageSections(slug: string): Section[] {
         }),
         section("home-process", SECTION_TYPES.features, 3, {
           heading: "Discover · Position · Build · Launch · Optimise",
+          image: BRAND_ASSETS.processSectionImage,
           items: [
             { title: "Discover", description: "Understand goals, audience, and constraints." },
             { title: "Position", description: "Sharpen the offer and message." },

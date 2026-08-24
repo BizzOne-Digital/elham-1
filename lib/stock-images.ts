@@ -117,15 +117,14 @@ export function resolveServiceImage(
   url: string | undefined,
   fallback: string = STOCK_IMAGES.webDesign,
 ): string {
-  const mapped = slug ? SERVICE_STOCK_IMAGES[slug] : undefined;
-  if (mapped?.startsWith("/images/")) {
-    return mapped;
+  if (slug && SERVICE_STOCK_IMAGES[slug]) {
+    return SERVICE_STOCK_IMAGES[slug];
   }
   if (url?.startsWith("/images/")) {
     return url;
   }
-  if (!url) return mapped ?? fallback;
-  return resolveStockImage(url, mapped ?? fallback);
+  if (!url) return fallback;
+  return resolveStockImage(url, fallback);
 }
 
 export function stockImageAlt(key: keyof typeof STOCK_IMAGES): string {

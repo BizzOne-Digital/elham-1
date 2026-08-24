@@ -1,10 +1,17 @@
-import Image from "next/image";
+import { SiteImage } from "@/components/site/SiteImage";
 import { Breadcrumbs } from "@/components/site/Breadcrumbs";
 import { ScrollReveal } from "@/components/animations/ScrollAnimations";
 import { TransitionLink } from "@/components/animations/PageTransition";
 import { buildPageMetadata, buildBreadcrumbSchema, serializeJsonLd } from "@/lib/seo/metadata";
 import { getFaqCategories, getPublishedFaqs } from "@/lib/data/faqs";
 import { PRIMARY_CTA, ROUTES, SECONDARY_CTA, SEED_IMAGES } from "@/lib/constants";
+
+const FAQ_GALLERY_IMAGES = [
+  SEED_IMAGES.webDesign,
+  SEED_IMAGES.automation,
+  "/images/services/google-meta-advertising.png",
+  SEED_IMAGES.seo,
+] as const;
 
 export const metadata = buildPageMetadata({
   title: "FAQs",
@@ -68,9 +75,16 @@ export default async function FaqsPage() {
 
       <section className="section-pad">
         <div className="container-site min-w-0 grid grid-cols-2 gap-4 lg:grid-cols-4">
-          {[SEED_IMAGES.webDesign, SEED_IMAGES.automation, SEED_IMAGES.ads, SEED_IMAGES.seo].map((src) => (
+          {FAQ_GALLERY_IMAGES.map((src) => (
             <div key={src} className="relative aspect-[4/3] overflow-hidden rounded-xl">
-              <Image src={src} alt="" fill className="object-cover" sizes="25vw" />
+              <SiteImage
+                src={src}
+                alt=""
+                fill
+                unoptimized={src.startsWith("/images/")}
+                className="object-cover"
+                sizes="25vw"
+              />
             </div>
           ))}
         </div>

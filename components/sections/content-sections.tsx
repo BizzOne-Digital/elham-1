@@ -66,8 +66,8 @@ function RedlineHeroSection({ data }: { data: Record<string, unknown> }) {
     <section className="relative min-h-[calc(100vh-80px)] w-full overflow-x-clip bg-void-black">
       <HeroBackdrop src={BRAND_ASSETS.heroArtwork} />
 
-      <div className="container-site relative z-10 flex min-h-[calc(100vh-80px)] min-w-0 items-center justify-center py-12 lg:py-16">
-        <ScrollReveal className="mx-auto min-w-0 max-w-3xl text-center">
+      <div className="container-site relative z-10 flex min-h-[calc(100vh-80px)] min-w-0 items-center py-12 lg:max-w-[52rem] lg:py-16">
+        <ScrollReveal className="min-w-0 max-w-xl text-left lg:max-w-2xl">
           <p className="mb-4 text-[11px] font-bold uppercase tracking-[0.28em] text-signal-red sm:mb-5 sm:text-xs">
             {eyebrow}
           </p>
@@ -88,11 +88,11 @@ function RedlineHeroSection({ data }: { data: Record<string, unknown> }) {
             }
           </h1>
 
-          <p className="mx-auto mt-5 max-w-2xl break-words text-base leading-relaxed text-warm-white/75 sm:mt-6 sm:text-lg">
+          <p className="mt-5 max-w-xl break-words text-base leading-relaxed text-warm-white/75 sm:mt-6 sm:text-lg">
             {subheading}
           </p>
 
-          <div className="mt-7 flex justify-center sm:mt-8">
+          <div className="mt-7 sm:mt-8">
             <TransitionLink
               href={primaryCta.href}
               className="inline-flex min-h-12 items-center rounded-full bg-signal-red px-7 py-3 text-[11px] font-bold uppercase tracking-[0.14em] text-warm-white transition hover:bg-hot-red sm:px-8 sm:text-xs"
@@ -101,7 +101,7 @@ function RedlineHeroSection({ data }: { data: Record<string, unknown> }) {
             </TransitionLink>
           </div>
 
-          <div className="mx-auto mt-7 inline-flex max-w-full flex-wrap items-center justify-center gap-3 rounded-2xl border border-signal-red/40 bg-carbon/80 px-4 py-3 backdrop-blur-sm sm:mt-8 sm:px-5 sm:py-4">
+          <div className="mt-7 inline-flex max-w-full flex-wrap items-center gap-3 rounded-2xl border border-signal-red/40 bg-carbon/80 px-4 py-3 backdrop-blur-sm sm:mt-8 sm:px-5 sm:py-4">
             <span className="flex h-10 w-10 shrink-0 items-center justify-center rounded-xl bg-signal-red/15 text-signal-red">
               <Tag className="h-5 w-5" aria-hidden />
             </span>

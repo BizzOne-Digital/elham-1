@@ -72,6 +72,7 @@ export const BRAND_ASSETS = {
   heroBackground: "/images/hero/cyber-monogram.png",
   heroArtwork: "/images/hero/cyber-monogram.png",
   storySectionImage: "/images/story/strategy-desk.png",
+  processSectionImage: "/images/process/ai-growth.png",
   favicon: "/brand/logo.png",
 } as const;
 

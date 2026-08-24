@@ -1,10 +1,11 @@
-import Image from "next/image";
 import { Breadcrumbs } from "@/components/site/Breadcrumbs";
+import { SiteImage } from "@/components/site/SiteImage";
 import { ScrollReveal } from "@/components/animations/ScrollAnimations";
 import { TransitionLink } from "@/components/animations/PageTransition";
 import { buildPageMetadata } from "@/lib/seo/metadata";
 import { getPublishedServices } from "@/lib/data/services";
 import { getPublishedFaqs } from "@/lib/data/faqs";
+import { resolveServiceImage } from "@/lib/stock-images";
 import { PRIMARY_CTA, ROUTES, SEED_IMAGES, SECONDARY_CTA } from "@/lib/constants";
 
 export const metadata = buildPageMetadata({
@@ -41,17 +42,25 @@ export default async function ServicesPage() {
 
       <section className="section-pad">
         <div className="container-site min-w-0 grid gap-6 md:grid-cols-2">
-          {services.map((service, index) => (
+          {services.map((service, index) => {
+            const imageSrc = resolveServiceImage(
+              service.slug,
+              service.featuredImage?.url,
+              SEED_IMAGES.webDesign,
+            );
+
+            return (
             <ScrollReveal key={service._id} delay={index * 0.04}>
               <TransitionLink
                 href={`/services/${service.slug}`}
                 className="group flex min-w-0 flex-col overflow-hidden rounded-2xl border border-white/10 bg-graphite md:grid md:grid-cols-[minmax(0,180px)_minmax(0,1fr)]"
               >
                 <div className="relative aspect-[16/10] min-h-[160px] md:aspect-auto md:min-h-[180px]">
-                  <Image
-                    src={service.featuredImage?.url ?? SEED_IMAGES.webDesign}
+                  <SiteImage
+                    src={imageSrc}
                     alt={service.featuredImage?.alt ?? service.title}
                     fill
+                    unoptimized={imageSrc.startsWith("/images/")}
                     className="object-cover transition group-hover:scale-105"
                     sizes="180px"
                   />
@@ -63,14 +72,15 @@ export default async function ServicesPage() {
                 </div>
               </TransitionLink>
             </ScrollReveal>
-          ))}
+            );
+          })}
         </div>
       </section>
 
       <section className="section-pad bg-void-black">
         <ScrollReveal className="container-site min-w-0 grid gap-8 lg:grid-cols-2 lg:items-center">
           <div className="relative aspect-video overflow-hidden rounded-2xl">
-            <Image src={SEED_IMAGES.automation} alt="Connected service diagram" fill className="object-cover" sizes="50vw" />
+            <SiteImage src={SEED_IMAGES.automation} alt="Connected service diagram" fill className="object-cover" sizes="50vw" />
           </div>
           <div className="pt-4 sm:pt-6 lg:pt-10">
             <h2 className="text-3xl font-bold">One connected growth system</h2>
