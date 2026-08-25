@@ -11,6 +11,10 @@ export const BRAND = {
 
 export const BRAND_COLORS = {
   voidBlack: "#050505",
+  sand: "#DDC7A0",
+  sandDeep: "#D0B88F",
+  sandCard: "#C4AE82",
+  ink: "#1A1410",
   carbon: "#0D0D0F",
   graphite: "#18181B",
   signalRed: "#F21D2F",
@@ -96,6 +100,9 @@ export const HERO_COPY = {
     "We help small businesses turn their online presence into new customers with custom websites, AI and marketing systems built to move your business forward.",
   priceBanner: "Websites starting at $99 CAD • Based in Canada • No long-term contracts",
 } as const;
+
+export const PRICING_PROMO_HEADING =
+  "Custom website packages starting at $99 and for a limited time all new packages come with a FREE CUSTOM LOGO";
 
 export const LEAD_STATUS = {
   new: "new",

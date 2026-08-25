@@ -5,6 +5,7 @@ import { getFallbackPage } from "@/lib/data/fallbacks";
 import { serializeDoc, serializeDocs } from "@/lib/data/serialize";
 import { resolveStockImage, STOCK_IMAGES } from "@/lib/stock-images";
 import { resolvePublicImageUrl } from "@/lib/uploads/constants";
+import { PRICING_PROMO_HEADING } from "@/lib/constants";
 
 function normalizeSectionData(data: Record<string, unknown>): Record<string, unknown> {
   const next = { ...data };
@@ -35,10 +36,26 @@ function normalizeSectionData(data: Record<string, unknown>): Record<string, unk
 }
 
 function normalizeSections(sections: Section[]): Section[] {
-  return sections.map((section) => ({
-    ...section,
-    data: normalizeSectionData(section.data as Record<string, unknown>),
-  }));
+  return sections.map((section) => {
+    const data = normalizeSectionData(section.data as Record<string, unknown>);
+
+    if (section.id === "home-hero") {
+      delete data.eyebrow;
+    }
+
+    if (section.id === "home-story") {
+      delete data.image;
+    }
+
+    if (section.id === "home-pricing") {
+      data.heading = PRICING_PROMO_HEADING;
+    }
+
+    return {
+      ...section,
+      data,
+    };
+  });
 }
 
 export interface PageData {

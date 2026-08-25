@@ -17,7 +17,7 @@ export default function Error({
   }, [error]);
 
   return (
-    <div className="flex min-h-screen flex-col items-center justify-center bg-void-black px-4 text-center">
+    <div className="flex min-h-screen flex-col items-center justify-center bg-sand px-4 text-center text-ink">
       <Wordmark size="lg" />
       <h1 className="mt-8 text-2xl font-bold">Something interrupted the signal</h1>
       <p className="mt-3 max-w-md text-concrete">

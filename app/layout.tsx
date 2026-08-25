@@ -33,7 +33,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
       lang="en-CA"
       className={`${spaceGrotesk.variable} ${inter.variable} h-full antialiased`}
     >
-      <body className="min-h-full w-full max-w-full overflow-x-hidden bg-void-black text-warm-white">{children}</body>
+      <body className="min-h-full w-full max-w-full overflow-x-hidden bg-sand text-ink">{children}</body>
     </html>
   );
 }

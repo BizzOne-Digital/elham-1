@@ -3,7 +3,7 @@ import Link from "next/link";
 import { ArrowUpRight, Calendar, Mail, Phone } from "lucide-react";
 import { Wordmark } from "@/components/site/Wordmark";
 import { TransitionLink } from "@/components/animations/PageTransition";
-import { BRAND, HEADER_NAV_ITEMS, PRIMARY_CTA, ROUTES } from "@/lib/constants";
+import { HEADER_NAV_ITEMS, PRIMARY_CTA, ROUTES } from "@/lib/constants";
 import type { ContactInfo, NavItem, SocialLink } from "@/models/shared";
 
 interface FooterProps {
@@ -51,7 +51,7 @@ function FooterLink({
   external?: boolean;
 }) {
   const className =
-    "group block w-full min-w-0 break-words text-sm text-concrete transition-colors hover:text-warm-white";
+    "group block w-full min-w-0 break-words text-sm text-concrete transition-colors hover:text-warm-white max-lg:text-center lg:text-left";
 
   if (external) {
     return (
@@ -88,7 +88,6 @@ export function Footer({
   ],
   social = [],
   copyrightText,
-  tagline = BRAND.tagline,
 }: FooterProps) {
   const visibleSocial = social.filter((s) => s.url?.trim());
   const phoneHref = contact.phone ? buildPhoneHref(contact.phone) : undefined;
@@ -101,16 +100,13 @@ export function Footer({
 
       <div className="container-site relative py-16 lg:py-20">
         <div className="grid min-w-0 gap-12 lg:grid-cols-12 lg:gap-8 xl:gap-12">
-          {/* Brand + contact */}
-          <div className="min-w-0 space-y-6 lg:col-span-5 xl:col-span-4">
-            <Wordmark asLink size="footer" />
-            <p className="max-w-md break-words text-sm leading-relaxed text-steel">{tagline}</p>
-
-            <div className="flex min-w-0 flex-col gap-3 sm:max-w-md">
+          {/* Contact */}
+          <div className="min-w-0 space-y-6 lg:col-span-5 xl:col-span-4 max-lg:mx-auto max-lg:max-w-md max-lg:text-center">
+            <div className="flex min-w-0 flex-col gap-3 sm:max-w-md max-lg:mx-auto max-lg:w-full">
               {contact.email ? (
                 <a
                   href={`mailto:${contact.email}`}
-                  className="group flex min-w-0 w-full items-start gap-3 overflow-hidden rounded-2xl border border-white/10 bg-carbon/80 p-4 transition hover:border-signal-red/40 hover:bg-graphite"
+                  className="group flex min-w-0 w-full items-start gap-3 overflow-hidden rounded-2xl border border-white/10 bg-carbon/80 p-4 transition hover:border-signal-red/40 hover:bg-graphite max-lg:flex-col max-lg:items-center max-lg:text-center"
                 >
                   <span className="mt-0.5 flex h-9 w-9 shrink-0 items-center justify-center rounded-xl bg-signal-red/15 text-signal-red">
                     <Mail className="h-4 w-4" aria-hidden />
@@ -129,7 +125,7 @@ export function Footer({
               {contact.phone && phoneHref ? (
                 <a
                   href={phoneHref}
-                  className="group flex min-w-0 w-full items-start gap-3 overflow-hidden rounded-2xl border border-white/10 bg-carbon/80 p-4 transition hover:border-signal-red/40 hover:bg-graphite"
+                  className="group flex min-w-0 w-full items-start gap-3 overflow-hidden rounded-2xl border border-white/10 bg-carbon/80 p-4 transition hover:border-signal-red/40 hover:bg-graphite max-lg:flex-col max-lg:items-center max-lg:text-center"
                 >
                   <span className="mt-0.5 flex h-9 w-9 shrink-0 items-center justify-center rounded-xl bg-signal-red/15 text-signal-red">
                     <Phone className="h-4 w-4" aria-hidden />
@@ -148,7 +144,7 @@ export function Footer({
           </div>
 
           {/* Services */}
-          <div className="min-w-0 lg:col-span-2">
+          <div className="min-w-0 lg:col-span-2 max-lg:mx-auto max-lg:max-w-xs max-lg:text-center">
             <p className="mb-5 text-[11px] font-bold uppercase tracking-[0.22em] text-signal-red">
               Services
             </p>
@@ -162,7 +158,7 @@ export function Footer({
           </div>
 
           {/* Explore */}
-          <div className="min-w-0 lg:col-span-2">
+          <div className="min-w-0 lg:col-span-2 max-lg:mx-auto max-lg:max-w-xs max-lg:text-center">
             <p className="mb-5 text-[11px] font-bold uppercase tracking-[0.22em] text-signal-red">
               Explore
             </p>
@@ -176,8 +172,8 @@ export function Footer({
           </div>
 
           {/* CTA */}
-          <div className="min-w-0 lg:col-span-3">
-            <div className="min-w-0 rounded-2xl border border-signal-red/30 bg-gradient-to-br from-graphite to-carbon p-6 sm:p-7">
+          <div className="min-w-0 lg:col-span-3 max-lg:mx-auto max-lg:max-w-md max-lg:text-center">
+            <div className="min-w-0 rounded-2xl border border-signal-red/30 bg-gradient-to-br from-graphite to-carbon p-6 sm:p-7 max-lg:text-center">
               <p className="text-[11px] font-bold uppercase tracking-[0.22em] text-signal-red">
                 Ready to grow?
               </p>
@@ -204,11 +200,11 @@ export function Footer({
             </div>
 
             {visibleSocial.length > 0 ? (
-              <div className="mt-6 min-w-0">
+              <div className="mt-6 min-w-0 max-lg:text-center">
                 <p className="mb-3 text-[11px] font-bold uppercase tracking-[0.22em] text-smoke">
                   Follow
                 </p>
-                <ul className="flex flex-wrap gap-2">
+                <ul className="flex flex-wrap gap-2 max-lg:justify-center">
                   {visibleSocial.map((item) => (
                     <li key={item.url}>
                       <a

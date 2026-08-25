@@ -2,7 +2,7 @@ import fs from "fs";
 import path from "path";
 import bcrypt from "bcryptjs";
 import { connectDB } from "@/lib/db/connect";
-import { BRAND, BRAND_ASSETS, DEFAULTS, HEADER_NAV_ITEMS, HERO_COPY, HERO_CTA, PRIMARY_CTA, ROUTES } from "@/lib/constants";
+import { BRAND, BRAND_ASSETS, DEFAULTS, HEADER_NAV_ITEMS, HERO_COPY, HERO_CTA, PRIMARY_CTA, PRICING_PROMO_HEADING, ROUTES } from "@/lib/constants";
 import { SEED_FILE_IMAGES, SERVICE_STOCK_IMAGES, STOCK_IMAGES } from "@/lib/stock-images";
 import { SECTION_TYPES } from "@/lib/cms/sections";
 import {
@@ -277,7 +277,6 @@ function buildPageSections(slug: string): Section[] {
       return [
         section("home-hero", SECTION_TYPES.hero, 0, {
           layoutVariant: "redline",
-          eyebrow: "DIGITAL GROWTH, REENGINEERED",
           heading: "BUILD. AUTOMATE. SCALE.",
           subheading: HERO_COPY.subheading,
           primaryCta: HERO_CTA.primary,
@@ -286,7 +285,6 @@ function buildPageSections(slug: string): Section[] {
         }),
         section("home-story", SECTION_TYPES.features, 1, {
           heading: "Small business. Big potential.",
-          image: BRAND_ASSETS.storySectionImage,
           items: [
             {
               title: "Strategy first",
@@ -324,7 +322,7 @@ function buildPageSections(slug: string): Section[] {
           ],
         }),
         section("home-pricing", SECTION_TYPES.cta, 4, {
-          heading: "Custom websites starting at $99",
+          heading: PRICING_PROMO_HEADING,
           description:
             "Final price depends on scope and is confirmed after discovery.",
           buttonLabel: "Request My Quote",

@@ -1,5 +1,5 @@
 import type { Section } from "@/models/shared";
-import { PRIMARY_CTA, ROUTES, SECONDARY_CTA, SEED_IMAGES, HERO_CTA, HERO_COPY, BRAND_ASSETS } from "@/lib/constants";
+import { PRIMARY_CTA, ROUTES, SECONDARY_CTA, SEED_IMAGES, HERO_CTA, HERO_COPY, BRAND_ASSETS, PRICING_PROMO_HEADING } from "@/lib/constants";
 
 export const DEFAULT_CONTACT = {
   email: "ak_2123@hotmail.com",
@@ -15,7 +15,6 @@ export const HOME_SECTIONS: Section[] = [
     enabled: true,
     data: {
       layoutVariant: "redline",
-      eyebrow: "DIGITAL GROWTH, REENGINEERED",
       heading: "BUILD. AUTOMATE. SCALE.",
       subheading: HERO_COPY.subheading,
       primaryCta: HERO_CTA.primary,
@@ -96,7 +95,7 @@ export const HOME_SECTIONS: Section[] = [
     order: 6,
     enabled: true,
     data: {
-      heading: "Custom websites starting at $99",
+      heading: PRICING_PROMO_HEADING,
       body: "A tailored starting point for small businesses ready to establish or improve their online presence. Final scope, timeline, and price are confirmed after discovery.",
       cta: { label: "Request My Quote", href: `${ROUTES.contact}?intent=quote` },
       image: SEED_IMAGES.webDesign,

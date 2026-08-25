@@ -109,14 +109,16 @@ export function BenefitGridSection({ section, context }: SectionComponentProps) 
   const items = (section.data.items as Array<{ title: string; description: string }>) ?? [];
   const rawImage = section.data.image as string | undefined;
   const image =
-    rawImage?.startsWith("/images/") ? rawImage
-    : section.id === "home-process" ? BRAND_ASSETS.processSectionImage
-    : BRAND_ASSETS.storySectionImage;
+    rawImage ?
+      rawImage.startsWith("/images/") ? rawImage
+      : section.id === "home-process" ? BRAND_ASSETS.processSectionImage
+      : BRAND_ASSETS.storySectionImage
+    : null;
   const centered = isSectionCentered(section, context);
 
   return (
     <section className="section-pad">
-      <div className="container-site min-w-0 grid items-center gap-10 lg:grid-cols-[1fr_1fr]">
+      <div className={cn("container-site min-w-0 grid items-center gap-10", image && "lg:grid-cols-[1fr_1fr]")}>
         <ScrollReveal className={sectionHeaderClass(centered)}>
           <h2 className="text-3xl font-bold">{String(section.data.heading)}</h2>
           <ul className="mt-8 space-y-5 max-lg:mx-auto max-lg:max-w-xl">
@@ -128,22 +130,24 @@ export function BenefitGridSection({ section, context }: SectionComponentProps) 
             ))}
           </ul>
         </ScrollReveal>
-        <ScrollReveal delay={0.1}>
-          <div className="relative aspect-[4/3] max-h-[280px] w-full overflow-hidden rounded-2xl sm:max-h-[320px] lg:max-h-[360px]">
-            <SiteImage
-              src={image}
-              alt={
-                image === BRAND_ASSETS.processSectionImage ?
-                  "AI-powered growth and automation"
-                : "Strategy and analytics workspace"
-              }
-              fill
-              unoptimized
-              className="object-cover"
-              sizes="(max-width:1024px) 100vw, 50vw"
-            />
-          </div>
-        </ScrollReveal>
+        {image ?
+          <ScrollReveal delay={0.1}>
+            <div className="relative aspect-[4/3] max-h-[280px] w-full overflow-hidden rounded-2xl sm:max-h-[320px] lg:max-h-[360px]">
+              <SiteImage
+                src={image}
+                alt={
+                  image === BRAND_ASSETS.processSectionImage ?
+                    "AI-powered growth and automation"
+                  : "Strategy and analytics workspace"
+                }
+                fill
+                unoptimized
+                className="object-cover"
+                sizes="(max-width:1024px) 100vw, 50vw"
+              />
+            </div>
+          </ScrollReveal>
+        : null}
       </div>
     </section>
   );
@@ -335,7 +339,7 @@ export function BookingCTASection({ section }: SectionComponentProps) {
       <div className="container-site overflow-hidden rounded-3xl border border-white/10 bg-graphite">
         <div className="grid lg:grid-cols-2">
           <div className="p-8 sm:p-12 max-lg:text-center">
-            <h2 className="text-3xl font-bold">{String(data.heading ?? "Book a discovery call")}</h2>
+            <h2 className="text-balance text-2xl font-bold sm:text-3xl">{String(data.heading ?? "Book a discovery call")}</h2>
             {data.body ? <p className="mt-4 text-concrete">{String(data.body)}</p> : null}
             <TransitionLink
               href={cta.href}

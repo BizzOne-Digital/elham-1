@@ -1,6 +1,10 @@
 @import "tailwindcss";
 
 :root {
+  --ink: #1a1410;
+  --sand: #ddc7a0;
+  --sand-deep: #d0b88f;
+  --sand-card: #c4ae82;
   --void-black: #050505;
   --carbon: #0d0d0f;
   --graphite: #18181b;
@@ -12,12 +16,12 @@
   --steel: #9a9a9f;
   --smoke: #5d5d63;
 
-  --background: var(--void-black);
-  --foreground: var(--warm-white);
-  --muted: var(--smoke);
+  --background: var(--sand);
+  --foreground: var(--ink);
+  --muted: #5c5244;
   --accent: var(--signal-red);
   --accent-foreground: var(--warm-white);
-  --border: color-mix(in srgb, var(--warm-white) 12%, transparent);
+  --border: color-mix(in srgb, var(--ink) 14%, transparent);
   --ring: var(--signal-red);
 }
 
@@ -30,6 +34,10 @@
   --color-border: var(--border);
   --color-ring: var(--ring);
   --color-void-black: var(--void-black);
+  --color-sand: var(--sand);
+  --color-sand-deep: var(--sand-deep);
+  --color-sand-card: var(--sand-card);
+  --color-ink: var(--ink);
   --color-carbon: var(--carbon);
   --color-graphite: var(--graphite);
   --color-signal-red: var(--signal-red);
@@ -147,8 +155,43 @@
 
   ::selection {
     background: color-mix(in srgb, var(--signal-red) 35%, transparent);
-    color: var(--warm-white);
+    color: var(--ink);
   }
+}
+
+/* Public site — warm sand surfaces with dark text */
+.site-shell {
+  --void-black: var(--sand);
+  --carbon: var(--sand-deep);
+  --graphite: var(--sand-card);
+  --steel: #5c5244;
+  --smoke: #6b6050;
+  --concrete: #3d3428;
+  background: var(--sand);
+  color: var(--ink);
+}
+
+.site-shell .text-warm-white {
+  color: var(--ink);
+}
+
+.site-shell :is(.bg-signal-red, .bg-hot-red).text-warm-white,
+.site-shell :is(.bg-signal-red, .bg-hot-red) .text-warm-white,
+.site-shell :is(a, button).bg-signal-red,
+.site-shell :is(a, button).bg-hot-red {
+  color: var(--warm-white);
+}
+
+.site-shell .text-void-black {
+  color: #050505;
+}
+
+.site-shell :where([class*="border-white"]) {
+  border-color: color-mix(in srgb, var(--ink) 14%, transparent);
+}
+
+.site-shell .grain {
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.8' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.03'/%3E%3C/svg%3E");
 }
 
 @layer utilities {

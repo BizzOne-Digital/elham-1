@@ -54,7 +54,7 @@ export function HeroSection({ section }: SectionComponentProps) {
 }
 
 function RedlineHeroSection({ data }: { data: Record<string, unknown> }) {
-  const eyebrow = (data.eyebrow as string | undefined) ?? "DIGITAL GROWTH, REENGINEERED";
+  const eyebrow = data.eyebrow as string | undefined;
   const heading = (data.heading as string | undefined) ?? "BUILD. AUTOMATE. SCALE.";
   const subheading = HERO_COPY.subheading;
   const primaryCta = HERO_CTA.primary;
@@ -68,11 +68,13 @@ function RedlineHeroSection({ data }: { data: Record<string, unknown> }) {
 
       <div className="container-site relative z-10 flex min-h-[calc(100vh-80px)] min-w-0 items-center justify-center py-12 lg:max-w-[52rem] lg:justify-start lg:py-16">
         <ScrollReveal className="min-w-0 max-w-xl text-center lg:max-w-2xl lg:text-left">
-          <p className="mb-4 text-[11px] font-bold uppercase tracking-[0.28em] text-signal-red sm:mb-5 sm:text-xs">
-            {eyebrow}
-          </p>
+          {eyebrow ?
+            <p className="mb-4 text-[11px] font-bold uppercase tracking-[0.28em] text-signal-red sm:mb-5 sm:text-xs">
+              {eyebrow}
+            </p>
+          : null}
 
-          <h1 className="font-display break-words text-[clamp(2.25rem,6vw,4.75rem)] font-bold uppercase leading-[0.92] tracking-[-0.03em] text-warm-white xl:text-[5rem]">
+          <h1 className="font-display break-words text-[clamp(2.25rem,6vw,4.75rem)] font-bold uppercase leading-[0.92] tracking-[-0.03em] text-ink xl:text-[5rem]">
             {headlineLines.length > 1 ?
               headlineLines.map((line) => (
                 <span key={line} className="block">
@@ -88,7 +90,7 @@ function RedlineHeroSection({ data }: { data: Record<string, unknown> }) {
             }
           </h1>
 
-          <p className="mt-5 max-w-xl break-words text-base leading-relaxed text-warm-white/75 sm:mt-6 sm:text-lg">
+          <p className="mt-5 max-w-xl break-words text-base leading-relaxed text-ink/80 sm:mt-6 sm:text-lg">
             {subheading}
           </p>
 
@@ -105,7 +107,7 @@ function RedlineHeroSection({ data }: { data: Record<string, unknown> }) {
             <span className="flex h-10 w-10 shrink-0 items-center justify-center rounded-xl bg-signal-red/15 text-signal-red">
               <Tag className="h-5 w-5" aria-hidden />
             </span>
-            <p className="wrap-anywhere text-xs font-semibold uppercase tracking-[0.12em] text-warm-white sm:text-sm">
+            <p className="wrap-anywhere text-xs font-semibold uppercase tracking-[0.12em] text-ink sm:text-sm">
               {priceBanner.split(/(\$99 CAD)/i).map((part, index) =>
                 /\$99 CAD/i.test(part) ?
                   <span key={index} className="text-signal-red">

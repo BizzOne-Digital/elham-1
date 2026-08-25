@@ -59,7 +59,7 @@ export function Header({
                       "inline-flex min-h-11 items-center px-3 py-2 text-[11px] font-semibold uppercase tracking-[0.18em] transition-colors xl:px-4 xl:text-xs",
                       active ?
                         "text-signal-red"
-                      : "text-warm-white/90 hover:text-warm-white",
+                      : "text-ink/85 hover:text-ink",
                     )}
                     aria-current={active ? "page" : undefined}
                   >
@@ -103,7 +103,7 @@ export function Header({
               <li key={item.href}>
                 <Link
                   href={item.href}
-                  className="flex min-h-11 items-center rounded-md px-3 text-sm font-semibold uppercase tracking-wider text-warm-white hover:bg-graphite"
+                  className="flex min-h-11 items-center rounded-md px-3 text-sm font-semibold uppercase tracking-wider text-ink hover:bg-sand-card"
                 >
                   {item.label}
                 </Link>

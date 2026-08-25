@@ -54,7 +54,7 @@ export function FormShell({
   return (
     <form
       onSubmit={submit}
-      className={cn("min-w-0 max-w-full space-y-4 rounded-2xl border border-white/10 bg-void-black p-6", className)}
+      className={cn("min-w-0 max-w-full space-y-4 rounded-2xl border border-black/10 bg-warm-white p-6", className)}
       noValidate
     >
       {children({ register, errors, isSubmitting })}
@@ -89,7 +89,7 @@ export function TextInput(props: React.InputHTMLAttributes<HTMLInputElement> & {
       <input
         {...rest}
         className={cn(
-          "mt-1 w-full min-w-0 max-w-full rounded-lg border border-white/15 bg-graphite px-4 py-3 text-sm text-warm-white placeholder:text-steel focus:border-signal-red",
+          "mt-1 w-full min-w-0 max-w-full rounded-lg border border-black/15 bg-warm-white px-4 py-3 text-sm text-ink placeholder:text-steel focus:border-signal-red",
           className,
         )}
       />
@@ -105,7 +105,7 @@ export function TextArea(props: React.TextareaHTMLAttributes<HTMLTextAreaElement
       <textarea
         {...rest}
         className={cn(
-          "mt-1 w-full min-w-0 max-w-full rounded-lg border border-white/15 bg-graphite px-4 py-3 text-sm text-warm-white placeholder:text-steel focus:border-signal-red",
+          "mt-1 w-full min-w-0 max-w-full rounded-lg border border-black/15 bg-warm-white px-4 py-3 text-sm text-ink placeholder:text-steel focus:border-signal-red",
           className,
         )}
       />
