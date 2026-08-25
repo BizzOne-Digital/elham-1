@@ -44,7 +44,7 @@ export function ContactForm() {
   });
 
   return (
-    <form onSubmit={submit} className="space-y-4 rounded-2xl border border-black/10 bg-warm-white p-6" noValidate>
+    <form onSubmit={submit} className="space-y-4 rounded-2xl border border-white/10 bg-graphite p-6" noValidate>
       <input type="text" tabIndex={-1} autoComplete="off" className="hidden" {...register("website")} />
       <div className="grid gap-4 sm:grid-cols-2">
         <div>

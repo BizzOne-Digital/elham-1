@@ -75,7 +75,7 @@ export default async function PricingPage() {
         </div>
       </section>
 
-      <section className="section-pad bg-warm-white text-void-black">
+      <section className="section-pad bg-graphite">
         <ScrollReveal className="container-site min-w-0 grid gap-8 lg:grid-cols-2 lg:items-center">
           <div className="max-lg:mx-auto max-lg:max-w-xl max-lg:text-center pt-4 sm:pt-6 lg:pt-10">
             <h2 className="text-3xl font-bold">What affects your quote?</h2>

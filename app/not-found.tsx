@@ -4,7 +4,7 @@ import { ROUTES } from "@/lib/constants";
 
 export default function NotFound() {
   return (
-    <div className="flex min-h-screen flex-col items-center justify-center bg-sand px-4 text-center text-ink">
+    <div className="flex min-h-screen flex-col items-center justify-center bg-void-black px-4 text-center">
       <Wordmark size="lg" />
       <p className="mt-8 text-6xl font-bold text-signal-red">404</p>
       <h1 className="mt-4 text-2xl font-bold">This page is off the growth map</h1>

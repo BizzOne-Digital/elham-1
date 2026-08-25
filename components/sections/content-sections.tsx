@@ -74,7 +74,7 @@ function RedlineHeroSection({ data }: { data: Record<string, unknown> }) {
             </p>
           : null}
 
-          <h1 className="font-display break-words text-[clamp(2.25rem,6vw,4.75rem)] font-bold uppercase leading-[0.92] tracking-[-0.03em] text-ink xl:text-[5rem]">
+          <h1 className="font-display break-words text-[clamp(2.25rem,6vw,4.75rem)] font-bold uppercase leading-[0.92] tracking-[-0.03em] text-warm-white xl:text-[5rem]">
             {headlineLines.length > 1 ?
               headlineLines.map((line) => (
                 <span key={line} className="block">
@@ -90,7 +90,7 @@ function RedlineHeroSection({ data }: { data: Record<string, unknown> }) {
             }
           </h1>
 
-          <p className="mt-5 max-w-xl break-words text-base leading-relaxed text-ink/80 sm:mt-6 sm:text-lg">
+          <p className="mt-5 max-w-xl break-words text-base leading-relaxed text-concrete sm:mt-6 sm:text-lg">
             {subheading}
           </p>
 
@@ -107,7 +107,7 @@ function RedlineHeroSection({ data }: { data: Record<string, unknown> }) {
             <span className="flex h-10 w-10 shrink-0 items-center justify-center rounded-xl bg-signal-red/15 text-signal-red">
               <Tag className="h-5 w-5" aria-hidden />
             </span>
-            <p className="wrap-anywhere text-xs font-semibold uppercase tracking-[0.12em] text-ink sm:text-sm">
+            <p className="wrap-anywhere text-xs font-semibold uppercase tracking-[0.12em] text-warm-white sm:text-sm">
               {priceBanner.split(/(\$99 CAD)/i).map((part, index) =>
                 /\$99 CAD/i.test(part) ?
                   <span key={index} className="text-signal-red">

@@ -160,12 +160,12 @@ export function PricingSpotlightSection({ section, context }: SectionComponentPr
   const centered = isSectionCentered(section, context);
 
   return (
-    <section className="section-pad bg-warm-white text-void-black">
+    <section className="section-pad bg-graphite">
       <div className="container-site min-w-0 grid items-center gap-10 lg:grid-cols-2">
         <ScrollReveal className={sectionHeaderClass(centered)}>
           <p className="label-caps mb-3 text-signal-red">Starting offer</p>
-          <h2 className="text-3xl font-bold sm:text-4xl">{String(data.heading)}</h2>
-          <p className={cn("mt-4 text-lg text-smoke", "max-lg:mx-auto max-lg:max-w-2xl", centered && "mx-auto max-w-2xl lg:mx-0")}>{String(data.body)}</p>
+          <h2 className="text-3xl font-bold sm:text-4xl text-warm-white">{String(data.heading)}</h2>
+          <p className={cn("mt-4 text-lg text-concrete", "max-lg:mx-auto max-lg:max-w-2xl", centered && "mx-auto max-w-2xl lg:mx-0")}>{String(data.body)}</p>
           {cta && (
             <TransitionLink
               href={cta.href}

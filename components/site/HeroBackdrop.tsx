@@ -38,8 +38,9 @@ export function HeroBackdrop({
         style={{ backgroundImage: `url("${artwork}")` }}
       />
       {/* Left fade for headline readability — keep the right side clear for the monogram */}
-      <div className="absolute inset-0 bg-gradient-to-r from-sand via-sand/80 via-45% to-transparent to-85%" />
-      <div className="absolute inset-0 bg-gradient-to-t from-sand/60 via-transparent to-sand/25" />
+      <div className="absolute inset-0 bg-gradient-to-r from-void-black via-void-black/80 via-45% to-transparent to-85%" />
+      <div className="absolute inset-0 bg-gradient-to-t from-void-black/70 via-transparent to-void-black/30" />
+      <div className="absolute -right-20 top-1/4 h-72 w-72 rounded-full bg-signal-red/10 blur-3xl" />
     </div>
   );
 }

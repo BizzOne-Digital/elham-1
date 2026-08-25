@@ -10,20 +10,17 @@ export const BRAND = {
 } as const;
 
 export const BRAND_COLORS = {
-  voidBlack: "#050505",
-  sand: "#DDC7A0",
-  sandDeep: "#D0B88F",
-  sandCard: "#C4AE82",
-  ink: "#1A1410",
-  carbon: "#0D0D0F",
-  graphite: "#18181B",
-  signalRed: "#F21D2F",
-  hotRed: "#FF3347",
-  deepCrimson: "#8D0715",
-  warmWhite: "#F7F4EF",
-  concrete: "#D8D4CE",
-  steel: "#9A9A9F",
-  smoke: "#5D5D63",
+  voidBlack: "#0B1120",
+  carbon: "#111827",
+  graphite: "#1A2332",
+  signalRed: "#4FD1C5",
+  hotRed: "#5EEAD4",
+  deepCrimson: "#0F766E",
+  warmWhite: "#F8FAFC",
+  concrete: "#CBD5E1",
+  steel: "#94A3B8",
+  smoke: "#64748B",
+  ink: "#0B1120",
 } as const;
 
 export const ROUTES = {

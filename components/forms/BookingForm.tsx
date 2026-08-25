@@ -52,7 +52,7 @@ export function BookingForm() {
   });
 
   return (
-    <form onSubmit={submit} className="space-y-4 rounded-2xl border border-black/10 bg-warm-white p-6" noValidate>
+    <form onSubmit={submit} className="space-y-4 rounded-2xl border border-white/10 bg-graphite p-6" noValidate>
       <div className="grid gap-4 sm:grid-cols-2">
         <div>
           <FieldLabel htmlFor="book-name">Name</FieldLabel>
