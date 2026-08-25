@@ -66,8 +66,8 @@ function RedlineHeroSection({ data }: { data: Record<string, unknown> }) {
     <section className="relative min-h-[calc(100vh-80px)] w-full overflow-x-clip bg-void-black">
       <HeroBackdrop src={BRAND_ASSETS.heroArtwork} />
 
-      <div className="container-site relative z-10 flex min-h-[calc(100vh-80px)] min-w-0 items-center py-12 lg:max-w-[52rem] lg:py-16">
-        <ScrollReveal className="min-w-0 max-w-xl text-left lg:max-w-2xl">
+      <div className="container-site relative z-10 flex min-h-[calc(100vh-80px)] min-w-0 items-center justify-center py-12 lg:max-w-[52rem] lg:justify-start lg:py-16">
+        <ScrollReveal className="min-w-0 max-w-xl text-center lg:max-w-2xl lg:text-left">
           <p className="mb-4 text-[11px] font-bold uppercase tracking-[0.28em] text-signal-red sm:mb-5 sm:text-xs">
             {eyebrow}
           </p>
@@ -92,7 +92,7 @@ function RedlineHeroSection({ data }: { data: Record<string, unknown> }) {
             {subheading}
           </p>
 
-          <div className="mt-7 sm:mt-8">
+          <div className="mt-7 flex justify-center sm:mt-8 lg:justify-start">
             <TransitionLink
               href={primaryCta.href}
               className="inline-flex min-h-12 items-center rounded-full bg-signal-red px-7 py-3 text-[11px] font-bold uppercase tracking-[0.14em] text-warm-white transition hover:bg-hot-red sm:px-8 sm:text-xs"
@@ -101,7 +101,7 @@ function RedlineHeroSection({ data }: { data: Record<string, unknown> }) {
             </TransitionLink>
           </div>
 
-          <div className="mt-7 inline-flex max-w-full flex-wrap items-center gap-3 rounded-2xl border border-signal-red/40 bg-carbon/80 px-4 py-3 backdrop-blur-sm sm:mt-8 sm:px-5 sm:py-4">
+          <div className="mx-auto mt-7 inline-flex max-w-full flex-wrap items-center justify-center gap-3 rounded-2xl border border-signal-red/40 bg-carbon/80 px-4 py-3 backdrop-blur-sm sm:mt-8 sm:px-5 sm:py-4 lg:mx-0 lg:justify-start">
             <span className="flex h-10 w-10 shrink-0 items-center justify-center rounded-xl bg-signal-red/15 text-signal-red">
               <Tag className="h-5 w-5" aria-hidden />
             </span>
@@ -150,7 +150,7 @@ export function SplitStorySection({ section, context }: SectionComponentProps) {
         <ScrollReveal className={sectionHeaderClass(centered)}>
           {data.eyebrow ? <p className="label-caps mb-3">{String(data.eyebrow)}</p> : null}
           <h2 className="text-3xl font-bold sm:text-4xl">{String(data.heading ?? "")}</h2>
-          {data.body ? <p className={cn("mt-5 text-lg text-concrete", centered && "mx-auto max-w-2xl")}>{String(data.body)}</p> : null}
+          {data.body ? <p className={cn("mt-5 text-lg text-concrete", "max-lg:mx-auto max-lg:max-w-2xl", centered && "mx-auto max-w-2xl")}>{String(data.body)}</p> : null}
         </ScrollReveal>
         <ScrollReveal delay={0.1}>
           <div className="relative mx-auto aspect-[4/3] w-full max-w-xl overflow-hidden rounded-2xl">
@@ -178,7 +178,7 @@ export function RichTextSection({ section }: SectionComponentProps) {
   const data = section.data as Record<string, unknown>;
   return (
     <section className="section-pad">
-      <ScrollReveal className="container-site max-w-3xl">
+      <ScrollReveal className={cn("container-site max-w-3xl", "max-lg:mx-auto max-lg:text-center")}>
         {data.heading ? <h2 className="mb-6 text-3xl font-bold">{String(data.heading)}</h2> : null}
         <div
           className="prose prose-invert max-w-none overflow-x-auto text-concrete [&_a]:text-signal-red"

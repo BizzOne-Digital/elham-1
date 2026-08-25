@@ -59,10 +59,10 @@ export function ConnectedSystemSection({ section, context }: SectionComponentPro
       <div className="container-site min-w-0 grid items-center gap-10 lg:grid-cols-[1fr_1.1fr]">
         <ScrollReveal className={sectionHeaderClass(centered)}>
           <h2 className="text-3xl font-bold sm:text-4xl">{String(data.heading)}</h2>
-          {data.body ? <p className={cn("mt-5 text-lg text-concrete", centered && "mx-auto max-w-2xl")}>{String(data.body)}</p> : null}
-          <ul className={cn("mt-8 grid gap-3 sm:grid-cols-2", centered && "mx-auto max-w-xl")}>
+          {data.body ? <p className={cn("mt-5 text-lg text-concrete", "max-lg:mx-auto max-lg:max-w-2xl", centered && "mx-auto max-w-2xl")}>{String(data.body)}</p> : null}
+          <ul className="mt-8 grid gap-3 sm:grid-cols-2 max-lg:mx-auto max-lg:max-w-md">
             {["Brand", "Website", "Automation", "Content", "Traffic", "Conversion"].map((item) => (
-              <li key={item} className="flex items-center gap-3 text-sm text-warm-white">
+              <li key={item} className="flex items-center justify-center gap-3 text-sm text-warm-white lg:justify-start">
                 <span className="h-px w-8 bg-signal-red" aria-hidden />
                 {item}
               </li>
@@ -119,9 +119,9 @@ export function BenefitGridSection({ section, context }: SectionComponentProps) 
       <div className="container-site min-w-0 grid items-center gap-10 lg:grid-cols-[1fr_1fr]">
         <ScrollReveal className={sectionHeaderClass(centered)}>
           <h2 className="text-3xl font-bold">{String(section.data.heading)}</h2>
-          <ul className={cn("mt-8 space-y-5", centered && "mx-auto max-w-xl lg:mx-0")}>
+          <ul className="mt-8 space-y-5 max-lg:mx-auto max-lg:max-w-xl">
             {items.map((item) => (
-              <li key={item.title} className="border-l-2 border-signal-red pl-4">
+              <li key={item.title} className="max-lg:border-l-0 max-lg:pl-0 border-l-2 border-signal-red pl-4 lg:text-left">
                 <h3 className="font-bold">{item.title}</h3>
                 <p className="mt-1 text-sm text-steel">{item.description}</p>
               </li>
@@ -161,12 +161,13 @@ export function PricingSpotlightSection({ section, context }: SectionComponentPr
         <ScrollReveal className={sectionHeaderClass(centered)}>
           <p className="label-caps mb-3 text-signal-red">Starting offer</p>
           <h2 className="text-3xl font-bold sm:text-4xl">{String(data.heading)}</h2>
-          <p className={cn("mt-4 text-lg text-smoke", centered && "mx-auto max-w-2xl lg:mx-0")}>{String(data.body)}</p>
+          <p className={cn("mt-4 text-lg text-smoke", "max-lg:mx-auto max-lg:max-w-2xl", centered && "mx-auto max-w-2xl lg:mx-0")}>{String(data.body)}</p>
           {cta && (
             <TransitionLink
               href={cta.href}
               className={cn(
                 "mt-8 inline-flex min-h-11 items-center rounded-full bg-signal-red px-6 py-3 text-sm font-semibold text-warm-white",
+                "max-lg:mx-auto",
                 centered && "mx-auto",
               )}
             >
@@ -193,7 +194,7 @@ export function GalleryStripSection({ section, context }: SectionComponentProps)
   return (
     <section className="section-pad">
       <div className="container-site">
-        <div className={cn("mb-8 flex flex-wrap items-end gap-4", centered ? "justify-center text-center" : "justify-between")}>
+        <div className={cn("mb-8 flex flex-wrap items-end gap-4 max-lg:justify-center max-lg:text-center", centered ? "justify-center text-center" : "lg:justify-between")}>
           <h2 className="text-3xl font-bold">{String(data.heading ?? "Work")}</h2>
           {cta && (
             <TransitionLink href={cta.href} className="text-sm font-semibold text-signal-red">
@@ -263,7 +264,7 @@ export function FaqPreviewSection({ section, context }: SectionComponentProps) {
 
   return (
     <section className="section-pad">
-      <div className={cn("container-site max-w-3xl", centered && "mx-auto text-center")}>
+      <div className={cn("container-site max-w-3xl", "max-lg:mx-auto max-lg:text-center", centered && "mx-auto text-center")}>
         <h2 className="text-3xl font-bold">{String(data.heading ?? "FAQs")}</h2>
         <div className="mt-8 space-y-4">
           {faqs.map((faq) => (
@@ -300,7 +301,7 @@ export function LeadFormSection({ section, context }: SectionComponentProps) {
             </h2>
             {data.body ? <p className="mx-auto mt-4 max-w-xl text-concrete">{String(data.body)}</p> : null}
           </ScrollReveal>
-          <ScrollReveal delay={0.1} className="mx-auto mt-10 max-w-xl text-left">
+          <ScrollReveal delay={0.1} className="mx-auto mt-10 max-w-xl max-lg:text-center lg:text-left">
             {variant === "short" ? <LeadForm /> : <GrowthPlanForm />}
           </ScrollReveal>
         </div>
@@ -311,7 +312,7 @@ export function LeadFormSection({ section, context }: SectionComponentProps) {
   return (
     <section id="growth-plan" className="section-pad bg-carbon">
         <div className="container-site min-w-0 grid gap-10 lg:grid-cols-[1fr_1.1fr]">
-        <ScrollReveal>
+        <ScrollReveal className="max-lg:mx-auto max-lg:max-w-3xl max-lg:text-center">
           {data.eyebrow ? <p className="label-caps mb-3">{String(data.eyebrow)}</p> : null}
           <h2 className="text-3xl font-bold">{String(data.heading ?? "Get your free growth plan")}</h2>
           {data.body ? <p className="mt-4 text-concrete">{String(data.body)}</p> : null}
@@ -333,12 +334,12 @@ export function BookingCTASection({ section }: SectionComponentProps) {
     <section className="section-pad">
       <div className="container-site overflow-hidden rounded-3xl border border-white/10 bg-graphite">
         <div className="grid lg:grid-cols-2">
-          <div className="p-8 sm:p-12">
+          <div className="p-8 sm:p-12 max-lg:text-center">
             <h2 className="text-3xl font-bold">{String(data.heading ?? "Book a discovery call")}</h2>
             {data.body ? <p className="mt-4 text-concrete">{String(data.body)}</p> : null}
             <TransitionLink
               href={cta.href}
-              className="mt-8 inline-flex min-h-11 items-center rounded-full border border-signal-red px-6 py-3 text-sm font-semibold text-signal-red hover:bg-signal-red hover:text-warm-white"
+              className="mt-8 inline-flex min-h-11 items-center rounded-full border border-signal-red px-6 py-3 text-sm font-semibold text-signal-red hover:bg-signal-red hover:text-warm-white max-lg:mx-auto"
             >
               {cta.label}
             </TransitionLink>
@@ -356,7 +357,7 @@ export function BlogPreviewSection({ section, context }: SectionComponentProps) 
   const posts = context?.posts?.slice(0, 3) ?? [];
   return (
     <section className="section-pad">
-      <div className="container-site">
+      <div className="container-site max-lg:text-center">
         <h2 className="text-3xl font-bold">{String(section.data.heading ?? "Insights")}</h2>
         <div className="mt-10 grid gap-6 md:grid-cols-3">
           {posts.map((post) => (

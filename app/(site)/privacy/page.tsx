@@ -28,7 +28,7 @@ export default async function PrivacyPage() {
         <ScrollReveal className="mx-auto max-w-3xl text-center">
           <Breadcrumbs centered items={[{ label: "Home", href: "/" }, { label: "Privacy Policy" }]} />
           <h1 className="mt-6 text-4xl font-bold">Privacy Policy</h1>
-          <div className="prose prose-invert mx-auto mt-8 max-w-none overflow-x-auto text-left text-concrete" dangerouslySetInnerHTML={{ __html: content }} />
+          <div className="prose prose-invert mx-auto mt-8 max-w-none overflow-x-auto text-concrete max-lg:text-center lg:text-left" dangerouslySetInnerHTML={{ __html: content }} />
         </ScrollReveal>
       </div>
     </section>

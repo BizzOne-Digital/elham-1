@@ -82,7 +82,7 @@ export default async function ServicesPage() {
           <div className="relative aspect-video overflow-hidden rounded-2xl">
             <SiteImage src={SEED_IMAGES.automation} alt="Connected service diagram" fill className="object-cover" sizes="50vw" />
           </div>
-          <div className="pt-4 sm:pt-6 lg:pt-10">
+          <div className="max-lg:mx-auto max-lg:max-w-xl max-lg:text-center pt-4 sm:pt-6 lg:pt-10">
             <h2 className="text-3xl font-bold">One connected growth system</h2>
             <p className="mt-4 text-concrete">
               Brand, website, automation, content, traffic, and conversion—designed to work together instead of in silos.
@@ -92,19 +92,19 @@ export default async function ServicesPage() {
       </section>
 
       <section className="section-pad">
-        <div className="container-site max-w-3xl">
+        <div className="container-site mx-auto max-w-3xl max-lg:text-center">
           <h2 className="text-3xl font-bold">Pricing teaser</h2>
           <p className="mt-4 text-concrete">
             Custom websites can start from CAD 99. Apps, automation, ads, and strategy are quoted after discovery.
           </p>
-          <TransitionLink href={ROUTES.pricing} className="mt-6 inline-block font-semibold text-signal-red">
+          <TransitionLink href={ROUTES.pricing} className="mt-6 inline-block font-semibold text-signal-red max-lg:mx-auto">
             View pricing →
           </TransitionLink>
         </div>
       </section>
 
       <section className="section-pad bg-graphite">
-        <div className="container-site max-w-3xl">
+        <div className="container-site mx-auto max-w-3xl max-lg:text-center">
           <h2 className="mb-6 text-3xl font-bold">FAQ</h2>
           <div className="space-y-4">
             {faqs.map((faq) => (

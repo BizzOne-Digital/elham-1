@@ -23,7 +23,7 @@ export default function BookingPage() {
             <p className="mx-auto mt-4 max-w-2xl text-concrete">
               Free 30-minute discovery call. Times are shown in your local timezone. No payment required.
             </p>
-            <ul className="mx-auto mt-6 w-fit space-y-2 text-left text-sm text-steel">
+            <ul className="mx-auto mt-6 w-fit space-y-2 text-sm text-steel">
               <li>Review goals, challenges, and timeline</li>
               <li>Discuss services that fit your priorities</li>
               <li>Receive practical next-step recommendations</li>

@@ -11,5 +11,14 @@ export function isSectionCentered(section: Section, context?: SectionRenderConte
 }
 
 export function sectionHeaderClass(centered: boolean, className?: string): string {
-  return cn(centered && "mx-auto max-w-3xl text-center", className);
+  return cn(
+    "max-lg:mx-auto max-lg:max-w-3xl max-lg:text-center",
+    centered && "mx-auto max-w-3xl text-center",
+    className,
+  );
+}
+
+/** Center copy on phone while keeping desktop alignment. */
+export function mobileCenterClass(className?: string): string {
+  return cn("max-lg:mx-auto max-lg:max-w-3xl max-lg:text-center", className);
 }

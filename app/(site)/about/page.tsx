@@ -28,7 +28,7 @@ export default async function AboutPage() {
       <SectionRenderer sections={sections} />
       <section className="section-pad border-t border-white/10">
         <ScrollReveal className="container-site min-w-0 grid gap-10 lg:grid-cols-2 lg:items-center">
-          <div className="pt-4 sm:pt-6 lg:pt-10">
+          <div className="max-lg:mx-auto max-lg:max-w-xl max-lg:text-center pt-4 sm:pt-6 lg:pt-10">
             <p className="label-caps mb-3">Visual story</p>
             <h2 className="text-3xl font-bold">Strategy in motion</h2>
             <p className="mt-4 text-concrete">

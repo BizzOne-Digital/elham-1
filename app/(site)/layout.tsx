@@ -16,7 +16,7 @@ export default async function SiteLayout({ children }: { children: React.ReactNo
           Skip to content
         </a>
         <Header navItems={settings.nav.main} cta={settings.nav.cta} />
-        <main id="main-content" className="min-w-0 flex-1 overflow-x-clip pt-[80px]">
+        <main id="main-content" className="site-page-content min-w-0 flex-1 overflow-x-clip pt-[80px] max-lg:text-center">
           {children}
         </main>
         <Footer

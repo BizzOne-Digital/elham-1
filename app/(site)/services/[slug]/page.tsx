@@ -88,7 +88,7 @@ export default async function ServiceDetailPage({ params }: PageProps) {
       ) : (
         <>
           <section className="section-pad">
-            <ScrollReveal className="container-site max-w-3xl">
+            <ScrollReveal className="container-site mx-auto max-w-3xl max-lg:text-center">
               <h2 className="text-3xl font-bold">The business problem</h2>
               <p className="mt-4 text-concrete">
                 Small-business owners need {service.title.toLowerCase()} that supports real outcomes—not generic templates or vague promises.
@@ -96,10 +96,10 @@ export default async function ServiceDetailPage({ params }: PageProps) {
             </ScrollReveal>
           </section>
           <section className="section-pad bg-graphite">
-            <ScrollReveal className="container-site max-w-3xl">
+            <ScrollReveal className="container-site mx-auto max-w-3xl max-lg:text-center">
               <h2 className="text-3xl font-bold">The Netbrandit approach</h2>
               <div
-                className="prose prose-invert mt-4 max-w-none overflow-x-auto text-concrete"
+                className="prose prose-invert mt-4 max-w-none overflow-x-auto text-concrete max-lg:text-center lg:text-left"
                 dangerouslySetInnerHTML={{ __html: service.detailPage?.content ?? service.description ?? "" }}
               />
             </ScrollReveal>
@@ -108,7 +108,7 @@ export default async function ServiceDetailPage({ params }: PageProps) {
       )}
 
       <section className="section-pad">
-        <div className="container-site">
+        <div className="container-site max-lg:text-center">
           <h2 className="mb-8 text-3xl font-bold">Visual gallery</h2>
           <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
             {galleryImages.map((src, index) => (
@@ -122,7 +122,7 @@ export default async function ServiceDetailPage({ params }: PageProps) {
 
       {related.length > 0 && (
         <section className="section-pad bg-carbon">
-          <div className="container-site">
+          <div className="container-site max-lg:text-center">
             <h2 className="mb-6 text-2xl font-bold">Related services</h2>
             <div className="grid gap-4 md:grid-cols-3">
               {related.map((item) => (

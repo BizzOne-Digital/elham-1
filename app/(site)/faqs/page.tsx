@@ -54,7 +54,7 @@ export default async function FaqsPage() {
 
       <section className="section-pad">
         <div className="container-site">
-          <div className="mb-8 flex flex-wrap gap-2">
+          <div className="mb-8 flex flex-wrap justify-center gap-2">
             {categories.map((category) => (
               <span key={category} className="rounded-full border border-white/15 px-4 py-2 text-xs uppercase tracking-widest text-steel">
                 {category}
@@ -62,7 +62,7 @@ export default async function FaqsPage() {
             ))}
           </div>
 
-          <div className="mx-auto max-w-3xl space-y-4">
+          <div className="mx-auto max-w-3xl space-y-4 max-lg:text-center">
             {faqs.map((faq) => (
               <details key={faq._id} className="rounded-xl border border-white/10 bg-carbon p-5">
                 <summary className="cursor-pointer text-lg font-semibold">{faq.question}</summary>

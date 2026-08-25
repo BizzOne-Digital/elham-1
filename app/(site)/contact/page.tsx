@@ -44,7 +44,7 @@ export default async function ContactPage() {
 
       <section id="growth-plan" className="section-pad bg-carbon">
         <div className="container-site min-w-0 grid gap-10 lg:grid-cols-2">
-          <ScrollReveal>
+          <ScrollReveal className="max-lg:mx-auto max-lg:max-w-xl max-lg:text-center">
             <h2 className="text-3xl font-bold">{PRIMARY_CTA.label}</h2>
             <p className="mt-4 text-concrete">Share your goals and we will recommend practical next steps.</p>
             <div className="mt-8 grid grid-cols-2 gap-4">
@@ -63,7 +63,7 @@ export default async function ContactPage() {
 
       <section className="section-pad">
         <div className="container-site min-w-0 grid gap-10 lg:grid-cols-2">
-          <ScrollReveal>
+          <ScrollReveal className="max-lg:mx-auto max-lg:max-w-xl max-lg:text-center">
             <h2 className="text-3xl font-bold">Send a message</h2>
             <p className="mt-4 text-concrete">Questions about services, pricing, or timelines? We are here to help.</p>
             <TransitionLink href={SECONDARY_CTA.href} className="mt-6 inline-block text-signal-red">
@@ -77,7 +77,7 @@ export default async function ContactPage() {
       </section>
 
       <section className="section-pad bg-graphite">
-        <ScrollReveal className="container-site max-w-3xl">
+        <ScrollReveal className="container-site mx-auto max-w-3xl max-lg:text-center">
           <h2 className="text-2xl font-bold">Quick help</h2>
           <p className="mt-3 text-concrete">
             Review our <TransitionLink href={ROUTES.faqs} className="text-signal-red">FAQs</TransitionLink> for answers about pricing, timelines, automation, and getting started.

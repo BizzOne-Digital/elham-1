@@ -48,14 +48,14 @@ export default async function PricingPage() {
                     {header.tagline}
                   </p>
                 </div>
-                <div className="flex flex-1 flex-col p-6">
+                <div className="flex flex-1 flex-col p-6 max-lg:items-center max-lg:text-center">
                   {pkg.isPopular && <span className="mb-2 text-xs font-bold uppercase text-signal-red">Popular</span>}
                   <h2 className="text-xl font-bold">{pkg.name}</h2>
                   <p className="mt-2 text-2xl font-bold text-signal-red">{formatPrice(pkg)}</p>
                   {pkg.description && <p className="mt-3 flex-1 text-sm text-steel">{pkg.description}</p>}
-                  <ul className="mt-4 space-y-2 text-sm text-concrete">
+                  <ul className="mt-4 space-y-2 text-sm text-concrete max-lg:w-full">
                     {pkg.features.map((feature) => (
-                      <li key={feature} className="flex gap-2">
+                      <li key={feature} className="flex gap-2 max-lg:justify-center">
                         <span className="text-signal-red">—</span>
                         {feature}
                       </li>
@@ -77,7 +77,7 @@ export default async function PricingPage() {
 
       <section className="section-pad bg-warm-white text-void-black">
         <ScrollReveal className="container-site min-w-0 grid gap-8 lg:grid-cols-2 lg:items-center">
-          <div className="pt-4 sm:pt-6 lg:pt-10">
+          <div className="max-lg:mx-auto max-lg:max-w-xl max-lg:text-center pt-4 sm:pt-6 lg:pt-10">
             <h2 className="text-3xl font-bold">What affects your quote?</h2>
             <ul className="mt-4 space-y-2 text-smoke">
               <li>Scope, pages, and functionality</li>

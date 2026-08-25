@@ -94,7 +94,7 @@ export function ServiceSplitRow({ service, index, imageSrc }: ServiceSplitRowPro
         />
       </div>
 
-      <div ref={textRef} className={cn("min-w-0", !imageOnLeft && "order-1")}>
+      <div ref={textRef} className={cn("min-w-0 max-lg:text-center", !imageOnLeft && "order-1")}>
         <p className="text-[10px] font-bold uppercase tracking-[0.18em] text-signal-red sm:text-xs sm:tracking-[0.2em]">
           {String(index + 1).padStart(2, "0")}
         </p>
@@ -108,7 +108,7 @@ export function ServiceSplitRow({ service, index, imageSrc }: ServiceSplitRowPro
         : null}
         <TransitionLink
           href={`/services/${service.slug}`}
-          className="mt-3 inline-flex text-[11px] font-semibold text-signal-red transition hover:text-hot-red sm:mt-6 sm:text-sm"
+          className="mt-3 inline-flex text-[11px] font-semibold text-signal-red transition hover:text-hot-red sm:mt-6 sm:text-sm max-lg:mx-auto"
         >
           View service →
         </TransitionLink>
