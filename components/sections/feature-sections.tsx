@@ -7,6 +7,8 @@ import { TransitionLink } from "@/components/animations/PageTransition";
 import { SiteImage } from "@/components/site/SiteImage";
 import { ContactForm, GrowthPlanForm, LeadForm } from "@/components/forms";
 import { PRIMARY_CTA, SEED_IMAGES, BRAND_ASSETS } from "@/lib/constants";
+import { ServiceSplitRow } from "@/components/animations/ServiceSplitRow";
+import { resolveServiceImage } from "@/lib/stock-images";
 import { isSectionCentered, sectionHeaderClass } from "@/lib/sections/layout";
 import { cn } from "@/lib/utils";
 import type { SectionComponentProps } from "@/components/sections/types";
@@ -24,47 +26,21 @@ export function ServiceShowcaseSection({ section, context }: SectionComponentPro
           <h2 className="text-3xl font-bold sm:text-4xl">{String(data.heading ?? "Services")}</h2>
         </ScrollReveal>
 
-        <div className="mt-12 space-y-14 lg:space-y-20">
+        <div className="mt-12 space-y-10 sm:space-y-14 lg:space-y-20">
           {services.map((service, index) => {
-            const imageFirst = index % 2 === 0;
-            const imageSrc = service.featuredImage?.url ?? SEED_IMAGES.webDesign;
+            const imageSrc = resolveServiceImage(
+              service.slug,
+              service.featuredImage?.url,
+              SEED_IMAGES.webDesign,
+            );
 
             return (
-              <ScrollReveal key={service._id} delay={index * 0.05}>
-                <div className="grid items-center gap-8 lg:grid-cols-2 lg:gap-12">
-                  <div
-                    className={cn(
-                      "relative aspect-[4/3] overflow-hidden rounded-2xl border border-white/10",
-                      !imageFirst && "lg:order-2",
-                    )}
-                  >
-                    <SiteImage
-                      src={imageSrc}
-                      alt={service.featuredImage?.alt ?? service.title}
-                      fill
-                      unoptimized={imageSrc.startsWith("/images/")}
-                      className="object-cover"
-                      sizes="(max-width:1024px) 100vw, 50vw"
-                    />
-                  </div>
-
-                  <div className={cn(!imageFirst && "lg:order-1", centered && "text-center")}>
-                    <p className="text-xs font-bold uppercase tracking-[0.2em] text-signal-red">
-                      {String(index + 1).padStart(2, "0")}
-                    </p>
-                    <h3 className="mt-2 text-2xl font-bold sm:text-3xl">{service.title}</h3>
-                    {service.shortDescription ?
-                      <p className="mt-4 text-base leading-relaxed text-steel">{service.shortDescription}</p>
-                    : null}
-                    <TransitionLink
-                      href={`/services/${service.slug}`}
-                      className="mt-6 inline-flex text-sm font-semibold text-signal-red transition hover:text-hot-red"
-                    >
-                      View service →
-                    </TransitionLink>
-                  </div>
-                </div>
-              </ScrollReveal>
+              <ServiceSplitRow
+                key={service._id}
+                service={service}
+                index={index}
+                imageSrc={imageSrc}
+              />
             );
           })}
         </div>

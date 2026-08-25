@@ -9,16 +9,16 @@ interface WordmarkProps {
   size?: "sm" | "md" | "lg" | "xl" | "header" | "footer" | "footerBar" | "intro";
 }
 
-/** Logo: target icon + stacked NET / BRAND / IT */
+/** Logo: NET BRAND IT horizontal lockup with globe + tagline */
 const sizeConfig = {
-  sm: { height: 40, width: 132, maxWidth: "max-w-[132px] sm:max-w-[148px]" },
-  md: { height: 52, width: 172, maxWidth: "max-w-[172px] sm:max-w-[192px]" },
-  lg: { height: 64, width: 212, maxWidth: "max-w-[212px] sm:max-w-[236px]" },
-  xl: { height: 76, width: 252, maxWidth: "max-w-[252px] sm:max-w-[280px]" },
-  header: { height: 72, width: 238, maxWidth: "max-w-[238px] sm:max-w-[266px]" },
-  footer: { height: 128, width: 424, maxWidth: "max-w-[424px] sm:max-w-[472px]" },
-  footerBar: { height: 80, width: 264, maxWidth: "max-w-[264px] sm:max-w-[296px]" },
-  intro: { height: 96, width: 320, maxWidth: "max-w-[320px] sm:max-w-[360px]" },
+  sm: { height: 48, width: 200, maxWidth: "max-w-[200px] sm:max-w-[220px]" },
+  md: { height: 56, width: 240, maxWidth: "max-w-[240px] sm:max-w-[264px]" },
+  lg: { height: 68, width: 290, maxWidth: "max-w-[290px] sm:max-w-[320px]" },
+  xl: { height: 80, width: 340, maxWidth: "max-w-[340px] sm:max-w-[380px]" },
+  header: { height: 64, width: 300, maxWidth: "max-w-[300px] sm:max-w-[340px]" },
+  footer: { height: 120, width: 520, maxWidth: "max-w-[520px] sm:max-w-[580px]" },
+  footerBar: { height: 72, width: 340, maxWidth: "max-w-[340px] sm:max-w-[380px]" },
+  intro: { height: 130, width: 560, maxWidth: "max-w-[560px] sm:max-w-[620px]" },
 } as const;
 
 export function Wordmark({ className, asLink = true, size = "md" }: WordmarkProps) {
