@@ -340,7 +340,9 @@ export function BookingCTASection({ section }: SectionComponentProps) {
         <div className="grid lg:grid-cols-2">
           <div className="p-8 sm:p-12 max-lg:text-center">
             <h2 className="text-balance text-2xl font-bold sm:text-3xl">{String(data.heading ?? "Book a discovery call")}</h2>
-            {data.body ? <p className="mt-4 text-concrete">{String(data.body)}</p> : null}
+            {data.body || data.description ?
+              <p className="mt-4 text-concrete">{String(data.body ?? data.description)}</p>
+            : null}
             <TransitionLink
               href={cta.href}
               className="mt-8 inline-flex min-h-11 items-center rounded-full border border-signal-red px-6 py-3 text-sm font-semibold text-signal-red hover:bg-signal-red hover:text-warm-white max-lg:mx-auto"

@@ -321,29 +321,22 @@ function buildPageSections(slug: string): Section[] {
             { title: "Optimise", description: "Improve based on real performance." },
           ],
         }),
-        section("home-pricing", SECTION_TYPES.cta, 4, {
-          heading: PRICING_PROMO_HEADING,
-          description:
-            "Final price depends on scope and is confirmed after discovery.",
-          buttonLabel: "Request My Quote",
-          buttonHref: ROUTES.contact,
-        }),
-        section("home-testimonials", "testimonialSlider", 5, {
+        section("home-testimonials", "testimonialSlider", 4, {
           heading: "Client voices",
           showFromDb: true,
         }),
-        section("home-faq", SECTION_TYPES.faq, 6, {
+        section("home-faq", SECTION_TYPES.faq, 5, {
           heading: "Questions before you start?",
           items: FAQS.slice(0, 3).map((faq) => ({
             question: faq.question,
             answer: faq.answer,
           })),
         }),
-        section("home-cta", SECTION_TYPES.cta, 7, {
-          heading: "Ready for a practical growth plan?",
-          description: "Tell us about your business and priorities.",
-          buttonLabel: "Get a Free Growth Plan",
-          buttonHref: ROUTES.contact,
+        section("home-pricing", SECTION_TYPES.cta, 6, {
+          heading: PRICING_PROMO_HEADING,
+          body: "Final price depends on scope and is confirmed after discovery.",
+          cta: PRIMARY_CTA,
+          image: STOCK_IMAGES.webDesign,
         }),
       ];
     case "about":

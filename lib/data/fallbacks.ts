@@ -90,21 +90,9 @@ export const HOME_SECTIONS: Section[] = [
     },
   },
   {
-    id: "home-pricing",
-    type: "pricingSpotlight",
-    order: 6,
-    enabled: true,
-    data: {
-      heading: PRICING_PROMO_HEADING,
-      body: "A tailored starting point for small businesses ready to establish or improve their online presence. Final scope, timeline, and price are confirmed after discovery.",
-      cta: { label: "Request My Quote", href: `${ROUTES.contact}?intent=quote` },
-      image: SEED_IMAGES.webDesign,
-    },
-  },
-  {
     id: "home-gallery",
     type: "galleryStrip",
-    order: 7,
+    order: 6,
     enabled: true,
     data: {
       heading: "Selected work",
@@ -115,7 +103,7 @@ export const HOME_SECTIONS: Section[] = [
   {
     id: "home-testimonials",
     type: "testimonialSlider",
-    order: 8,
+    order: 7,
     enabled: true,
     data: {
       heading: "Client voices",
@@ -125,7 +113,7 @@ export const HOME_SECTIONS: Section[] = [
   {
     id: "home-faq",
     type: "faqPreview",
-    order: 9,
+    order: 8,
     enabled: true,
     data: {
       heading: "Common questions",
@@ -134,21 +122,21 @@ export const HOME_SECTIONS: Section[] = [
     },
   },
   {
-    id: "home-lead",
-    type: "leadForm",
-    order: 10,
+    id: "home-pricing",
+    type: "cta",
+    order: 9,
     enabled: true,
     data: {
-      eyebrow: "Start here",
-      heading: "Get your free growth plan",
-      body: "Tell us about your business and we will recommend practical next steps.",
-      variant: "short",
+      heading: PRICING_PROMO_HEADING,
+      body: "A tailored starting point for small businesses ready to establish or improve their online presence. Final scope, timeline, and price are confirmed after discovery.",
+      cta: PRIMARY_CTA,
+      image: SEED_IMAGES.webDesign,
     },
   },
   {
     id: "home-booking",
     type: "bookingCTA",
-    order: 11,
+    order: 10,
     enabled: true,
     data: {
       heading: "Prefer a conversation?",
