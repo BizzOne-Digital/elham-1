@@ -37,6 +37,22 @@ function normalizeSectionData(data: Record<string, unknown>): Record<string, unk
 
 const HOME_GROWTH_SECTION_IDS = new Set(["home-cta", "home-lead"]);
 
+function isRemovedHomeGrowthSection(section: Section): boolean {
+  if (HOME_GROWTH_SECTION_IDS.has(section.id)) return true;
+  if (section.type === "leadForm") return true;
+
+  const data = section.data as Record<string, unknown>;
+  const heading = String(data.heading ?? data.title ?? "").trim().toLowerCase();
+
+  if (!heading) return false;
+
+  return (
+    heading.includes("practical growth plan") ||
+    heading.includes("ready for a practical") ||
+    (heading.includes("growth plan") && !heading.includes("custom website packages"))
+  );
+}
+
 const HOME_PRICING_PROMO_DATA: Record<string, unknown> = {
   heading: PRICING_PROMO_HEADING,
   body: "Final price depends on scope and is confirmed after discovery.",
@@ -44,7 +60,7 @@ const HOME_PRICING_PROMO_DATA: Record<string, unknown> = {
 };
 
 function normalizeHomeSections(sections: Section[]): Section[] {
-  const withoutGrowthPlan = sections.filter((section) => !HOME_GROWTH_SECTION_IDS.has(section.id));
+  const withoutGrowthPlan = sections.filter((section) => !isRemovedHomeGrowthSection(section));
   const pricingSections = withoutGrowthPlan.filter((section) => section.id === "home-pricing");
   const otherSections = withoutGrowthPlan.filter((section) => section.id !== "home-pricing");
   const maxOrder = otherSections.reduce((max, section) => Math.max(max, section.order), 0);
