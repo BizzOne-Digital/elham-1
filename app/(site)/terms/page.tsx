@@ -21,7 +21,7 @@ export default async function TermsPage() {
 <p>Discovery calls are free and do not require payment. Paid work begins only after a mutually agreed proposal.</p>
 <p>Uploaded assets must be owned or licensed by the client. Netbrandit is not liable for third-party platform policy changes.</p>
 <p>These terms may be updated. Continued use of the site after updates constitutes acceptance.</p>
-<p>Questions: ${settings.contact.email ?? "ak_2123@hotmail.com"}</p>`;
+<p>Questions: ${settings.contact.email ?? "info@netbrandit.com"}</p>`;
 
   return (
     <section className="section-pad">

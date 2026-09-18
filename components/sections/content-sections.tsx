@@ -108,8 +108,8 @@ function RedlineHeroSection({ data }: { data: Record<string, unknown> }) {
               <Tag className="h-5 w-5" aria-hidden />
             </span>
             <p className="wrap-anywhere text-xs font-semibold uppercase tracking-[0.12em] text-warm-white sm:text-sm">
-              {priceBanner.split(/(\$99 CAD)/i).map((part, index) =>
-                /\$99 CAD/i.test(part) ?
+              {priceBanner.split(/(\$99\.99)/i).map((part, index) =>
+                /\$99\.99/i.test(part) ?
                   <span key={index} className="text-signal-red">
                     {part}
                   </span>

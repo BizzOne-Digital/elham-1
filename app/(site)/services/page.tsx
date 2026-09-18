@@ -26,7 +26,7 @@ export default async function ServicesPage() {
             <p className="label-caps mb-4 text-signal-red">Capabilities</p>
             <h1 className="text-4xl font-bold sm:text-5xl">Choose your growth path</h1>
             <p className="mx-auto mt-5 max-w-xl text-lg text-concrete">
-              Eight connected services—from custom web design starting at CAD 99 to full growth marketing strategy.
+              Eight connected services—from custom web design starting at $99.99 to full growth marketing strategy.
             </p>
             <div className="mt-8 flex flex-wrap justify-center gap-4">
               <TransitionLink href={PRIMARY_CTA.href} className="rounded-full bg-signal-red px-6 py-3 text-sm font-semibold">
@@ -95,7 +95,7 @@ export default async function ServicesPage() {
         <div className="container-site mx-auto max-w-3xl max-lg:text-center">
           <h2 className="text-3xl font-bold">Pricing teaser</h2>
           <p className="mt-4 text-concrete">
-            Custom websites can start from CAD 99. Apps, automation, ads, and strategy are quoted after discovery.
+            Custom websites can start from $99.99. Apps, automation, ads, and strategy are quoted after discovery.
           </p>
           <TransitionLink href={ROUTES.pricing} className="mt-6 inline-block font-semibold text-signal-red max-lg:mx-auto">
             View pricing →

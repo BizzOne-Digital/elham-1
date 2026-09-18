@@ -245,7 +245,7 @@ export function Footer({
               </Link>
             ))}
             <span className="hidden h-3 w-px bg-white/15 sm:block" aria-hidden />
-            <span className="text-xs text-smoke">Canada · CAD</span>
+            <span className="text-xs text-smoke">Canada</span>
           </div>
         </div>
       </div>

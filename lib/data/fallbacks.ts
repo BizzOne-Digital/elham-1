@@ -2,7 +2,7 @@ import type { Section } from "@/models/shared";
 import { PRIMARY_CTA, ROUTES, SECONDARY_CTA, SEED_IMAGES, HERO_CTA, HERO_COPY, BRAND_ASSETS, PRICING_PROMO_HEADING } from "@/lib/constants";
 
 export const DEFAULT_CONTACT = {
-  email: "ak_2123@hotmail.com",
+  email: "info@netbrandit.com",
   phone: "416-700-2656",
   phoneE164: "+14167002656",
 };

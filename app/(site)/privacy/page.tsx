@@ -18,7 +18,7 @@ export default async function PrivacyPage() {
 <p>We use this information to respond to inquiries, schedule discovery calls, prepare quotes, and deliver services you request. We do not sell personal information.</p>
 <p>Form submissions and booking records are stored securely in our database. Email notifications are sent when SMTP is configured.</p>
 <p>Cookies and analytics placeholders may be enabled later with appropriate consent mechanisms.</p>
-<p>We retain inquiry data as long as needed to manage the business relationship or as required by law. You may request access or deletion by contacting ${settings.contact.email ?? "ak_2123@hotmail.com"}.</p>
+<p>We retain inquiry data as long as needed to manage the business relationship or as required by law. You may request access or deletion by contacting ${settings.contact.email ?? "info@netbrandit.com"}.</p>
 <p>Third-party platforms used to deliver services (hosting, email, advertising platforms) may process data under their own terms.</p>
 <p>Netbrandit does not guarantee specific marketing outcomes. Clients remain responsible for approvals, claims, assets, and platform compliance.</p>`;
 

@@ -61,7 +61,7 @@ if (!ADMIN_EMAIL || !ADMIN_PASSWORD) {
 const adminEmail = ADMIN_EMAIL;
 const adminPassword = ADMIN_PASSWORD;
 
-const CONTACT_EMAIL = "ak_2123@hotmail.com";
+const CONTACT_EMAIL = "info@netbrandit.com";
 const CONTACT_PHONE = "416-700-2656";
 const CONTACT_PHONE_E164 = "+14167002656";
 const TIMEZONE = process.env.HOST_TIME_ZONE ?? DEFAULTS.timeZone;
@@ -111,7 +111,7 @@ const SERVICES = [
       "Conversion-focused, responsive websites tailored to the business.",
     description:
       "Conversion-focused, responsive websites tailored to the business. Final scope and quote are confirmed after discovery.",
-    startingPrice: "Starting from CAD 99",
+    startingPrice: "Starting from $99.99",
     highlights: [
       "Responsive layouts",
       "Lead-focused page structure",
@@ -220,7 +220,7 @@ const FAQS = [
   {
     question: "Do custom websites really start at $99?",
     answer:
-      "Yes, website projects can start from CAD 99. The final price depends on scope, pages, functionality, content, integrations, and timeline. A clear quote is provided after discovery.",
+      "Yes, website projects can start from $99.99. The final price depends on scope, pages, functionality, content, integrations, and timeline. A clear quote is provided after discovery.",
     category: "pricing",
   },
   {
@@ -712,7 +712,7 @@ async function seedPricing() {
       name: "Custom Website",
       description:
         "A tailored starting point for small businesses ready to establish or improve their online presence. Final scope, timeline, and price are confirmed after a discovery conversation.",
-      price: 99,
+      price: 99.99,
       billingPeriod: "one_time",
       features: [
         "Discovery-led scope",

@@ -1,6 +1,6 @@
-import Image from "next/image";
 import { notFound } from "next/navigation";
 import { Breadcrumbs } from "@/components/site/Breadcrumbs";
+import { SiteImage } from "@/components/site/SiteImage";
 import { SectionRenderer } from "@/components/sections/SectionRenderer";
 import { ScrollReveal } from "@/components/animations/ScrollAnimations";
 import { TransitionLink } from "@/components/animations/PageTransition";
@@ -8,6 +8,7 @@ import { GrowthPlanForm } from "@/components/forms";
 import { buildPageMetadata, buildServiceSchema, serializeJsonLd } from "@/lib/seo/metadata";
 import { getServiceBySlug, getServiceSlugs, getPublishedServices } from "@/lib/data/services";
 import { PRIMARY_CTA, ROUTES, SEED_IMAGES } from "@/lib/constants";
+import { resolveStockImage } from "@/lib/stock-images";
 
 interface PageProps {
   params: Promise<{ slug: string }>;
@@ -37,13 +38,16 @@ export default async function ServiceDetailPage({ params }: PageProps) {
 
   const hero = service.detailPage?.hero;
   const related = allServices.filter((s) => s.slug !== slug).slice(0, 3);
-  const galleryImages = [
+  const gallerySources = [
     hero?.image?.url ?? service.featuredImage?.url ?? SEED_IMAGES.webDesign,
     SEED_IMAGES.device,
     SEED_IMAGES.team,
     SEED_IMAGES.social,
     SEED_IMAGES.automation,
   ];
+  const galleryImages = gallerySources.map((src, index) =>
+    resolveStockImage(src, gallerySources[index] ?? SEED_IMAGES.webDesign),
+  );
 
   const schema = buildServiceSchema({
     name: service.title,
@@ -113,7 +117,7 @@ export default async function ServiceDetailPage({ params }: PageProps) {
           <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
             {galleryImages.map((src, index) => (
               <div key={`${src}-${index}`} className={`relative overflow-hidden rounded-xl ${index === 0 ? "sm:col-span-2 lg:col-span-2 aspect-[16/9]" : "aspect-square"}`}>
-                <Image src={src} alt={`${service.title} visual ${index + 1}`} fill className="object-cover" sizes="33vw" />
+                <SiteImage src={src} alt={`${service.title} visual ${index + 1}`} fill className="object-cover" sizes="33vw" />
               </div>
             ))}
           </div>

@@ -24,7 +24,7 @@ export default async function PricingPage() {
             <p className="label-caps mb-4 text-signal-red">Investment</p>
             <h1 className="text-4xl font-bold sm:text-5xl">Clear starting points. Honest custom quotes.</h1>
             <p className="mx-auto mt-5 max-w-2xl text-lg text-concrete">
-              Website projects can start from CAD 99. Final scope, timeline, and price are confirmed after discovery—we never claim every project costs $99.
+              Website projects can start from $99.99. Final scope, timeline, and price are confirmed after discovery—we never claim every project costs $99.99.
             </p>
           </ScrollReveal>
         </div>
@@ -38,13 +38,9 @@ export default async function PricingPage() {
             return (
             <ScrollReveal key={pkg._id} delay={index * 0.05}>
               <article className={`flex h-full flex-col overflow-hidden rounded-2xl border ${pkg.isPopular ? "border-signal-red bg-graphite" : "border-white/10 bg-carbon"}`}>
-                <div
-                  className={`flex aspect-[16/10] flex-col items-center justify-center px-4 text-center ${
-                    header.featured ? "bg-signal-red" : "border-x-4 border-signal-red bg-carbon"
-                  }`}
-                >
+                <div className="flex aspect-[16/10] flex-col items-center justify-center bg-signal-red px-4 text-center">
                   <p className="text-sm font-bold tracking-[0.18em] text-warm-white sm:text-base">{header.label}</p>
-                  <p className={`mt-2 max-w-[16rem] text-xs sm:text-sm ${header.featured ? "text-warm-white/85" : "text-steel"}`}>
+                  <p className="mt-2 max-w-[16rem] text-xs text-warm-white/85 sm:text-sm">
                     {header.tagline}
                   </p>
                 </div>

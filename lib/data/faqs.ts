@@ -31,7 +31,7 @@ const fallbackFaqs: FAQItem[] = [
     _id: "3",
     question: "Do custom websites really start at $99?",
     answer:
-      "Yes, website projects can start from CAD 99. The final price depends on scope, pages, functionality, content, integrations, and timeline. A clear quote is provided after discovery.",
+      "Yes, website projects can start from $99.99. The final price depends on scope, pages, functionality, content, integrations, and timeline. A clear quote is provided after discovery.",
     category: "pricing",
     sortOrder: 3,
   },

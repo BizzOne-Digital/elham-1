@@ -92,14 +92,16 @@ export const HERO_CTA = {
   secondary: { label: "Explore Services", href: ROUTES.services },
 } as const;
 
+export const WEBSITE_STARTING_PRICE = "$99.99" as const;
+
 export const HERO_COPY = {
   subheading:
     "We help small businesses turn their online presence into new customers with custom websites, AI and marketing systems built to move your business forward.",
-  priceBanner: "Websites starting at $99 CAD • Based in Canada • No long-term contracts",
+  priceBanner: `Websites starting at ${WEBSITE_STARTING_PRICE} • Based in Canada • No long-term contracts`,
 } as const;
 
 export const PRICING_PROMO_HEADING =
-  "Custom website packages starting at $99 and for a limited time all new packages come with a FREE CUSTOM LOGO";
+  "Custom websites starting at just $99.99—plus, for a limited time, every new website package includes a FREE custom-designed logo";
 
 export const LEAD_STATUS = {
   new: "new",

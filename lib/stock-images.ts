@@ -12,7 +12,7 @@ export const STOCK_IMAGES = {
   /** Laptop dashboard / analytics */
   device: unsplashPhoto("1460925895917-afdab827c52f"),
   /** Social content on mobile */
-  social: unsplashPhoto("1611162617474-5b21e939e07a"),
+  social: unsplashPhoto("1441986300917-64674bd600d8"),
   /** Data dashboard / workflow automation */
   automation: unsplashPhoto("1551288049-bebda4e38f71"),
   /** Retail / small business storefront */

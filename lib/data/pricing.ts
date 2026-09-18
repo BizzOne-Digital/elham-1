@@ -12,7 +12,7 @@ export interface PricingCardHeader {
 const PRICING_CARD_HEADERS: Record<string, PricingCardHeader> = {
   "custom-website": {
     label: "WEB DESIGN",
-    tagline: "Launch-ready sites from CAD 99",
+    tagline: "Launch-ready sites from $99.99",
     featured: true,
   },
   "apps-portals": {
@@ -91,8 +91,8 @@ const fallbackPricing: PricingItem[] = [
     slug: "custom-website",
     description:
       "A tailored starting point for small businesses ready to establish or improve their online presence. Final scope, timeline, and price are confirmed after a discovery conversation.",
-    price: 99,
-    currency: "CAD",
+    price: 99.99,
+    currency: "USD",
     billingPeriod: "one_time",
     features: [
       "Discovery-led scope definition",
@@ -110,7 +110,7 @@ const fallbackPricing: PricingItem[] = [
     slug: "apps-portals",
     description: "Custom digital products, portals, and internal tools.",
     price: 0,
-    currency: "CAD",
+    currency: "USD",
     billingPeriod: "custom",
     features: ["Scoped after discovery", "Custom quote", "Flexible timeline"],
     sortOrder: 2,
@@ -122,7 +122,7 @@ const fallbackPricing: PricingItem[] = [
     slug: "ai-automation-pricing",
     description: "Workflow review and practical automation recommendations.",
     price: 0,
-    currency: "CAD",
+    currency: "USD",
     billingPeriod: "custom",
     features: ["Process mapping", "Tool integration", "Human oversight built in"],
     sortOrder: 3,
@@ -134,7 +134,7 @@ const fallbackPricing: PricingItem[] = [
     slug: "advertising-seo",
     description: "Campaign setup, optimisation, and search visibility support.",
     price: 0,
-    currency: "CAD",
+    currency: "USD",
     billingPeriod: "custom",
     features: ["Strategy-first setup", "Transparent reporting", "Ad spend separate"],
     sortOrder: 4,
@@ -147,9 +147,15 @@ export function formatPrice(item: PricingItem): string {
     return "Custom quote";
   }
   if (item.billingPeriod === "one_time") {
-    return `From ${item.currency} ${item.price}`;
+    const amount =
+      item.price > 0 && item.price <= 100 ? 99.99 : item.price;
+    return `From $${amount.toFixed(2)}`;
   }
-  return `${item.currency} ${item.price}/${item.billingPeriod.replace("_", " ")}`;
+  const formatted = item.price.toLocaleString("en-US", {
+    minimumFractionDigits: item.price % 1 === 0 ? 0 : 2,
+    maximumFractionDigits: 2,
+  });
+  return `$${formatted}/${item.billingPeriod.replace("_", " ")}`;
 }
 
 export async function getPublishedPricing(): Promise<PricingItem[]> {
