@@ -91,14 +91,18 @@ export default async function ServicesPage() {
         </ScrollReveal>
       </section>
 
-      <section className="section-pad">
-        <div className="container-site mx-auto max-w-3xl max-lg:text-center">
-          <h2 className="text-3xl font-bold">Pricing teaser</h2>
+      <section className="section-pad bg-graphite">
+        <div className="container-site mx-auto max-w-3xl text-center">
+          <p className="label-caps mb-3 text-signal-red">Pricing</p>
+          <h2 className="text-3xl font-bold">Clear starting points</h2>
           <p className="mt-4 text-concrete">
-            Custom websites can start from $99.99. Apps, automation, ads, and strategy are quoted after discovery.
+            Custom websites can start from $99.99. Apps, automation, ads, and strategy are quoted after discovery—final scope is confirmed on a call.
           </p>
-          <TransitionLink href={ROUTES.pricing} className="mt-6 inline-block font-semibold text-signal-red max-lg:mx-auto">
-            View pricing →
+          <TransitionLink
+            href={ROUTES.pricing}
+            className="mt-8 inline-flex min-h-11 items-center rounded-full bg-signal-red px-6 py-3 text-sm font-semibold"
+          >
+            View pricing
           </TransitionLink>
         </div>
       </section>

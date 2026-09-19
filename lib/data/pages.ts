@@ -111,6 +111,10 @@ function normalizeSections(sections: Section[], slug?: string): Section[] {
       data.heading = PRICING_PROMO_HEADING;
     }
 
+    if (section.id === "about-principles" && !data.image) {
+      data.image = STOCK_IMAGES.brand;
+    }
+
     return {
       ...section,
       data,

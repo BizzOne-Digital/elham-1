@@ -8,7 +8,7 @@ import { SiteImage } from "@/components/site/SiteImage";
 import { ContactForm, GrowthPlanForm, LeadForm } from "@/components/forms";
 import { PRIMARY_CTA, SEED_IMAGES, BRAND_ASSETS } from "@/lib/constants";
 import { ServiceSplitRow } from "@/components/animations/ServiceSplitRow";
-import { resolveServiceImage } from "@/lib/stock-images";
+import { resolveServiceImage, resolveStockImage } from "@/lib/stock-images";
 import { isSectionCentered, sectionHeaderClass } from "@/lib/sections/layout";
 import { cn } from "@/lib/utils";
 import type { SectionComponentProps } from "@/components/sections/types";
@@ -108,40 +108,51 @@ export function NumberedProcessSection({ section, context }: SectionComponentPro
 export function BenefitGridSection({ section, context }: SectionComponentProps) {
   const items = (section.data.items as Array<{ title: string; description: string }>) ?? [];
   const rawImage = section.data.image as string | undefined;
-  const image =
-    rawImage ?
-      rawImage.startsWith("/images/") ? rawImage
-      : section.id === "home-process" ? BRAND_ASSETS.processSectionImage
-      : BRAND_ASSETS.storySectionImage
-    : null;
+  const fallbackImage =
+    section.id === "home-process" ? BRAND_ASSETS.processSectionImage
+    : section.id === "about-principles" ? SEED_IMAGES.brand
+    : BRAND_ASSETS.storySectionImage;
+  const image = resolveStockImage(rawImage, fallbackImage);
+  const showImage = Boolean(rawImage || section.id === "about-principles" || section.id === "home-process");
   const centered = isSectionCentered(section, context);
 
   return (
     <section className="section-pad">
-      <div className={cn("container-site min-w-0 grid items-center gap-10", image && "lg:grid-cols-[1fr_1fr]")}>
-        <ScrollReveal className={sectionHeaderClass(centered)}>
+      <div
+        className={cn(
+          "container-site min-w-0 grid items-center gap-10",
+          showImage ? "lg:grid-cols-2" : "mx-auto max-w-3xl",
+        )}
+      >
+        <ScrollReveal className={cn(sectionHeaderClass(centered), !showImage && "text-center")}>
           <h2 className="text-3xl font-bold">{String(section.data.heading)}</h2>
-          <ul className="mt-8 space-y-5 max-lg:mx-auto max-lg:max-w-xl">
+          <ul className={cn("mt-8 space-y-5", showImage ? "max-w-xl lg:max-w-none" : "mx-auto max-w-2xl")}>
             {items.map((item) => (
-              <li key={item.title} className="max-lg:border-l-0 max-lg:pl-0 border-l-2 border-signal-red pl-4 lg:text-left">
+              <li
+                key={item.title}
+                className={cn(
+                  "border-l-2 border-signal-red pl-4",
+                  !showImage && "max-lg:border-l-0 max-lg:pl-0 max-lg:text-center",
+                )}
+              >
                 <h3 className="font-bold">{item.title}</h3>
                 <p className="mt-1 text-sm text-steel">{item.description}</p>
               </li>
             ))}
           </ul>
         </ScrollReveal>
-        {image ?
+        {showImage ?
           <ScrollReveal delay={0.1}>
-            <div className="relative aspect-[4/3] max-h-[280px] w-full overflow-hidden rounded-2xl sm:max-h-[320px] lg:max-h-[360px]">
+            <div className="relative mx-auto aspect-[4/3] w-full max-w-xl overflow-hidden rounded-2xl lg:max-w-none">
               <SiteImage
                 src={image}
                 alt={
                   image === BRAND_ASSETS.processSectionImage ?
                     "AI-powered growth and automation"
-                  : "Strategy and analytics workspace"
+                  : "Strategy and brand direction"
                 }
                 fill
-                unoptimized
+                unoptimized={image.startsWith("/")}
                 className="object-cover"
                 sizes="(max-width:1024px) 100vw, 50vw"
               />

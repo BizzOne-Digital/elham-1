@@ -48,8 +48,8 @@ export default async function ContactPage() {
             <h2 className="text-3xl font-bold">{PRIMARY_CTA.label}</h2>
             <p className="mt-4 text-concrete">Share your goals and we will recommend practical next steps.</p>
             <div className="mt-8 grid grid-cols-2 gap-4">
-              {[SEED_IMAGES.webDesign, SEED_IMAGES.automation].map((src) => (
-                <div key={src} className="relative aspect-[4/3] overflow-hidden rounded-xl">
+              {[SEED_IMAGES.webDesign, SEED_IMAGES.device, SEED_IMAGES.team, SEED_IMAGES.strategy].map((src) => (
+                <div key={src} className="relative aspect-square overflow-hidden rounded-xl">
                   <Image src={src} alt="" fill className="object-cover" sizes="25vw" />
                 </div>
               ))}

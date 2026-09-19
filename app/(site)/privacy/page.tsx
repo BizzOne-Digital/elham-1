@@ -2,6 +2,7 @@ import { Breadcrumbs } from "@/components/site/Breadcrumbs";
 import { ScrollReveal } from "@/components/animations/ScrollAnimations";
 import { buildPageMetadata } from "@/lib/seo/metadata";
 import { getSiteSettings } from "@/lib/data/settings";
+import { DEFAULT_PRIVACY_POLICY_HTML, resolveLegalContent } from "@/lib/legal/content";
 
 export const metadata = buildPageMetadata({
   title: "Privacy Policy",
@@ -11,16 +12,13 @@ export const metadata = buildPageMetadata({
 
 export default async function PrivacyPage() {
   const settings = await getSiteSettings();
-  const content =
-    settings.legal?.privacyPolicyContent ??
-    `<p><strong>Placeholder — owner/legal review required.</strong></p>
-<p>Netbrandit collects information you submit through contact forms, growth-plan requests, and booking flows. This may include your name, business name, email, phone number, website, service interests, budget range, timeline, and message content.</p>
-<p>We use this information to respond to inquiries, schedule discovery calls, prepare quotes, and deliver services you request. We do not sell personal information.</p>
-<p>Form submissions and booking records are stored securely in our database. Email notifications are sent when SMTP is configured.</p>
-<p>Cookies and analytics placeholders may be enabled later with appropriate consent mechanisms.</p>
-<p>We retain inquiry data as long as needed to manage the business relationship or as required by law. You may request access or deletion by contacting ${settings.contact.email ?? "info@netbrandit.com"}.</p>
-<p>Third-party platforms used to deliver services (hosting, email, advertising platforms) may process data under their own terms.</p>
-<p>Netbrandit does not guarantee specific marketing outcomes. Clients remain responsible for approvals, claims, assets, and platform compliance.</p>`;
+  const content = resolveLegalContent(
+    settings.legal?.privacyPolicyContent,
+    DEFAULT_PRIVACY_POLICY_HTML.replace(
+      "info@netbrandit.com",
+      settings.contact.email ?? "info@netbrandit.com",
+    ),
+  );
 
   return (
     <section className="section-pad">

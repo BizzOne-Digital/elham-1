@@ -5,6 +5,7 @@ import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { z } from "zod";
 import { contactFormSchema } from "@/lib/validation/common";
+import { DateTimeFields } from "./DateTimeFields";
 import { FieldLabel, TextArea, TextInput } from "./shared";
 
 const extendedContactSchema = contactFormSchema.extend({
@@ -12,6 +13,16 @@ const extendedContactSchema = contactFormSchema.extend({
   services: z.string().trim().max(500).optional(),
   budget: z.string().trim().max(80).optional(),
   timeline: z.string().trim().max(80).optional(),
+  preferredDate: z
+    .string()
+    .regex(/^\d{4}-\d{2}-\d{2}$/)
+    .optional()
+    .or(z.literal("")),
+  preferredTime: z
+    .string()
+    .regex(/^\d{2}:\d{2}$/)
+    .optional()
+    .or(z.literal("")),
 });
 
 export function ContactForm() {
@@ -31,7 +42,16 @@ export function ContactForm() {
       const response = await fetch("/api/contact", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify(values),
+        body: JSON.stringify({
+          ...values,
+          message: [
+            values.message,
+            values.preferredDate ? `Preferred date: ${values.preferredDate}` : null,
+            values.preferredTime ? `Preferred time: ${values.preferredTime}` : null,
+          ]
+            .filter(Boolean)
+            .join("\n\n"),
+        }),
       });
       if (!response.ok) throw new Error("Unable to send message.");
       setStatus("success");
@@ -70,6 +90,7 @@ export function ContactForm() {
         <FieldLabel htmlFor="contact-services">Service interests</FieldLabel>
         <TextInput id="contact-services" {...register("services")} />
       </div>
+      <DateTimeFields register={register} errors={errors} />
       <div>
         <FieldLabel htmlFor="contact-message">Message</FieldLabel>
         <TextArea id="contact-message" rows={5} error={errors.message?.message} {...register("message")} />

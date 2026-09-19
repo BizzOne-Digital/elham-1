@@ -9,8 +9,8 @@ import { BRAND_ASSETS, PRIMARY_CTA, SEED_IMAGES } from "@/lib/constants";
 const ABOUT_GRID_IMAGES = [
   { src: BRAND_ASSETS.storySectionImage, alt: "Strategy and analytics workspace" },
   { src: SEED_IMAGES.automation, alt: "Business automation dashboard" },
-  { src: "/images/services/growth-marketing-strategy.png", alt: "Growth marketing strategy planning" },
-  { src: SEED_IMAGES.strategy, alt: "Team collaboration and research" },
+  { src: SEED_IMAGES.device, alt: "Analytics and performance dashboard" },
+  { src: SEED_IMAGES.webDesign, alt: "Custom website design workspace" },
 ] as const;
 
 export const metadata = buildPageMetadata({

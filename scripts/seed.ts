@@ -4,6 +4,7 @@ import bcrypt from "bcryptjs";
 import { connectDB } from "@/lib/db/connect";
 import { BRAND, BRAND_ASSETS, DEFAULTS, HEADER_NAV_ITEMS, HERO_COPY, HERO_CTA, PRIMARY_CTA, PRICING_PROMO_HEADING, ROUTES } from "@/lib/constants";
 import { SEED_FILE_IMAGES, SERVICE_STOCK_IMAGES, STOCK_IMAGES } from "@/lib/stock-images";
+import { DEFAULT_PRIVACY_POLICY_HTML, DEFAULT_TERMS_OF_SERVICE_HTML } from "@/lib/legal/content";
 import { SECTION_TYPES } from "@/lib/cms/sections";
 import {
   AdminUser,
@@ -354,6 +355,7 @@ function buildPageSections(slug: string): Section[] {
         }),
         section("about-principles", SECTION_TYPES.features, 2, {
           heading: "Principles",
+          image: STOCK_IMAGES.brand,
           items: [
             { title: "Tailored, not templated", description: "Every engagement starts with business context." },
             { title: "Clear strategy before execution", description: "Direction before production." },
@@ -601,10 +603,8 @@ async function seedSiteSettings() {
       legal: {
         privacyPolicyUrl: ROUTES.privacy,
         termsOfServiceUrl: ROUTES.terms,
-        privacyPolicyContent:
-          "Placeholder privacy policy for owner/legal review.",
-        termsOfServiceContent:
-          "Placeholder terms of service for owner/legal review.",
+        privacyPolicyContent: DEFAULT_PRIVACY_POLICY_HTML,
+        termsOfServiceContent: DEFAULT_TERMS_OF_SERVICE_HTML,
       },
     },
     { upsert: true, new: true, setDefaultsOnInsert: true },

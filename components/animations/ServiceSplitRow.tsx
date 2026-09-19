@@ -75,7 +75,7 @@ export function ServiceSplitRow({ service, index, imageSrc }: ServiceSplitRowPro
   return (
     <div
       ref={rowRef}
-      className="grid grid-cols-2 items-center gap-3 overflow-hidden sm:gap-6 lg:gap-12"
+      className="grid grid-cols-2 items-center gap-4 overflow-hidden sm:gap-6 lg:grid-cols-2 lg:items-center lg:gap-12"
     >
       <div
         ref={imageRef}

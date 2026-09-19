@@ -4,6 +4,7 @@ import { useState } from "react";
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { z } from "zod";
+import { DateTimeFields } from "./DateTimeFields";
 import { FieldLabel, TextArea, TextInput } from "./shared";
 
 const bookingSchema = z.object({
@@ -73,16 +74,13 @@ export function BookingForm() {
           <TextInput id="book-phone" {...register("phone")} />
         </div>
       </div>
-      <div className="grid gap-4 sm:grid-cols-2">
-        <div>
-          <FieldLabel htmlFor="book-date">Preferred date</FieldLabel>
-          <TextInput id="book-date" type="date" error={errors.date?.message} {...register("date")} />
-        </div>
-        <div>
-          <FieldLabel htmlFor="book-time">Preferred time</FieldLabel>
-          <TextInput id="book-time" type="time" error={errors.time?.message} {...register("time")} />
-        </div>
-      </div>
+      <DateTimeFields
+        register={register}
+        errors={errors}
+        dateField="date"
+        timeField="time"
+        required
+      />
       <div>
         <FieldLabel htmlFor="book-services">Services of interest</FieldLabel>
         <TextInput id="book-services" error={errors.services?.message} {...register("services")} />

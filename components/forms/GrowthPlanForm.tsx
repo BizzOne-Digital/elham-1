@@ -5,12 +5,23 @@ import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { z } from "zod";
 import { contactFormSchema } from "@/lib/validation/common";
+import { DateTimeFields } from "./DateTimeFields";
 import { FieldLabel, TextArea, TextInput, postLead } from "./shared";
 
 const growthPlanSchema = contactFormSchema.extend({
   company: z.string().trim().min(1).max(160),
   services: z.string().trim().min(2).max(500),
   timeline: z.string().trim().max(80).optional(),
+  preferredDate: z
+    .string()
+    .regex(/^\d{4}-\d{2}-\d{2}$/, "Choose a valid date")
+    .optional()
+    .or(z.literal("")),
+  preferredTime: z
+    .string()
+    .regex(/^\d{2}:\d{2}$/, "Choose a valid time")
+    .optional()
+    .or(z.literal("")),
 });
 
 export function GrowthPlanForm() {
@@ -31,7 +42,7 @@ export function GrowthPlanForm() {
         ...values,
         formType: "quote",
         source: "growth-plan-form",
-        message: `Services: ${values.services}\nTimeline: ${values.timeline ?? "Not specified"}\n\n${values.message}`,
+        message: `Services: ${values.services}\nTimeline: ${values.timeline ?? "Not specified"}\nPreferred date: ${values.preferredDate || "Not specified"}\nPreferred time: ${values.preferredTime || "Not specified"}\n\n${values.message}`,
       });
       setStatus("success");
       setMessage("Your growth plan request has been received.");
@@ -63,12 +74,13 @@ export function GrowthPlanForm() {
         <FieldLabel htmlFor="gp-services">Services of interest</FieldLabel>
         <TextInput id="gp-services" error={errors.services?.message} {...register("services")} />
       </div>
+      <DateTimeFields register={register} errors={errors} />
       <div>
         <FieldLabel htmlFor="gp-message">Biggest current challenge</FieldLabel>
         <TextArea id="gp-message" rows={4} error={errors.message?.message} {...register("message")} />
       </div>
       <button type="submit" disabled={isSubmitting} className="min-h-11 w-full rounded-full bg-signal-red py-3 text-sm font-semibold">
-        {isSubmitting ? "Sending..." : "Get My Free Growth Plan"}
+        {isSubmitting ? "Sending..." : "Book a Call"}
       </button>
       {status !== "idle" && (
         <p role="status" className={status === "success" ? "text-green-400" : "text-signal-red"}>

@@ -3,8 +3,9 @@ import { Breadcrumbs } from "@/components/site/Breadcrumbs";
 import { ScrollReveal } from "@/components/animations/ScrollAnimations";
 import { TransitionLink } from "@/components/animations/PageTransition";
 import { buildPageMetadata } from "@/lib/seo/metadata";
-import { formatPrice, getPublishedPricing, getPricingCardHeader, PRICING_IMAGES } from "@/lib/data/pricing";
-import { PRIMARY_CTA, ROUTES } from "@/lib/constants";
+import { PricingPackageCard } from "@/components/pricing/PricingPackageCard";
+import { getPublishedPricing, getPricingCardHeader, PRICING_IMAGES } from "@/lib/data/pricing";
+import { PRIMARY_CTA } from "@/lib/constants";
 
 export const metadata = buildPageMetadata({
   title: "Pricing",
@@ -32,42 +33,14 @@ export default async function PricingPage() {
 
       <section className="section-pad">
         <div className="container-site min-w-0 grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
-          {packages.map((pkg, index) => {
-            const header = getPricingCardHeader(pkg, index);
-
-            return (
-            <ScrollReveal key={pkg._id} delay={index * 0.05}>
-              <article className={`flex h-full flex-col overflow-hidden rounded-2xl border ${pkg.isPopular ? "border-signal-red bg-graphite" : "border-white/10 bg-carbon"}`}>
-                <div className="flex aspect-[16/10] flex-col items-center justify-center bg-signal-red px-4 text-center">
-                  <p className="text-sm font-bold tracking-[0.18em] text-warm-white sm:text-base">{header.label}</p>
-                  <p className="mt-2 max-w-[16rem] text-xs text-warm-white/85 sm:text-sm">
-                    {header.tagline}
-                  </p>
-                </div>
-                <div className="flex flex-1 flex-col p-6 max-lg:items-center max-lg:text-center">
-                  {pkg.isPopular && <span className="mb-2 text-xs font-bold uppercase text-signal-red">Popular</span>}
-                  <h2 className="text-xl font-bold">{pkg.name}</h2>
-                  <p className="mt-2 text-2xl font-bold text-signal-red">{formatPrice(pkg)}</p>
-                  {pkg.description && <p className="mt-3 flex-1 text-sm text-steel">{pkg.description}</p>}
-                  <ul className="mt-4 space-y-2 text-sm text-concrete max-lg:w-full">
-                    {pkg.features.map((feature) => (
-                      <li key={feature} className="flex gap-2 max-lg:justify-center">
-                        <span className="text-signal-red">—</span>
-                        {feature}
-                      </li>
-                    ))}
-                  </ul>
-                  <TransitionLink
-                    href={pkg.cta?.href ?? `${ROUTES.contact}?intent=quote`}
-                    className="mt-6 inline-flex min-h-11 items-center justify-center rounded-full bg-signal-red px-4 py-2 text-sm font-semibold"
-                  >
-                    {pkg.cta?.label ?? "Request a Quote"}
-                  </TransitionLink>
-                </div>
-              </article>
-            </ScrollReveal>
-            );
-          })}
+          {packages.map((pkg, index) => (
+            <PricingPackageCard
+              key={pkg._id}
+              pkg={pkg}
+              header={getPricingCardHeader(pkg, index)}
+              index={index}
+            />
+          ))}
         </div>
       </section>
 

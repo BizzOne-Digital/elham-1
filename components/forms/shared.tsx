@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import { forwardRef, useState } from "react";
 import { useForm, type FieldErrors, type UseFormRegister } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { contactFormSchema } from "@/lib/validation/common";
@@ -82,11 +82,15 @@ export function FieldLabel({ children, htmlFor }: { children: React.ReactNode; h
   );
 }
 
-export function TextInput(props: React.InputHTMLAttributes<HTMLInputElement> & { error?: string }) {
+export const TextInput = forwardRef<
+  HTMLInputElement,
+  React.InputHTMLAttributes<HTMLInputElement> & { error?: string }
+>(function TextInput(props, ref) {
   const { error, className, ...rest } = props;
   return (
     <>
       <input
+        ref={ref}
         {...rest}
         className={cn(
           "mt-1 w-full min-w-0 max-w-full rounded-lg border border-white/15 bg-carbon px-4 py-3 text-sm text-warm-white placeholder:text-steel focus:border-signal-red",
@@ -96,7 +100,7 @@ export function TextInput(props: React.InputHTMLAttributes<HTMLInputElement> & {
       {error && <p className="mt-1 text-xs text-signal-red">{error}</p>}
     </>
   );
-}
+});
 
 export function TextArea(props: React.TextareaHTMLAttributes<HTMLTextAreaElement> & { error?: string }) {
   const { error, className, ...rest } = props;
