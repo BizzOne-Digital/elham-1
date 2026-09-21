@@ -3,7 +3,7 @@
 import { useEffect, useRef, useState } from "react";
 import { ScrollReveal } from "@/components/animations/ScrollAnimations";
 import { TransitionLink } from "@/components/animations/PageTransition";
-import { formatPrice, type PricingItem, type PricingCardHeader } from "@/lib/data/pricing";
+import { formatPrice, type PricingCardHeader, type PricingItem } from "@/lib/pricing/display";
 import { ROUTES } from "@/lib/constants";
 import { cn } from "@/lib/utils";
 

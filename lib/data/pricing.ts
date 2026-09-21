@@ -2,12 +2,14 @@ import { connectDB } from "@/lib/db/connect";
 import { PricingPackage } from "@/models/PricingPackage";
 import { serializeDocs } from "@/lib/data/serialize";
 import { SEED_IMAGES } from "@/lib/constants";
+import {
+  formatPrice,
+  type PricingCardHeader,
+  type PricingItem,
+} from "@/lib/pricing/display";
 
-export interface PricingCardHeader {
-  label: string;
-  tagline: string;
-  featured?: boolean;
-}
+export type { PricingCardHeader, PricingItem } from "@/lib/pricing/display";
+export { formatPrice };
 
 const PRICING_CARD_HEADERS: Record<string, PricingCardHeader> = {
   "custom-website": {
@@ -70,20 +72,6 @@ export function getPricingCardHeader(pkg: PricingItem, index: number): PricingCa
   };
 }
 
-export interface PricingItem {
-  _id: string;
-  name: string;
-  slug: string;
-  description?: string;
-  price: number;
-  currency: string;
-  billingPeriod: string;
-  features: string[];
-  isPopular?: boolean;
-  sortOrder: number;
-  cta?: { label: string; href: string };
-}
-
 const fallbackPricing: PricingItem[] = [
   {
     _id: "1",
@@ -141,22 +129,6 @@ const fallbackPricing: PricingItem[] = [
     cta: { label: "Request a Quote", href: "/contact?intent=quote" },
   },
 ];
-
-export function formatPrice(item: PricingItem): string {
-  if (item.billingPeriod === "custom" || item.price === 0) {
-    return "Custom quote";
-  }
-  if (item.billingPeriod === "one_time") {
-    const amount =
-      item.price > 0 && item.price <= 100 ? 99.99 : item.price;
-    return `From $${amount.toFixed(2)}`;
-  }
-  const formatted = item.price.toLocaleString("en-US", {
-    minimumFractionDigits: item.price % 1 === 0 ? 0 : 2,
-    maximumFractionDigits: 2,
-  });
-  return `$${formatted}/${item.billingPeriod.replace("_", " ")}`;
-}
 
 export async function getPublishedPricing(): Promise<PricingItem[]> {
   try {

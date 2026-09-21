@@ -40,6 +40,20 @@ export interface SiteSettingsData {
   };
 }
 
+const LEGACY_CONTACT_EMAILS = new Set(["ak_2123@hotmail.com"]);
+
+function normalizeContact(contact: ContactInfo): ContactInfo {
+  const rawEmail = contact.email?.trim().toLowerCase() ?? "";
+  const email =
+    !rawEmail || LEGACY_CONTACT_EMAILS.has(rawEmail) ? DEFAULT_CONTACT.email : contact.email!.trim();
+
+  return {
+    ...contact,
+    email,
+    phone: contact.phone?.trim() || DEFAULT_CONTACT.phone,
+  };
+}
+
 const defaultSettings: SiteSettingsData = {
   brand: {
     name: "Netbrandit",
@@ -80,7 +94,7 @@ export async function getSiteSettings(): Promise<SiteSettingsData> {
         ...defaultSettings,
         ...data,
         brand: { ...defaultSettings.brand, ...data.brand },
-        contact: { ...defaultSettings.contact, ...data.contact },
+        contact: normalizeContact({ ...defaultSettings.contact, ...data.contact }),
         nav: {
           main: data.nav?.main?.length ? data.nav.main : defaultSettings.nav.main,
           footer: data.nav?.footer?.length ? data.nav.footer : defaultSettings.nav.footer,
@@ -93,5 +107,8 @@ export async function getSiteSettings(): Promise<SiteSettingsData> {
     // fall through
   }
 
-  return defaultSettings;
+  return {
+    ...defaultSettings,
+    contact: normalizeContact(defaultSettings.contact),
+  };
 }

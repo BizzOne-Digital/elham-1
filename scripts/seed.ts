@@ -355,7 +355,7 @@ function buildPageSections(slug: string): Section[] {
         }),
         section("about-principles", SECTION_TYPES.features, 2, {
           heading: "Principles",
-          image: STOCK_IMAGES.brand,
+          image: BRAND_ASSETS.storySectionImage,
           items: [
             { title: "Tailored, not templated", description: "Every engagement starts with business context." },
             { title: "Clear strategy before execution", description: "Direction before production." },

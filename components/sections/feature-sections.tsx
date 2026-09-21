@@ -110,7 +110,7 @@ export function BenefitGridSection({ section, context }: SectionComponentProps) 
   const rawImage = section.data.image as string | undefined;
   const fallbackImage =
     section.id === "home-process" ? BRAND_ASSETS.processSectionImage
-    : section.id === "about-principles" ? SEED_IMAGES.brand
+    : section.id === "about-principles" ? BRAND_ASSETS.storySectionImage
     : BRAND_ASSETS.storySectionImage;
   const image = resolveStockImage(rawImage, fallbackImage);
   const showImage = Boolean(rawImage || section.id === "about-principles" || section.id === "home-process");
@@ -143,7 +143,7 @@ export function BenefitGridSection({ section, context }: SectionComponentProps) 
         </ScrollReveal>
         {showImage ?
           <ScrollReveal delay={0.1}>
-            <div className="relative mx-auto aspect-[4/3] w-full max-w-xl overflow-hidden rounded-2xl lg:max-w-none">
+            <div className="relative mx-auto aspect-[4/3] min-h-[220px] w-full max-w-xl overflow-hidden rounded-2xl lg:max-w-none">
               <SiteImage
                 src={image}
                 alt={
@@ -152,7 +152,7 @@ export function BenefitGridSection({ section, context }: SectionComponentProps) 
                   : "Strategy and brand direction"
                 }
                 fill
-                unoptimized={image.startsWith("/")}
+                unoptimized={image.startsWith("/images/") || image.startsWith("/brand/")}
                 className="object-cover"
                 sizes="(max-width:1024px) 100vw, 50vw"
               />

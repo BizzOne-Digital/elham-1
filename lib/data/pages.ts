@@ -5,7 +5,7 @@ import { getFallbackPage } from "@/lib/data/fallbacks";
 import { serializeDoc, serializeDocs } from "@/lib/data/serialize";
 import { resolveStockImage, STOCK_IMAGES } from "@/lib/stock-images";
 import { resolvePublicImageUrl } from "@/lib/uploads/constants";
-import { PRICING_PROMO_HEADING, PRIMARY_CTA } from "@/lib/constants";
+import { BRAND_ASSETS, PRICING_PROMO_HEADING, PRIMARY_CTA } from "@/lib/constants";
 
 function normalizeSectionData(data: Record<string, unknown>): Record<string, unknown> {
   const next = { ...data };
@@ -111,8 +111,8 @@ function normalizeSections(sections: Section[], slug?: string): Section[] {
       data.heading = PRICING_PROMO_HEADING;
     }
 
-    if (section.id === "about-principles" && !data.image) {
-      data.image = STOCK_IMAGES.brand;
+    if (section.id === "about-principles") {
+      data.image = BRAND_ASSETS.storySectionImage;
     }
 
     return {
