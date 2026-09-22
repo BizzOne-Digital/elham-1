@@ -5,6 +5,7 @@ import { Lead } from "@/models/Lead";
 import { checkRateLimit, RATE_LIMITS } from "@/lib/rate-limit";
 import { contactFormSchema } from "@/lib/validation/common";
 import { sanitizePlainText } from "@/lib/validation/sanitize";
+import { isEmailConfigured, sendLeadNotification } from "@/lib/email";
 
 export async function POST(request: Request) {
   const headerStore = await headers();
@@ -38,6 +39,20 @@ export async function POST(request: Request) {
       utm: body.utm ?? {},
     },
   });
+
+  if (isEmailConfigured()) {
+    try {
+      await sendLeadNotification({
+        name: parsed.data.name,
+        email: parsed.data.email,
+        phone: parsed.data.phone,
+        message: parsed.data.message,
+        source: sanitizePlainText(String(body.source ?? "lead-form"), 120),
+      });
+    } catch (error) {
+      console.error("Lead SMTP notification failed:", error);
+    }
+  }
 
   return NextResponse.json({ success: true });
 }

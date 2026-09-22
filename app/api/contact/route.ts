@@ -5,6 +5,7 @@ import { Lead } from "@/models/Lead";
 import { checkRateLimit, RATE_LIMITS } from "@/lib/rate-limit";
 import { contactFormSchema } from "@/lib/validation/common";
 import { sanitizePlainText } from "@/lib/validation/sanitize";
+import { isEmailConfigured, sendContactNotification } from "@/lib/email";
 
 export async function POST(request: Request) {
   const headerStore = await headers();
@@ -42,6 +43,20 @@ export async function POST(request: Request) {
     source: extended.source ? sanitizePlainText(extended.source, 120) : "contact-form",
     status: "new",
   });
+
+  if (isEmailConfigured()) {
+    try {
+      await sendContactNotification({
+        name: parsed.data.name,
+        email: parsed.data.email,
+        phone: parsed.data.phone,
+        message: messageParts.join("\n"),
+        source: extended.source ? sanitizePlainText(extended.source, 120) : "contact-form",
+      });
+    } catch (error) {
+      console.error("Contact SMTP notification failed:", error);
+    }
+  }
 
   return NextResponse.json({ success: true });
 }

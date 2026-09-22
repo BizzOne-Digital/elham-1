@@ -22,25 +22,39 @@ function parseBoolean(value: string | undefined, fallback: boolean): boolean {
   return value === "true" || value === "1";
 }
 
+const DEFAULT_NOTIFICATION_EMAIL = "info@netbrandit.com";
+
 function getSmtpConfig() {
   const host = process.env.SMTP_HOST;
   const port = Number(process.env.SMTP_PORT ?? 587);
   const secure = parseBoolean(process.env.SMTP_SECURE, port === 465);
-  const user = process.env.SMTP_USER;
-  const pass = process.env.SMTP_PASSWORD;
-  const from = process.env.SMTP_FROM ?? user;
+  const user = process.env.SMTP_USER?.trim();
+  const pass = process.env.SMTP_PASSWORD?.replace(/\s+/g, "");
+  const from = process.env.SMTP_FROM?.trim() ?? user;
 
   if (!host || !from) {
     throw new Error("SMTP_HOST and SMTP_FROM must be configured");
+  }
+
+  if (!user || !pass) {
+    throw new Error("SMTP_USER and SMTP_PASSWORD must be configured");
   }
 
   return {
     host,
     port,
     secure,
-    auth: user && pass ? { user, pass } : undefined,
+    auth: { user, pass },
     from,
   };
+}
+
+export function getNotificationEmail(): string {
+  return (
+    process.env.SMTP_TO?.trim() ||
+    process.env.ADMIN_EMAIL?.trim() ||
+    DEFAULT_NOTIFICATION_EMAIL
+  );
 }
 
 let transporter: Transporter | null = null;
@@ -56,6 +70,7 @@ export function getMailTransporter(): Transporter {
     port: config.port,
     secure: config.secure,
     auth: config.auth,
+    tls: config.secure ? { minVersion: "TLSv1.2" } : undefined,
   });
 
   return transporter;
@@ -110,15 +125,10 @@ export interface ContactEmailPayload {
 export async function sendContactNotification(
   payload: ContactEmailPayload,
 ): Promise<void> {
-  const adminEmail = process.env.ADMIN_EMAIL;
-  if (!adminEmail) {
-    throw new Error("ADMIN_EMAIL is not configured");
-  }
-
   const template = contactNotificationTemplate(payload);
 
   await sendMail({
-    to: adminEmail,
+    to: getNotificationEmail(),
     subject: template.subject,
     html: template.html,
     text: template.text,
@@ -139,15 +149,10 @@ export interface LeadEmailPayload {
 export async function sendLeadNotification(
   payload: LeadEmailPayload,
 ): Promise<void> {
-  const adminEmail = process.env.ADMIN_EMAIL;
-  if (!adminEmail) {
-    throw new Error("ADMIN_EMAIL is not configured");
-  }
-
   const template = leadNotificationTemplate(payload);
 
   await sendMail({
-    to: adminEmail,
+    to: getNotificationEmail(),
     subject: template.subject,
     html: template.html,
     text: template.text,
@@ -156,7 +161,12 @@ export async function sendLeadNotification(
 }
 
 export function isEmailConfigured(): boolean {
-  return Boolean(process.env.SMTP_HOST && process.env.SMTP_FROM);
+  return Boolean(
+    process.env.SMTP_HOST?.trim() &&
+      process.env.SMTP_FROM?.trim() &&
+      process.env.SMTP_USER?.trim() &&
+      process.env.SMTP_PASSWORD?.trim(),
+  );
 }
 
 export function getSiteUrl(): string {

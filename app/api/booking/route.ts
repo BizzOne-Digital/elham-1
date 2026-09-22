@@ -9,6 +9,7 @@ import { checkRateLimit, RATE_LIMITS } from "@/lib/rate-limit";
 import { bookingFormSchema } from "@/lib/validation/common";
 import { sanitizePlainText } from "@/lib/validation/sanitize";
 import { DEFAULTS } from "@/lib/constants";
+import { isEmailConfigured, sendLeadNotification } from "@/lib/email";
 
 export async function POST(request: Request) {
   const headerStore = await headers();
@@ -98,12 +99,24 @@ export async function POST(request: Request) {
     },
   });
 
-  const smtpConfigured = Boolean(process.env.SMTP_HOST && process.env.SMTP_FROM);
+  if (isEmailConfigured()) {
+    try {
+      await sendLeadNotification({
+        name: parsed.data.name,
+        email: parsed.data.email,
+        phone: parsed.data.phone,
+        message: `Booking request\nDate: ${parsed.data.date}\nTime: ${parsed.data.time}\nService: ${parsed.data.service}\nNotes: ${parsed.data.notes ?? ""}`,
+        source: "booking-form",
+      });
+    } catch (error) {
+      console.error("Booking SMTP notification failed:", error);
+    }
+  }
 
   return NextResponse.json({
     success: true,
-    warning: smtpConfigured
+    warning: isEmailConfigured()
       ? undefined
-      : "Booking saved. Email confirmation is not configured in this environment.",
+      : "Booking saved. Email notification is not configured in this environment.",
   });
 }

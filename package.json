@@ -9,6 +9,7 @@
     "lint": "eslint .",
     "typecheck": "tsc --noEmit",
     "seed": "tsx scripts/seed.ts",
+    "verify:smtp": "tsx scripts/verify-smtp.ts",
     "test": "vitest run",
     "test:watch": "vitest",
     "test:e2e": "playwright test",
