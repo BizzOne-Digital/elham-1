@@ -3,7 +3,6 @@
 import { useEffect, type ReactNode } from "react";
 import Lenis from "lenis";
 import { PageTransition } from "@/components/animations/PageTransition";
-import { CinematicIntro } from "@/components/animations/CinematicIntro";
 import { ScrollAnimations } from "@/components/animations/ScrollAnimations";
 
 export function SiteProviders({ children }: { children: ReactNode }) {
@@ -32,7 +31,6 @@ export function SiteProviders({ children }: { children: ReactNode }) {
   return (
     <PageTransition>
       <ScrollAnimations>
-        <CinematicIntro />
         {children}
       </ScrollAnimations>
     </PageTransition>

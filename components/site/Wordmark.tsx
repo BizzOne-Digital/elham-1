@@ -6,7 +6,7 @@ import { BRAND_ASSETS } from "@/lib/constants";
 interface WordmarkProps {
   className?: string;
   asLink?: boolean;
-  size?: "sm" | "md" | "lg" | "xl" | "header" | "footer" | "footerBar" | "intro";
+  size?: "sm" | "md" | "lg" | "xl" | "header" | "footer" | "footerBar";
 }
 
 /** Logo: NET BRAND IT horizontal lockup with globe + tagline */
@@ -18,7 +18,6 @@ const sizeConfig = {
   header: { height: 64, width: 300, maxWidth: "max-w-[300px] sm:max-w-[340px]" },
   footer: { height: 120, width: 520, maxWidth: "max-w-[520px] sm:max-w-[580px]" },
   footerBar: { height: 72, width: 340, maxWidth: "max-w-[340px] sm:max-w-[380px]" },
-  intro: { height: 130, width: 560, maxWidth: "max-w-[560px] sm:max-w-[620px]" },
 } as const;
 
 export function Wordmark({ className, asLink = true, size = "md" }: WordmarkProps) {
