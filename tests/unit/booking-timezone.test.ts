@@ -17,7 +17,7 @@ describe("booking timezone handling", () => {
   });
 
   it("returns weekday slots between 9:00 and 17:00 in host timezone", () => {
-    const day = fromZonedTime("2026-09-15T12:00:00", timeZone);
+    const day = fromZonedTime("2026-11-17T12:00:00", timeZone);
     const slots = getAvailableSlotsForDay(day, {
       timeZone,
       slotDurationMinutes: 30,

@@ -76,7 +76,7 @@ export function GrowthPlanForm() {
       </div>
       <DateTimeFields register={register} errors={errors} />
       <div>
-        <FieldLabel htmlFor="gp-message">Biggest current challenge</FieldLabel>
+        <FieldLabel htmlFor="gp-message">What would you like us to build or improve?</FieldLabel>
         <TextArea id="gp-message" rows={4} error={errors.message?.message} {...register("message")} />
       </div>
       <button type="submit" disabled={isSubmitting} className="min-h-11 w-full rounded-full bg-signal-red py-3 text-sm font-semibold">

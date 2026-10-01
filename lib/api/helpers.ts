@@ -18,12 +18,33 @@ export function jsonSuccess<T extends Record<string, unknown>>(
   return NextResponse.json({ success: true, ...data }, { status });
 }
 
+function pickIp(value: string | null): string | null {
+  const trimmed = value?.trim();
+  return trimmed ? trimmed : null;
+}
+
 export function getClientIp(request: Request): string {
   const forwarded = request.headers.get("x-forwarded-for");
-  if (forwarded) {
-    return forwarded.split(",")[0]?.trim() ?? "unknown";
+  const fromForwarded = forwarded?.split(",")[0];
+
+  return (
+    pickIp(fromForwarded ?? null) ??
+    pickIp(request.headers.get("x-real-ip")) ??
+    pickIp(request.headers.get("cf-connecting-ip")) ??
+    pickIp(request.headers.get("true-client-ip")) ??
+    pickIp(request.headers.get("x-vercel-proxied-for")) ??
+    "unknown"
+  );
+}
+
+/** Per-user rate limit key; avoids collapsing traffic into a single `unknown` IP bucket. */
+export function buildFormRateLimitKey(request: Request, email: string): string {
+  const normalizedEmail = email.trim().toLowerCase();
+  const ip = getClientIp(request);
+  if (ip !== "unknown") {
+    return `${normalizedEmail}:${ip}`;
   }
-  return request.headers.get("x-real-ip") ?? "unknown";
+  return `email:${normalizedEmail}`;
 }
 
 export function applyRateLimitHeaders(

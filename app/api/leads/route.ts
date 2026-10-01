@@ -1,21 +1,20 @@
 import { NextResponse } from "next/server";
-import { headers } from "next/headers";
 import { connectDB } from "@/lib/db/connect";
 import { Lead } from "@/models/Lead";
 import { checkRateLimit, RATE_LIMITS } from "@/lib/rate-limit";
+import { buildFormRateLimitKey } from "@/lib/api/helpers";
 import { contactFormSchema } from "@/lib/validation/common";
 import { sanitizePlainText } from "@/lib/validation/sanitize";
 import { isEmailConfigured, sendLeadNotification } from "@/lib/email";
 
 export async function POST(request: Request) {
-  const headerStore = await headers();
-  const ip = headerStore.get("x-forwarded-for")?.split(",")[0]?.trim() ?? "unknown";
-  const rate = checkRateLimit(ip, "leads", RATE_LIMITS.contactForm);
-  if (!rate.success) {
-    return NextResponse.json({ error: "Too many requests. Please try again later." }, { status: 429 });
+  let body: Record<string, unknown>;
+  try {
+    body = (await request.json()) as Record<string, unknown>;
+  } catch {
+    return NextResponse.json({ error: "Invalid form data." }, { status: 400 });
   }
 
-  const body = await request.json();
   const parsed = contactFormSchema.safeParse(body);
   if (!parsed.success) {
     return NextResponse.json({ error: "Invalid form data." }, { status: 400 });
@@ -23,6 +22,15 @@ export async function POST(request: Request) {
 
   if (parsed.data.website) {
     return NextResponse.json({ success: true });
+  }
+
+  const rate = checkRateLimit(
+    buildFormRateLimitKey(request, parsed.data.email),
+    "leads",
+    RATE_LIMITS.contactForm,
+  );
+  if (!rate.success) {
+    return NextResponse.json({ error: "Too many requests. Please try again later." }, { status: 429 });
   }
 
   await connectDB();

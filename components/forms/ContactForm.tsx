@@ -53,7 +53,8 @@ export function ContactForm() {
             .join("\n\n"),
         }),
       });
-      if (!response.ok) throw new Error("Unable to send message.");
+      const data = (await response.json()) as { error?: string };
+      if (!response.ok) throw new Error(data.error ?? "Unable to send message.");
       setStatus("success");
       setMessage("Message sent. We typically respond within one business day.");
       reset();

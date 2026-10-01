@@ -86,7 +86,7 @@ export function BookingForm() {
         <TextInput id="book-services" error={errors.services?.message} {...register("services")} />
       </div>
       <div>
-        <FieldLabel htmlFor="book-challenge">Biggest current challenge</FieldLabel>
+        <FieldLabel htmlFor="book-challenge">What would you like us to build or improve?</FieldLabel>
         <TextArea id="book-challenge" rows={4} error={errors.challenge?.message} {...register("challenge")} />
       </div>
       <label className="flex items-start gap-3 text-sm text-concrete">

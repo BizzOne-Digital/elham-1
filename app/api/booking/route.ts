@@ -1,25 +1,24 @@
 import { NextResponse } from "next/server";
-import { headers } from "next/headers";
 import { addMinutes, parseISO } from "date-fns";
 import { connectDB } from "@/lib/db/connect";
 import { Booking } from "@/models/Booking";
 import { Lead } from "@/models/Lead";
 import { MeetingType } from "@/models/MeetingType";
 import { checkRateLimit, RATE_LIMITS } from "@/lib/rate-limit";
+import { buildFormRateLimitKey } from "@/lib/api/helpers";
 import { bookingFormSchema } from "@/lib/validation/common";
 import { sanitizePlainText } from "@/lib/validation/sanitize";
 import { DEFAULTS } from "@/lib/constants";
 import { isEmailConfigured, sendLeadNotification } from "@/lib/email";
 
 export async function POST(request: Request) {
-  const headerStore = await headers();
-  const ip = headerStore.get("x-forwarded-for")?.split(",")[0]?.trim() ?? "unknown";
-  const rate = checkRateLimit(ip, "booking", RATE_LIMITS.bookingForm);
-  if (!rate.success) {
-    return NextResponse.json({ error: "Too many requests. Please try again later." }, { status: 429 });
+  let body: Record<string, unknown>;
+  try {
+    body = (await request.json()) as Record<string, unknown>;
+  } catch {
+    return NextResponse.json({ error: "Invalid booking data." }, { status: 400 });
   }
 
-  const body = await request.json();
   const parsed = bookingFormSchema.safeParse({
     name: body.name,
     email: body.email,
@@ -32,6 +31,15 @@ export async function POST(request: Request) {
 
   if (!parsed.success) {
     return NextResponse.json({ error: "Invalid booking data." }, { status: 400 });
+  }
+
+  const rate = checkRateLimit(
+    buildFormRateLimitKey(request, parsed.data.email),
+    "booking",
+    RATE_LIMITS.bookingForm,
+  );
+  if (!rate.success) {
+    return NextResponse.json({ error: "Too many requests. Please try again later." }, { status: 429 });
   }
 
   const startUtc = parseISO(`${parsed.data.date}T${parsed.data.time}:00`);
