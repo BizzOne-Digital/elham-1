@@ -15,7 +15,7 @@ const sizeConfig = {
   md: { height: 48, width: 144, maxWidth: "max-w-[144px] sm:max-w-[160px]" },
   lg: { height: 56, width: 168, maxWidth: "max-w-[168px] sm:max-w-[190px]" },
   xl: { height: 64, width: 192, maxWidth: "max-w-[192px] sm:max-w-[220px]" },
-  header: { height: 52, width: 156, maxWidth: "max-w-[156px] sm:max-w-[180px]" },
+  header: { height: 60, width: 180, maxWidth: "max-w-[180px] sm:max-w-[210px]" },
   footer: { height: 80, width: 240, maxWidth: "max-w-[240px] sm:max-w-[280px]" },
   footerBar: { height: 56, width: 168, maxWidth: "max-w-[168px] sm:max-w-[190px]" },
 } as const;
