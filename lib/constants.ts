@@ -74,7 +74,7 @@ export const BRAND_ASSETS = {
   heroArtwork: "/images/hero/cyber-monogram.png",
   storySectionImage: "/images/story/strategy-desk.png",
   processSectionImage: "/images/process/ai-growth.png",
-  favicon: "/brand/logo.png",
+  favicon: "/brand/favicon.png",
 } as const;
 
 export const PRIMARY_CTA = {
