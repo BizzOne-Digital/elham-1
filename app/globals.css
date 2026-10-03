@@ -76,11 +76,9 @@
     overflow: hidden;
   }
 
-  /* Client logo ships on black; screen blend keys out the matte on void-black surfaces */
   .brand-logo {
-    mix-blend-mode: screen;
-    filter: hue-rotate(-10deg) saturate(1.12) brightness(1.04)
-      drop-shadow(0 0 18px color-mix(in srgb, var(--signal-red) 22%, transparent));
+    filter: hue-rotate(-10deg) saturate(1.1) brightness(1.03)
+      drop-shadow(0 0 16px color-mix(in srgb, var(--signal-red) 20%, transparent));
   }
 
   body {

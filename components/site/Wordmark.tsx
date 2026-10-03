@@ -20,12 +20,19 @@ const sizeConfig = {
   footerBar: { height: 56, width: 168, maxWidth: "max-w-[168px] sm:max-w-[190px]" },
 } as const;
 
+const logoSrcBySize: Partial<Record<keyof typeof sizeConfig, string>> = {
+  header: BRAND_ASSETS.logoHeader,
+  footer: BRAND_ASSETS.logoFooter,
+  footerBar: BRAND_ASSETS.logoFooter,
+};
+
 export function Wordmark({ className, asLink = true, size = "md" }: WordmarkProps) {
   const { height, width, maxWidth } = sizeConfig[size];
+  const src = logoSrcBySize[size] ?? BRAND_ASSETS.logo;
 
   const content = (
     <Image
-      src={BRAND_ASSETS.logo}
+      src={src}
       alt={BRAND_ASSETS.logoAlt}
       width={width}
       height={height}

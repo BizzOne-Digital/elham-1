@@ -69,6 +69,8 @@ export const HEADER_NAV_ITEMS = [
 
 export const BRAND_ASSETS = {
   logo: "/brand/logo.png",
+  logoHeader: "/brand/logo.png",
+  logoFooter: "/brand/logo-source.png",
   logoAlt: "NETBRANDIT",
   heroBackground: "/images/hero/cyber-monogram.png",
   heroArtwork: "/images/hero/cyber-monogram.png",
