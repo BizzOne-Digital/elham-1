@@ -4,13 +4,14 @@ import { useState } from "react";
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { z } from "zod";
+import { optionalServiceFieldSchema, SERVICE_FORM_OPTIONS } from "@/lib/service-form-options";
 import { contactFormSchema } from "@/lib/validation/common";
 import { DateTimeFields } from "./DateTimeFields";
-import { FieldLabel, TextArea, TextInput } from "./shared";
+import { FieldLabel, SelectInput, TextArea, TextInput } from "./shared";
 
 const extendedContactSchema = contactFormSchema.extend({
   company: z.string().trim().max(160).optional(),
-  services: z.string().trim().max(500).optional(),
+  services: optionalServiceFieldSchema.optional(),
   budget: z.string().trim().max(80).optional(),
   timeline: z.string().trim().max(80).optional(),
   preferredDate: z
@@ -89,7 +90,14 @@ export function ContactForm() {
       </div>
       <div>
         <FieldLabel htmlFor="contact-services">Service interests</FieldLabel>
-        <TextInput id="contact-services" {...register("services")} />
+        <SelectInput id="contact-services" defaultValue="" error={errors.services?.message} {...register("services")}>
+          <option value="">Select a service (optional)</option>
+          {SERVICE_FORM_OPTIONS.map((service) => (
+            <option key={service} value={service}>
+              {service}
+            </option>
+          ))}
+        </SelectInput>
       </div>
       <DateTimeFields register={register} errors={errors} />
       <div>

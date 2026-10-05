@@ -4,8 +4,9 @@ import { useState } from "react";
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { z } from "zod";
+import { selectedServiceFieldSchema, SERVICE_FORM_OPTIONS } from "@/lib/service-form-options";
 import { DateTimeFields } from "./DateTimeFields";
-import { FieldLabel, TextArea, TextInput } from "./shared";
+import { FieldLabel, SelectInput, TextArea, TextInput } from "./shared";
 
 const bookingSchema = z.object({
   name: z.string().min(2),
@@ -14,7 +15,7 @@ const bookingSchema = z.object({
   company: z.string().optional(),
   date: z.string().regex(/^\d{4}-\d{2}-\d{2}$/),
   time: z.string().regex(/^\d{2}:\d{2}$/),
-  services: z.string().min(2),
+  services: selectedServiceFieldSchema,
   challenge: z.string().min(10),
   consent: z.boolean().refine((value) => value, { message: "Consent is required" }),
 });
@@ -83,7 +84,19 @@ export function BookingForm() {
       />
       <div>
         <FieldLabel htmlFor="book-services">Services of interest</FieldLabel>
-        <TextInput id="book-services" error={errors.services?.message} {...register("services")} />
+        <SelectInput
+          id="book-services"
+          defaultValue=""
+          error={errors.services?.message}
+          {...register("services")}
+        >
+          <option value="" disabled>Select a service</option>
+          {SERVICE_FORM_OPTIONS.map((service) => (
+            <option key={service} value={service}>
+              {service}
+            </option>
+          ))}
+        </SelectInput>
       </div>
       <div>
         <FieldLabel htmlFor="book-challenge">What would you like us to build or improve?</FieldLabel>

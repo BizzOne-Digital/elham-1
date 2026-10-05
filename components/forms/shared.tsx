@@ -102,6 +102,28 @@ export const TextInput = forwardRef<
   );
 });
 
+export const SelectInput = forwardRef<
+  HTMLSelectElement,
+  React.SelectHTMLAttributes<HTMLSelectElement> & { error?: string }
+>(function SelectInput(props, ref) {
+  const { error, className, children, ...rest } = props;
+  return (
+    <>
+      <select
+        ref={ref}
+        {...rest}
+        className={cn(
+          "mt-1 w-full min-w-0 max-w-full rounded-lg border border-white/15 bg-carbon px-4 py-3 text-sm text-warm-white focus:border-signal-red",
+          className,
+        )}
+      >
+        {children}
+      </select>
+      {error && <p className="mt-1 text-xs text-signal-red">{error}</p>}
+    </>
+  );
+});
+
 export function TextArea(props: React.TextareaHTMLAttributes<HTMLTextAreaElement> & { error?: string }) {
   const { error, className, ...rest } = props;
   return (
