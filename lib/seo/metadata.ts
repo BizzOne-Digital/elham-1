@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import { BRAND, ROUTES } from "@/lib/constants";
+import { absoluteSiteUrl, getSiteUrl } from "@/lib/seo/site-url";
 
 export interface PageSeoInput {
   title?: string;
@@ -13,14 +14,8 @@ export interface PageSeoInput {
   modifiedTime?: string;
 }
 
-function getSiteUrl(): string {
-  return process.env.NEXT_PUBLIC_SITE_URL ?? "http://localhost:3000";
-}
-
 function absoluteUrl(path = "/"): string {
-  const base = getSiteUrl().replace(/\/$/, "");
-  const normalizedPath = path.startsWith("/") ? path : `/${path}`;
-  return `${base}${normalizedPath}`;
+  return absoluteSiteUrl(path);
 }
 
 function buildTitle(title?: string): string {

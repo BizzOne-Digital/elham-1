@@ -1,0 +1,14 @@
+/** Canonical public site origin (no trailing slash). */
+export function getSiteUrl(): string {
+  const raw = process.env.NEXT_PUBLIC_SITE_URL ?? "http://localhost:3000";
+  return raw.replace(/\/$/, "");
+}
+
+export function absoluteSiteUrl(path = "/"): string {
+  const base = getSiteUrl();
+  if (!path || path === "/") {
+    return base;
+  }
+  const normalized = path.startsWith("/") ? path : `/${path}`;
+  return `${base}${normalized}`;
+}
