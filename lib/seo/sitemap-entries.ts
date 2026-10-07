@@ -2,7 +2,10 @@ import type { MetadataRoute } from "next";
 import { connectDB } from "@/lib/db/connect";
 import { ROUTES } from "@/lib/constants";
 import { absoluteSiteUrl } from "@/lib/seo/site-url";
-import { BlogPost, GalleryProject, Page, Service } from "@/models";
+import { BlogPost } from "@/models/BlogPost";
+import { GalleryProject } from "@/models/GalleryProject";
+import { Page } from "@/models/Page";
+import { Service } from "@/models/Service";
 
 const INDEXABLE_QUERY = { status: "published", "seo.noIndex": { $ne: true } };
 
