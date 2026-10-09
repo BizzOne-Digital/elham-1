@@ -1,9 +1,6 @@
 import { formatInTimeZone } from "date-fns-tz";
 import { BRAND } from "@/lib/constants";
-
-function getSiteUrl(): string {
-  return process.env.NEXT_PUBLIC_SITE_URL ?? "http://localhost:3000";
-}
+import { getSiteUrl } from "@/lib/seo/site-url";
 
 export interface EmailTemplate {
   subject: string;

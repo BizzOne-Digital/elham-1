@@ -64,7 +64,7 @@ Copy `.env.example` to `.env.local`:
 | `AUTH_SECRET` | Yes | Random secret for NextAuth (`openssl rand -base64 32`) |
 | `ADMIN_EMAIL` | Seed only | First admin email |
 | `ADMIN_PASSWORD` | Seed only | First admin password (hashed on seed) |
-| `NEXT_PUBLIC_SITE_URL` | Yes | Public site URL (e.g. `http://localhost:3000`) |
+| `NEXT_PUBLIC_SITE_URL` | Yes | Canonical public URL — production: `https://www.netbrandit.com` |
 | `HOST_TIME_ZONE` | No | Default `America/Toronto` |
 | `DEFAULT_CURRENCY` | No | Default `CAD` |
 | `UPLOAD_DIR` | No | Default `public/uploads` |

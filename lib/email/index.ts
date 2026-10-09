@@ -169,9 +169,7 @@ export function isEmailConfigured(): boolean {
   );
 }
 
-export function getSiteUrl(): string {
-  return process.env.NEXT_PUBLIC_SITE_URL ?? "http://localhost:3000";
-}
+export { getSiteUrl } from "@/lib/seo/site-url";
 
 export function getBrandName(): string {
   return BRAND.name;

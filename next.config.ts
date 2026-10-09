@@ -1,6 +1,16 @@
 import type { NextConfig } from "next";
 
 const nextConfig: NextConfig = {
+  async redirects() {
+    return [
+      {
+        source: "/:path*",
+        has: [{ type: "host", value: "netbrandit.com" }],
+        destination: "https://www.netbrandit.com/:path*",
+        permanent: true,
+      },
+    ];
+  },
   images: {
     localPatterns: [
       {
