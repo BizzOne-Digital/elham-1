@@ -33,6 +33,15 @@ function pagePathFromSlug(slug: string): string {
   return `/${slug}`;
 }
 
+/** Sitemap loc URLs: homepage uses trailing slash for consistency with crawlers. */
+export function sitemapLocUrl(path: string): string {
+  const url = absoluteSiteUrl(path);
+  if (path === "/" || path === "") {
+    return url.endsWith("/") ? url : `${url}/`;
+  }
+  return url;
+}
+
 function entryForPath(
   path: string,
   lastModified: Date,
@@ -40,7 +49,7 @@ function entryForPath(
   changeFrequency: MetadataRoute.Sitemap[number]["changeFrequency"] = "monthly",
 ): MetadataRoute.Sitemap[number] {
   return {
-    url: absoluteSiteUrl(path),
+    url: sitemapLocUrl(path),
     lastModified,
     changeFrequency,
     priority,
@@ -66,6 +75,19 @@ function dedupeSitemap(entries: MetadataRoute.Sitemap): MetadataRoute.Sitemap {
   return [...byUrl.values()]
     .filter((entry) => isAllowedProductionSitemapUrl(entry.url))
     .sort((a, b) => a.url.localeCompare(b.url));
+}
+
+/** Never return an empty sitemap (GSC reports 0 discovered pages). */
+export function ensureIndexableSitemap(entries: MetadataRoute.Sitemap): MetadataRoute.Sitemap {
+  const indexable = dedupeSitemap(entries);
+  if (indexable.length > 0) {
+    return indexable;
+  }
+  const fallbackIndexable = dedupeSitemap(buildFallbackSitemap());
+  if (fallbackIndexable.length > 0) {
+    return fallbackIndexable;
+  }
+  return buildFallbackSitemap();
 }
 
 export function buildFallbackSitemap(): MetadataRoute.Sitemap {
@@ -133,11 +155,11 @@ export async function buildSitemapEntries(): Promise<MetadataRoute.Sitemap> {
     }
 
     if (entries.length === 0) {
-      return buildFallbackSitemap();
+      return ensureIndexableSitemap(buildFallbackSitemap());
     }
 
-    return dedupeSitemap(entries);
+    return ensureIndexableSitemap(entries);
   } catch {
-    return buildFallbackSitemap();
+    return ensureIndexableSitemap(buildFallbackSitemap());
   }
 }

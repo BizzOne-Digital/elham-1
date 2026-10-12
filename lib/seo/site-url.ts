@@ -3,6 +3,10 @@ export const CANONICAL_SITE_HOST = "www.netbrandit.com";
 
 /** Canonical public site origin (no trailing slash). */
 export function getSiteUrl(): string {
+  if (process.env.VERCEL_ENV === "production") {
+    return `https://${CANONICAL_SITE_HOST}`;
+  }
+
   const raw = process.env.NEXT_PUBLIC_SITE_URL ?? "http://localhost:3000";
   const trimmed = raw.replace(/\/$/, "");
 

@@ -1,6 +1,5 @@
 import { describe, expect, it } from "vitest";
-import { buildFallbackSitemap, FALLBACK_SITEMAP_PATHS } from "@/lib/seo/sitemap-entries";
-import { absoluteSiteUrl } from "@/lib/seo/site-url";
+import { buildFallbackSitemap, FALLBACK_SITEMAP_PATHS, sitemapLocUrl } from "@/lib/seo/sitemap-entries";
 
 describe("sitemap entries", () => {
   it("includes core public routes in the fallback sitemap", () => {
@@ -11,8 +10,9 @@ describe("sitemap entries", () => {
   });
 
   it("builds absolute URLs for fallback entries", () => {
+    process.env.NEXT_PUBLIC_SITE_URL = "https://www.netbrandit.com";
     const entries = buildFallbackSitemap();
-    expect(entries.some((e) => e.url === absoluteSiteUrl("/"))).toBe(true);
+    expect(entries.some((e) => e.url === sitemapLocUrl("/"))).toBe(true);
     expect(entries.every((e) => e.url.startsWith("http"))).toBe(true);
   });
 });
