@@ -8,7 +8,11 @@ export function getSiteUrl(): string {
 
   try {
     const parsed = new URL(trimmed);
-    if (parsed.hostname === "netbrandit.com" || parsed.hostname === CANONICAL_SITE_HOST) {
+    if (
+      parsed.hostname === "netbrandit.com" ||
+      parsed.hostname === CANONICAL_SITE_HOST ||
+      parsed.hostname.endsWith(".vercel.app")
+    ) {
       parsed.protocol = "https:";
       parsed.hostname = CANONICAL_SITE_HOST;
       parsed.port = "";

@@ -1,6 +1,7 @@
 import type { MetadataRoute } from "next";
 import { connectDB } from "@/lib/db/connect";
 import { ROUTES } from "@/lib/constants";
+import { isAllowedProductionSitemapUrl } from "@/lib/seo/crawler";
 import { absoluteSiteUrl } from "@/lib/seo/site-url";
 import { BlogPost } from "@/models/BlogPost";
 import { GalleryProject } from "@/models/GalleryProject";
@@ -62,7 +63,9 @@ function dedupeSitemap(entries: MetadataRoute.Sitemap): MetadataRoute.Sitemap {
     }
   }
 
-  return [...byUrl.values()].sort((a, b) => a.url.localeCompare(b.url));
+  return [...byUrl.values()]
+    .filter((entry) => isAllowedProductionSitemapUrl(entry.url))
+    .sort((a, b) => a.url.localeCompare(b.url));
 }
 
 export function buildFallbackSitemap(): MetadataRoute.Sitemap {

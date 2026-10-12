@@ -18,4 +18,9 @@ describe("site URL canonicalization", () => {
     process.env.NEXT_PUBLIC_SITE_URL = "http://localhost:3000";
     expect(getSiteUrl()).toBe("http://localhost:3000");
   });
+
+  it("normalizes Vercel preview env URL to canonical www", () => {
+    process.env.NEXT_PUBLIC_SITE_URL = "https://netbrandit-abc123.vercel.app";
+    expect(getSiteUrl()).toBe("https://www.netbrandit.com");
+  });
 });
