@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import { Inter, Space_Grotesk } from "next/font/google";
 import { BRAND, BRAND_ASSETS } from "@/lib/constants";
 import { buildPageMetadata } from "@/lib/seo/metadata";
+import { getSiteUrl } from "@/lib/seo/site-url";
 import "./globals.css";
 
 const spaceGrotesk = Space_Grotesk({
@@ -17,6 +18,7 @@ const inter = Inter({
 });
 
 export const metadata: Metadata = {
+  metadataBase: new URL(getSiteUrl()),
   ...buildPageMetadata({
     title: BRAND.name,
     description: BRAND.tagline,
